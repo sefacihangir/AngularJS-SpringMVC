@@ -25,7 +25,7 @@
                         <td><span ng-bind="user.lastName"></span></td>
                         <td><span ng-bind="user.age"></span></td>
                         <td>
-                        	<button type="button" ng-click="ctrl.edit(user.userId)" class="btn btn-success btn-sm" data-toggle="modal" data-target="#edit-user-modal">Edit</button>
+                        	<button type="button" ng-click="ctrl.edit(user)" class="btn btn-success btn-sm" data-toggle="modal" data-target="#edit-user-modal">Edit</button>
                         </td>	
                     </tr>
                 </tbody>
@@ -45,12 +45,13 @@
 		      </div>
 		      <div class="modal-body">
 		       	  <!-- UPDATE FORM -->
+		       	  {{ctrl.user.firstName}}
 		       	  <form ng-submit="ctrl.update()" name="updateUserForm">
-		       	  	  <input type="hidden" id="InputUserId" ng-model="ctrl.user.userId" ng-model-options="{ updateOn: 'default' }" />
+		       	  	  <input type="hidden" id="InputUserId" ng-model="ctrl.user.userId" />
 		       	  	  <!-- First Name -->
 		       	  	  <div class="form-group">
 					    <label for="InputFirstName">First Name</label>
-					    <input type="text" class="form-control" id="InputFirstName" ng-model="ctrl.user.firstName" placeholder="" required ng-model-options="{ updateOn: 'default' }">
+					    <input type="text" class="form-control" id="InputFirstName" ng-model="ctrl.user.firstName" placeholder="" required >
 					  </div>
 					  <!-- Last Name -->
 					  <div class="form-group">

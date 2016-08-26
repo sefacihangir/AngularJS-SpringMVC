@@ -17,13 +17,9 @@ App.controller('UserController', ['$scope', 'User', function($scope, User) {
 
 
           /*************************** GET BY ID *************************/
-          self.edit = function(userId){
-            for(var i = 0; i < self.users.length; i++){
-               if(self.users[i].userId === userId){
-                  self.user = angular.copy(self.users[i]);
-                  break;
-               }
-            }
+          self.edit = function(user){
+        
+            self.user = angular.copy(user);
 
             // set the values in the inputs of the update modal
             var InputUserId    = angular.element(document.querySelector('#InputUserId'));
@@ -40,16 +36,14 @@ App.controller('UserController', ['$scope', 'User', function($scope, User) {
           /*************************** UPDATE *************************/
           self.update = function(){
 
-            console.log(self.user.userId + " " + self.user.firstName);
-            console.log(self.user);
-
-            if( (self.user.userId == null) || (self.user.userId <= 0) ){
+            if( self.user == undefined ){
                 console.log("Failed !");
             }else{
                 // self.user.$update(function(){
                 //     self.fetchAllUsers();         // get all users again
                 // });
                 console.log("Updated !");
+                console.log(self.user.firstName);
             }
           };
 
