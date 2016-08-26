@@ -1,0 +1,104 @@
+
+<html>
+<head>
+	<title>Login</title>
+	<!-- Bootstrap css -->
+	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
+	<!-- custom css -->
+	<link rel="stylesheet" type="text/css" href="../assets/css/login.css">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Oswald|Raleway|Roboto" rel="stylesheet">
+
+	<style type="text/css">
+		input.ng-invalid.ng-dirty{
+			border: 1px solid #ff0000;
+		}
+	</style>
+
+</head>
+<body ng-app="AngularJSClientApp">
+	
+		<div class="card-group center-div" style="width: 600px;height: 400px;">
+			 <div class="card">
+			 	<div id="left-card">
+			 		<div id="logo-container">
+			 			<font size="5">SBOX</font>
+			 			<br>
+			 			<font size="1" style="font-family: 'Lato', sans-serif;">All rights reserved. 2016</font>
+			 		</div>
+
+			 		<div id="dropdown-container">
+						<nav>
+						  <button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+						    &#9776;
+						  </button>
+
+						  <div class="collapse" id="exCollapsingNavbar">
+						    <div class="p-a-1" style="padding-top: 0px !important;">
+						    	<ul class="list-group">
+								  <li class="list-group-item transparent borderless"><a href="#" style="color: #FFF;">Become a PROVIDER</a> <span class="tag tag-warning">PRO</span></li>
+								  <li class="list-group-item transparent borderless"><a href="#" style="color: #FFF;">Contact</a></li>
+								  <li class="list-group-item transparent borderless"><a href="#" style="color: #FFF;">About</a></li>
+								  <li class="list-group-item transparent borderless"><button type="button" class="btn btn-outline-primary btn-sm">Register &#8594;</button> <span class="tag tag-success">FREE</span></li>
+								</ul>
+						    </div>
+						  </div>
+						</nav>
+			 		</div>
+			 	</div>
+			 </div>
+
+			 <div class="card" style="background-color: #f6f9fc">
+			    <div class="card-block">
+			      <h4 class="card-title">Login</h4>
+			      <!-- LOGIN FORM -->
+			      <form ng-controller="LoginController" name="loginForm">
+			      	<div class="form-group">
+					    <input type="email" required class="form-control" name="email" placeholder="Email" ng-model="email" >
+					    <span ng-show="loginForm.email.$dirty && loginForm.email.$error.required" style="color: #ff0000"><font size="1">Field required</font></span> 
+					    <span ng-show="loginForm.email.$dirty && loginForm.email.$error.email" style="color: #ff0000"><font size="1">Please enter a valid email.</font></span>
+					</div>
+					<div class="form-group" style="padding-top: 10px;">
+				    	<input type="password" required class="form-control"  name="password" placeholder="Password" ng-model="password">
+				    	<span ng-show="loginForm.password.$touched && loginForm.password.$error.required" style="color: #ff0000"><font size="1">Field required</font></span> 
+				  	</div>
+				  	<button type="button" class="btn btn-primary" ng-click="submit()" ng-disabled="loginForm.$invalid">Submit <i class="fa fa-lock" aria-hidden="true"></i></button>
+			      </form>
+			      <!-- END of LOGIN FORM -->
+			      <p class="card-text"><small class="text-muted">Don't have an account ?</small> <small><a href="#">Register</a></small></p>
+			    </div>
+			    <!-- OTHER OPTIONS -->
+			        <div id="navcontainer">
+						<ul>
+							<li><font size="1"><a href="#">Privacy</a></font></li>
+							&middot;
+							<li><font size="1"><a href="#">Policy</a></font></li>
+							&middot;
+							<li><font size="1"><a href="#">Cookies</a></font></li>
+						</ul>
+					</div>
+			 </div>
+		</div>
+	
+
+		
+
+
+	 <!-- jQuery -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <!-- Tether -->
+     <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+     <!-- Bootstrap javascript -->
+     <script src="../assets/js/bootstrap.min.js"></script>
+
+     <!-- AngularJS resources -->
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
+
+     <script type="text/javascript" src="../controller/login-view-controller.js"></script>
+     <script type="text/javascript" src="../assets/js/angular-route.min.js"></script>
+
+</body>
+</html>
