@@ -1,0 +1,176 @@
+<html>
+<head>
+	<title>Signup</title>
+	<!-- Bootstrap css -->
+	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+	<!-- jQuery-ui css -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
+	<!-- custom css -->
+	<link rel="stylesheet" type="text/css" href="../assets/css/signup.css">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Oswald|Raleway|Roboto" rel="stylesheet">
+
+	<style type="text/css">
+		input.ng-invalid.ng-dirty{
+			border: 1px solid #ff0000;
+		}
+	</style>
+</head>
+
+<!-----------------------------------------BODY ------------------------------------>
+<body ng-app="AngularJSClientApp">
+
+	<!-- TOP BANNER -->
+	<div id="top-banner"></div>
+
+	<!-- BODY CONTAINER -->
+	<div class="container" id="signup-container">
+		<!-- REGISTRATION CONTAINER -->
+		<div class="card" id="signup-card">
+		  <div class="card-block">
+		    <h4 class="card-title">Signup</h4>
+		    <p class="card-text">
+		    	<font size="1">Create your <span class="tag tag-success">FREE</span> account </font>
+		    </p>
+		    <br>
+		    <div class="container" style="width: 350px; height: 500px;">
+			    <!-- SIGNUP FORM -->
+			    <form ng-controller="SignupController" name="signupForm">
+			    	<!-- AUTHENTICATION DETAILS ----------------------------------->
+			    	<!-- EMAIL -->
+					<div class="input-group">
+					  <span class="input-group-addon" id="sizing-addon2">
+					  	<i class="fa fa-envelope-o" aria-hidden="true"></i>
+					  </span>
+					  <input type="email" name="email" class="form-control" placeholder="Email" aria-describedby="sizing-addon2" ng-model="email" required>
+					</div>
+					<!-- Email Validation -->
+					<span ng-show="signupForm.email.$dirty && signupForm.email.$error.required" style="color: #ff0000"><font size="1">Field required.</font></span> 
+					<span ng-show="signupForm.email.$dirty && signupForm.email.$error.email" style="color: #ff0000"><font size="1">Please enter a valid email.</font></span>
+					<br>
+					<!-- END OF EMAIL -->
+
+					<!-- PASSWORD -->
+					<div class="input-group">
+					  <span class="input-group-addon" id="sizing-addon2">
+					  	<i class="fa fa-key" aria-hidden="true"></i>
+					  </span>
+					  <input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon2" ng-model="password" required ng-minlength="5" ng-maxlength="13">
+					</div>
+					<!-- Password Validation -->
+					<span ng-show="signupForm.password.$dirty && signupForm.password.$error.required" style="color: #ff0000">
+						<font size="1">Field required.</font>
+					</span>
+					<span ng-show="signupForm.password.$dirty && signupForm.password.$error.minlength" style="color: #ff0000">
+						<font size="1">Password too short. Min 5 characters.</font>
+					</span>
+					<span ng-show="signupForm.password.$dirty && signupForm.password.$error.maxlength" style="color: #ff0000">
+						<font size="1">Password too long. Max 13 characters.</font>
+					</span>
+					<br>
+					<!-- END OF PASSWORD -->
+
+					<!-- CONFIRM PASSWORD -->
+					<div class="input-group">
+					  <span class="input-group-addon" id="sizing-addon2">
+					  	<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+					  </span>
+					  <input type="password" name="retypedpassword" class="form-control" placeholder="Confirm Password" aria-describedby="sizing-addon2" ng-model="retypedpassword" password-match="password" required>
+					</div>					
+					<!-- Password don't match validation -->
+					<span ng-show="signupForm.retypedpassword.$dirty && signupForm.retypedpassword.$error.required" style="color: #ff0000"><font size="1">Field required.</font></span> 
+					<span ng-show="signupForm.retypedpassword.$dirty && signupForm.retypedpassword.$error.match" style="color: #ff0000"><font size="1">Passwords don't match.</font></span>
+					<!-- END OF CONFIRM PASSWORD -->
+
+					<hr>
+
+					<!-- CONTACT DETAILS ----------------------------------->
+					<!-- PHONE -->
+					<div class="input-group">
+					  <span class="input-group-addon" id="sizing-addon2">
+					  	<i class="fa fa-phone" aria-hidden="true"></i>
+					  </span>
+					  <input type="number" name="phone" class="form-control" placeholder="Phone" aria-describedby="sizing-addon2" ng-model="phone" required ng-maxlength="10" ng-minlength="10" ng-min="0">
+					</div>
+					<!-- Phone Validation -->	
+					<span ng-show="signupForm.phone.$dirty && signupForm.phone.$error.required" style="color: #ff0000"><font size="1">Field required.</font></span>
+					<span ng-show="signupForm.phone.$dirty && signupForm.phone.$error.minlength" style="color: #ff0000"><font size="1">Phone number must have 10 digits.</font></span>
+					<span ng-show="signupForm.phone.$dirty && signupForm.phone.$error.maxlength" style="color: #ff0000"><font size="1">Phone number must have 10 digits.</font></span>
+					<br>						
+					<!-- END OF PHONE -->
+
+					<!-- ADDRESS -->
+					<!-- primary address -->
+					<div class="input-group">
+					  <span class="input-group-addon" id="sizing-addon2">
+					  	<i class="fa fa-home" aria-hidden="true"></i>
+					  </span>
+					  <input type="text" name="address" class="form-control" placeholder="Address" aria-describedby="sizing-addon2" ng-model="address" required >
+					</div>
+					<!-- primary address validation -->
+					<span ng-show="signupForm.address.$dirty && signupForm.address.$error.required" style="color: #ff0000"><font size="1">Field required.</font></span>
+					<br>
+					<!-- END OF ADDRESS -->
+
+					<!-- COUNTY & CITY -->
+					<div id="county-city-container">
+						<div id="county-city-labels-div">
+							<p><i class="fa fa-map" aria-hidden="true"></i> County</p>
+							<br>
+							<p><i class="fa fa-building" aria-hidden="true"></i> City</p>
+						</div>
+
+						<div id="county-city-inputs-div">
+							<fieldset>
+							    <!-- county -->
+							    <select name="county" id="counties-dropdown" ng-model="selected_county"
+							    	ng-options="c.value for c in county_list" ng-click="populateCitiesDropdown()"
+							    	style="width: 100%;height: 37px;">
+							    	<!-- dynamic content -->
+							    </select>
+							    <br>
+							    <br>
+								<!-- city -->    
+							    <select name="city" id="cities-dropdown" ng-model="selected_city"
+							    	ng-options="c.value for c in city_list"
+							    	style="width: 100%;height: 37px;">
+							    	<!-- dynamic content -->
+							    </select>
+							</fieldset>
+						</div>
+					</div>
+					<!-- END OF COUNTY & CITY -->
+
+					<br>
+					<!-- NEXT STEP -->
+					<button type="button" class="btn btn-outline-primary btn-sm" style="width: 150px" ng-click="submit()" ng-disabled="signupForm.$invalid">Next &#8594;</button>
+			    </form>
+			    <!-- END OF SIGNUP FORM -->
+		    </div>
+		  </div>
+		</div>
+	</div>
+
+
+
+
+	 <!-- jQuery -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="   crossorigin="anonymous"></script>
+     <!-- Tether -->
+     <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+     <!-- Bootstrap javascript -->
+     <script src="../assets/js/bootstrap.min.js"></script>
+
+     <!-- AngularJS resources -->
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
+
+     <script type="text/javascript" src="../controller/signup-view-controller.js"></script>
+     <script type="text/javascript" src="../assets/js/angular-route.min.js"></script>
+
+    
+</body>
+</html>
