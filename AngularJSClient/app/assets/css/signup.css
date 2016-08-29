@@ -1,0 +1,78 @@
+#top-banner{
+	width: 100%;
+	height: 150px;
+	position: absolute;
+    background-color: #f6f9fc;
+    border-bottom: 1px solid #2895F1;
+}
+
+	#signup-container{
+		width: 500px;
+		height: 700px;
+		position:relative;
+		top:50px;
+	}
+
+	#signup-card{
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		-webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+		-moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+		box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+	}
+
+	h1,h2,h3,h4,h4,h6 {
+		font-family: 'Montserrat', sans-serif;
+	}
+
+    .btn{
+      font-family: 'Raleway', sans-serif !important;
+      background-color: #f6f9fc;
+    }
+
+    .btn:focus {
+      outline: none;
+    }
+
+
+    a{
+      font-family: 'Lato', sans-serif;
+    }
+
+    .input-width{
+    	width: 100%;
+    }
+
+    .input-height{
+    	height: 40px;
+    }
+
+    label {
+      display: block;
+      margin: 1px 0 0 0;
+      float: left;
+    }
+
+
+    #county-city-container{
+    	width: 100%;
+    	height: 120px;
+    	float: left;
+    }
+
+    #county-city-labels-div{
+    	width: 30%;
+    	height: 100%;
+    	float: left;
+    }
+
+    #county-city-inputs-div{
+    	width: 70%;
+    	height: 100%;
+    	float: left;
+    }
+
+    .overflow {
+      height: 100px;
+    }

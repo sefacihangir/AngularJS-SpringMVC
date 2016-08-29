@@ -1,5 +1,6 @@
 var app = angular.module('AngularJSClientApp', ['ngRoute']);
 
+// ROUTES
 app.config(function($routeProvider){
 	$routeProvider
 	.when(
@@ -14,6 +15,7 @@ app.config(function($routeProvider){
 
 
 
+// CONTROLLER
 app.controller('LoginController', function($scope, $location){
 	
 	/***** SUBMIT *****/
@@ -22,7 +24,7 @@ app.controller('LoginController', function($scope, $location){
 		var password = $scope.password;
 
 		console.log("Email " + email + " Password " + password);
-	}
+	};
 
 
 

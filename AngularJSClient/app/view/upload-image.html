@@ -1,0 +1,79 @@
+<html>
+<head>
+	<title>Upload profile photo</title>
+	<!-- Bootstrap css -->
+	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+	<!-- jQuery-ui css -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
+	<!-- custom css -->
+	<link rel="stylesheet" type="text/css" href="../assets/css/upload-image.css">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Oswald|Raleway|Roboto" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- TOP BANNER -->
+	<div id="top-banner"></div>
+
+	<div class="container" id="upload-image-container">
+		<div class="card" id="upload-image-card">
+			<div class="card-block">
+				<h4 class="card-title">Upload profile image</h4>
+				<p class="card-text">
+		    		<font size="1">Help providers to recognize you more easily</font>
+		    	</p>
+		    	<div class="container-fluid" style="text-align: left;">
+			    	<form>
+			    		<div class="form-group">
+						    <label for="img-input">File input</label>
+						    <input type="file" class="form-control-file" id="img-input" aria-describedby="fileHelp">
+					  </div>
+			    	</form>
+		    	</div>
+
+		    	<div id="image-preview-container" class="container">
+		    		<div id="left-side">
+		    			<button type="button" class="btn btn-outline-primary btn-sm">
+		    				Finish <i class="fa fa-check" aria-hidden="true"></i>
+		    			</button>
+
+		    			<button type="button" id="skip-upload-btn" class="btn btn-secondary btn-sm"
+		    			data-toggle="popover" data-placement="top" data-content="You also can add your profile image later." >
+		    				Skip for now &#8594;
+		    			</button>
+		    		</div>
+
+		    		<div id="right-side">
+		    			<!-- PREVIEW IMAGE FROM INPUT -->
+		    		</div>
+		    	</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	 <!-- jQuery -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="   crossorigin="anonymous"></script>
+     <!-- Tether -->
+     <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+     <!-- Bootstrap javascript -->
+     <script src="../assets/js/bootstrap.min.js"></script>
+
+     <!-- Preview uploaded image -->
+     <script type="text/javascript" src="../assets/js/preview-uploaded-image.js"></script>
+
+     <script type="text/javascript">
+     	$( document ).ready(function() {
+    		$('#skip-upload-btn').popover({ trigger: "hover" });
+		});
+     </script>
+
+</body>
+</html>
