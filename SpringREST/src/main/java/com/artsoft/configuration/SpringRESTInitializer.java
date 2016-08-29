@@ -8,12 +8,12 @@ public class SpringRESTInitializer extends AbstractAnnotationConfigDispatcherSer
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[]{ SpringRESTConfiguration.class };
+		return new Class[]{ RootConfig.class };
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return null;
+		return new Class[]{ SpringRESTConfiguration.class };
 	}
 
 	@Override
