@@ -5,9 +5,13 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,8 +31,9 @@ public class AppUser implements Serializable{
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="role_id")
-	private int roleId;
+	@ManyToOne(targetEntity=Role.class)
+	@JoinColumn(name="role_id")
+	private Role role;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -42,15 +47,20 @@ public class AppUser implements Serializable{
 	@Column(name="created_at")
 	private Date createdAt;
 	
-	@Column(name="state_id")
-	private int stateId;
+	@ManyToOne(targetEntity=State.class)
+	@JoinColumn(name="state_id")
+	private State state;
 	
 	@Column(name="last_action")
 	private Date lastAction;
 	
-	@Column(name="image_id")
-	private int imageId;
+	@Column(name="image_path")
+	private String imagePath;
 
+	
+	
+	
+	
 	public int getAppUserId() {
 		return appUserId;
 	}
@@ -75,12 +85,13 @@ public class AppUser implements Serializable{
 		this.password = password;
 	}
 
-	public int getRoleId() {
-		return roleId;
+	
+	public Role getRole() {
+		return role;
 	}
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public String getFirstName() {
@@ -115,13 +126,15 @@ public class AppUser implements Serializable{
 		this.createdAt = createdAt;
 	}
 
-	public int getStateId() {
-		return stateId;
+
+	public State getState() {
+		return state;
 	}
 
-	public void setStateId(int stateId) {
-		this.stateId = stateId;
+	public void setState(State state) {
+		this.state = state;
 	}
+
 
 	public Date getLastAction() {
 		return lastAction;
@@ -131,18 +144,18 @@ public class AppUser implements Serializable{
 		this.lastAction = lastAction;
 	}
 
-	public int getImageId() {
-		return imageId;
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public void setImageId(int imageId) {
-		this.imageId = imageId;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
+
+
 	
 	
-	
-	
-	
+
 	
 	
 }

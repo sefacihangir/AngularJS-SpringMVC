@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -36,10 +37,10 @@ public class UserController {
 //    }
     
     
-    @RequestMapping(value = "/user/{email}", headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.GET)
-    public ResponseEntity<AppUser> getUser(@PathVariable("email") String email) {
+    @RequestMapping(value = "/user", headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.GET)
+    public ResponseEntity<AppUser> getUser(@RequestParam(value = "email") String email) {
         System.out.println("Fetching User with id " + email);
-        AppUser user = appUserService.findByEmail("");
+        AppUser user = appUserService.findByEmail(email);
         if (user == null) {
             System.out.println("User with id " + email + " not found");
             return new ResponseEntity<AppUser>(HttpStatus.NOT_FOUND);
