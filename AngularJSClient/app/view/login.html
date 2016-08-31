@@ -6,10 +6,15 @@
 	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
+	<!-- iGrowl alerts -->
+	<link rel="stylesheet" type="text/css" href="../assets/igrowl-alerts/stylesheets/igrowl.css">
+	<link rel="stylesheet" type="text/css" href="../assets/igrowl-alerts/stylesheets/animate.css">
+	<link rel="stylesheet" type="text/css" href="../assets/igrowl-alerts/stylesheets/icomoon/feather.css">
 	<!-- custom css -->
 	<link rel="stylesheet" type="text/css" href="../assets/css/login.css">
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Oswald|Raleway|Roboto" rel="stylesheet">
+
 
 	<style type="text/css">
 		input.ng-invalid.ng-dirty{
@@ -19,7 +24,9 @@
 
 </head>
 <body ng-app="AngularJSClientApp">
-	
+		
+	<div ng-view></div>
+
 		<div class="card-group center-div" style="width: 600px;height: 400px;">
 			 <div class="card">
 			 	<div id="left-card">
@@ -60,7 +67,7 @@
 					    <span ng-show="loginForm.email.$dirty && loginForm.email.$error.required" style="color: #ff0000"><font size="1">Field required</font></span> 
 					    <span ng-show="loginForm.email.$dirty && loginForm.email.$error.email" style="color: #ff0000"><font size="1">Please enter a valid email.</font></span>
 					</div>
-					<div class="form-group" style="padding-top: 10px;">
+					<div class="form-group" style="">
 				    	<input type="password" required class="form-control"  name="password" placeholder="Password" ng-model="password">
 				    	<span ng-show="loginForm.password.$touched && loginForm.password.$error.required" style="color: #ff0000"><font size="1">Field required</font></span> 
 				  	</div>
@@ -90,16 +97,14 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
      <!-- Tether -->
      <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
-     <!-- Bootstrap javascript -->
+     <!-- Bootstrap javascript --> 
      <script src="../assets/js/bootstrap.min.js"></script>
+     <!-- iGrowl -->
+     <script type="text/javascript" src="../assets/igrowl-alerts/javascripts/igrowl.js"></script>
 
-     <!-- AngularJS resources -->
-     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
-
-     <script type="text/javascript" src="../assets/js/angular-route.min.js"></script>
-     <script type="text/javascript" src="../assets/js/global-routing.js"></script>
-     <script type="text/javascript" src="../controller/login-view-controller.js"></script>
+	<!-- AngularJS resources -->
+    <script type="text/javascript" src="../assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="../controller/login-view-controller.js"></script>
 
 </body>
 </html>

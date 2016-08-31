@@ -18,7 +18,6 @@ public class AppUserServiceImpl implements AppUserService{
 	
 	@Override
 	public AppUser findByEmail(String email) {
-		System.out.println("IN SERVICE");
 		return appUserDao.findByEmail(email);
 	}
 
