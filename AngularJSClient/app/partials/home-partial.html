@@ -1,3 +1,4 @@
+
 <html>
 <head>
 	<title>Home</title>
@@ -15,75 +16,54 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Oswald|Raleway|Roboto" rel="stylesheet">
 </head>
 
-<body ng-app="AngularJSClientApp" ng-controller="HomeController">
-
-	<div id="top-banner">
-		<div class="container">
-			<!-- LOGO -->
-			<div id="top-logo">
-				<ul>
-					<li><font size="6">SBOX</font></li>
-				</ul>
-			</div>
-			<!-- GREETING MESSAGE & LOGOUT BUTTON -->
-			<div id="top-navcontainer">
-				<ul>
-					<li><font>Welcome <b>{{user.firstName}} {{user.lastName}}</b></font></li>
-					<li>
-						<button type="button" class="btn btn-default btn-sm" id="login-button">
-							Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
-						</button>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+<body ng-app="AngularJSClientApp" ng-controller="HomeController" id="body">
 
 
-	<!-- MAIN BODY -->
 	<div class="container">
-		<div class="container-fluid">
-			<div class="row">
-				<!-- NAVBAR MENU -->
-				<div class="col-xs-12 col-md-8" style="background-color: ; height: 400px;">
-					<div id="navbar-menu">
-						<ul class="nav nav-tabs">
-						  <li role="presentation" class="active"><a href="#home" data-toggle="tab" data-target="#home">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
-						  <li role="presentation"><a href="#profile" data-toggle="tab" data-target="#profile">Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
-						  <li role="presentation"><a href="#requests" data-toggle="tab" data-target="#requests">Requests <i class="fa fa-folder" aria-hidden="true"></i></a></li>
-						</ul>
+		<div class="box">
+			<!------------------- HEADER ------------------>
+		  <div class="row header" id="header">
+			<div id="top-banner">
+					<div class="container-fluid" style="width: 80%;">
+						<!-- LOGO -->
+						<div id="top-logo">
+							<ul>
+								<li><font size="6">SBOX</font></li>
+							</ul>
+						</div>
+						<!-- GREETING MESSAGE & LOGOUT BUTTON -->
+						<div id="top-navcontainer">
+							<ul>
+								<li><font>Welcome <b>{{user.firstName}} {{user.lastName}}</b></font></li>
+								<li>
+									<button type="button" class="btn btn-default btn-sm" id="login-button">
+										Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
 					</div>
+				</div>  
+		  </div>
 
-					<!-- DYNAMIC INJECTION OF CONTENT WITH ANGULARJS -->
-					<div ng-view></div>
+		  <!------------------------- CONTENT -------------------->
+		  <div class="row content" id="content">
+		    <div class="container-fluid" style="width: 80%; background-color: red;" id="main-content">
+		    	<div id="navbar-left">
 
-				</div>
+		    	</div>
 
-				<!-- STATS DETAILS -->
-	  			<div class="col-xs-6 col-md-4" style="background-color: ; height: 400px;">
-	  				<div id="status-container">
-	  					<div id="vertical-design-line"></div>
-	  					<!-- AVATAR -->
-	  					<div id="avatar-container">
-	  						<img src="https://pbs.twimg.com/profile_images/603945839795412992/XTssKbRC_400x400.jpg" id="avatar-image">
-	  					</div>
+		    	<div id="main-content-area">
+		    		
+		    	</div>
+		    </div>
+		  </div>
 
-	  					<!-- STATUS, ACCOUNT TYPE & LAST ACTION -->
-	  					<div id="stats-container">
-	  						<small>Status : <b>ACTIVE</b></small>
-	  						<br>
-	  						<small>Account type : <b>(free)</b></small>
-	  						<br>
-	  						<small>Last action : <b>--</b></small>
-	  					</div>
-	  				</div>
-				</div>
-			</div>
+		  <div class="row footer" id="footer">
+		    <p><b>footer</b> (fixed height)</p>
+		  </div>
 		</div>
 	</div>
-
-	<div id="footer">This footer will always be positioned at the bottom of the page,  <strong>fixed</strong>.</div>
-
 
 	 <!-- jQuery -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -97,6 +77,16 @@
     <script type="text/javascript" src="../assets/js/angular-route.min.js"></script>
     <script type="text/javascript" src="../assets/js/global-routing.js"></script>
     <script type="text/javascript" src="../controller/home-partial-controller.js"></script>
+
+    <script type="text/javascript">
+		$(window).resize(function(){
+		   var height = $('body').height() - ( $("#header").height() + $("#footer").height() );
+		   console.log(height);
+		   $('#main-content').height(height);
+		})
+
+		$(window).resize(); //on page load
+    </script>
 
 </body>
 </html>
