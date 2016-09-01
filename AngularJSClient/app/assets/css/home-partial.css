@@ -1,0 +1,121 @@
+	html,body { height:100%; }
+
+	#top-banner{
+		width: 100%;
+		height: 100px;
+		float: left;
+	    background-color: #f6f9fc;
+	    border-bottom: 1px solid #2895F1;
+	}
+
+    #top-logo{
+      width: 50%;
+      height: 50px;
+      float: left;
+      padding-right: 10px;
+      margin-top: 35px;
+      font-family: 'Oswald', sans-serif;
+      color: #2895F1;
+    }
+
+    #top-logo ul
+    {
+      text-align: left;
+    }
+
+    #top-logo ul li { display: inline; }
+
+    #top-navcontainer{
+    	width: 50%;
+    	height: 50px;
+    	float: left;
+    	margin-top: 35px;
+    }
+
+    #top-navcontainer ul{
+    	text-align: right;
+    }
+
+    #top-navcontainer ul li{
+    	display: inline;
+    	padding-right: 10px;
+    }
+
+
+
+    h1,h2,h3,h4,h4,h6 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .btn{
+      font-family: 'Raleway', sans-serif !important;
+    }
+
+    .btn:focus {
+      outline: none;
+    }
+
+
+    a{
+      font-family: 'Lato', sans-serif;
+    }
+
+    #login-button{
+    	background-color: #2895F1 !important;
+    	color: #FFF;
+    }
+
+    #footer {
+	  position: fixed;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  padding: 1rem;
+	  background-color: #efefef;
+	  text-align: center;
+	}
+
+	#status-container{
+		width: 100%;
+		height: 100px;
+		float: left;
+		background-color: #f6f9fc;
+		margin-top: 10px;
+		border: 1px solid #2895F1;
+	}
+
+	#vertical-design-line{
+		width: 6px;
+		float: left;
+		height: 100%;
+		background-color: #2895F1;
+	}
+
+	#avatar-container{
+		width: 80px;
+		height: 80px;
+		float: left;
+		margin-left: 15px;
+		margin-top: 7px;
+		background-color: red;
+	}
+
+	#avatar-image{
+		width: 100%;
+		height: 100%;
+	}
+
+	#stats-container{
+		width: 200px;
+		height: 80px;
+		float: left;
+		margin-top: 7px;
+		margin-left: 5px;
+	}
+
+	#navbar-menu{
+		width: 100%;
+		height: 80px;
+		float: left;
+		margin-top: 10px;
+	}

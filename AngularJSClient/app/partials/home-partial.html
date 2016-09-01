@@ -1,8 +1,102 @@
 <html>
 <head>
-	<title></title>
+	<title>Home</title>
+	<!-- Bootstrap 3 css -->
+	<link rel="stylesheet" href="../assets/bootstrap-3/css/bootstrap.min.css">
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
+	<!-- iGrowl alerts -->
+	<link rel="stylesheet" type="text/css" href="../assets/igrowl-alerts/stylesheets/igrowl.css">
+	<link rel="stylesheet" type="text/css" href="../assets/igrowl-alerts/stylesheets/animate.css">
+	<link rel="stylesheet" type="text/css" href="../assets/igrowl-alerts/stylesheets/icomoon/feather.css">
+	<!-- custom css -->
+	<link rel="stylesheet" type="text/css" href="../assets/css/home-partial.css">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Oswald|Raleway|Roboto" rel="stylesheet">
 </head>
-<body>
-	Welcome home
+
+<body ng-app="AngularJSClientApp" ng-controller="HomeController">
+
+	<div id="top-banner">
+		<div class="container">
+			<!-- LOGO -->
+			<div id="top-logo">
+				<ul>
+					<li><font size="6">SBOX</font></li>
+				</ul>
+			</div>
+			<!-- GREETING MESSAGE & LOGOUT BUTTON -->
+			<div id="top-navcontainer">
+				<ul>
+					<li><font>Welcome <b>{{user.firstName}} {{user.lastName}}</b></font></li>
+					<li>
+						<button type="button" class="btn btn-default btn-sm" id="login-button">
+							Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- MAIN BODY -->
+	<div class="container">
+		<div class="container-fluid">
+			<div class="row">
+				<!-- NAVBAR MENU -->
+				<div class="col-xs-12 col-md-8" style="background-color: ; height: 400px;">
+					<div id="navbar-menu">
+						<ul class="nav nav-tabs">
+						  <li role="presentation" class="active"><a href="#home" data-toggle="tab" data-target="#home">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
+						  <li role="presentation"><a href="#profile" data-toggle="tab" data-target="#profile">Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
+						  <li role="presentation"><a href="#requests" data-toggle="tab" data-target="#requests">Requests <i class="fa fa-folder" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+
+					<!-- DYNAMIC INJECTION OF CONTENT WITH ANGULARJS -->
+					<div ng-view></div>
+
+				</div>
+
+				<!-- STATS DETAILS -->
+	  			<div class="col-xs-6 col-md-4" style="background-color: ; height: 400px;">
+	  				<div id="status-container">
+	  					<div id="vertical-design-line"></div>
+	  					<!-- AVATAR -->
+	  					<div id="avatar-container">
+	  						<img src="https://pbs.twimg.com/profile_images/603945839795412992/XTssKbRC_400x400.jpg" id="avatar-image">
+	  					</div>
+
+	  					<!-- STATUS, ACCOUNT TYPE & LAST ACTION -->
+	  					<div id="stats-container">
+	  						<small>Status : <b>ACTIVE</b></small>
+	  						<br>
+	  						<small>Account type : <b>(free)</b></small>
+	  						<br>
+	  						<small>Last action : <b>--</b></small>
+	  					</div>
+	  				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer">This footer will always be positioned at the bottom of the page,  <strong>fixed</strong>.</div>
+
+
+	 <!-- jQuery -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Bootstrap 3 javascript -->
+	<script src="../assets/bootstrap-3/js/bootstrap.min.js" ></script>
+     <!-- iGrowl -->
+     <script type="text/javascript" src="../assets/igrowl-alerts/javascripts/igrowl.js"></script>
+
+	<!-- AngularJS resources -->
+    <script type="text/javascript" src="../assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="../assets/js/angular-route.min.js"></script>
+    <script type="text/javascript" src="../assets/js/global-routing.js"></script>
+    <script type="text/javascript" src="../controller/home-partial-controller.js"></script>
+
 </body>
 </html>

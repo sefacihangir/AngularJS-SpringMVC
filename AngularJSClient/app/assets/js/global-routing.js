@@ -5,7 +5,8 @@ var app = angular.module('AngularJSClientApp', ['ngRoute']);
 var app = angular.module('AngularJSClientApp', ['ngRoute']);
 	app.config(function($routeProvider) {
 		$routeProvider
-		 .when("/login", { templateUrl : "view/login.html" })
-		 .when("/test", { templateUrl : "test.html"  })
-		 .otherwise({ redirectTo : "/login" });
+		 .when("/home", { templateUrl: "templates/home-template.html" })
+		 .when("/profile", { templateUrl : "templates/profile-template.html"  })
+		 .when("/requests", { templateUrl : "templates/requests-template.html" })
+		 .otherwise({ redirectTo : "/home" });
 });
