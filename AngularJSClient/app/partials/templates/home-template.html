@@ -1,14 +1,122 @@
 <style type="text/css">
-  #home-template-wrapper{
-    width: 100%;
-    height: 100%;
-    float: left;
-    background-color: yellow;
-  }  
+   #home-template-wrapper{
+	    width: 100%;
+	    height: 100%;
+	    float: left;
+   }  
+
+
+	#categories-sidebar{
+		height: 99%;
+		width: 220px;
+		float: left;
+		background-color: #f6f9fc;
+	    border: 1px solid #2895F1;
+	}
+
+	#categories-sidebar-header{
+		width: 100%;
+		height: 40px;
+		text-align: center;
+		padding-top: 8px;
+	}
+
+	#categories-sidebar-body{
+		overflow: hidden;
+	}
+
+	#categories-sidebar-body:hover{
+		overflow-y: scroll; 
+	}
+
+	#content-area-body{
+		width: 100%;
+		height: 100%;
+		float: left;
+		/*background-color: orange;*/
+	}
+
+
+
+	::-webkit-scrollbar {
+	    width: 8px;
+	}
+ 
+	/* Track */
+	::-webkit-scrollbar-track {
+	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+	    -webkit-border-radius: 10px;
+	    border-radius: 10px;
+	}
+	 
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+	    -webkit-border-radius: 10px;
+	    border-radius: 10px;
+	    background: #eceff1; 
+	    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.5); 
+	}
+	::-webkit-scrollbar-thumb:window-inactive {
+		background: rgba(255,0,0,0.4); 
+	}
 </style>
 
-<!--
-<div id="home-template-wrapper">
 
+<div id="home-template-wrapper">
+	<div id="categories-sidebar">
+		<div id="categories-sidebar-header">
+			<font style="font-family: 'Montserrat', sans-serif;">CATEGORY <i class="fa fa-th" aria-hidden="true"></i></font>
+		</div>
+
+		<div id="categories-sidebar-body" style="width: 100%; background-color: ; " class="list-group">
+			
+				  <a href="#" class="list-group-item">
+				    Cras justo odio <i class="fa fa-font-awesome" aria-hidden="true"></i>
+				  </a>
+				  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+				  <a href="#" class="list-group-item">Morbi leo risus</a>
+				  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+				  <a href="#" class="list-group-item">Vestibulum at eros</a>
+				  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+				  <a href="#" class="list-group-item">Morbi leo risus</a>
+				  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+				  <a href="#" class="list-group-item">Vestibulum at eros</a>
+				  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+				  <a href="#" class="list-group-item">Morbi leo risus</a>
+				  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+				  <a href="#" class="list-group-item">Vestibulum at eros</a>
+				  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+				  <a href="#" class="list-group-item">Morbi leo risus</a>
+				  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+				  <a href="#" class="list-group-item">Vestibulum at eros</a>
+				  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+				  <a href="#" class="list-group-item">Morbi leo risus</a>
+				  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+				  <a href="#" class="list-group-item">Vestibulum at eros</a> 
+			
+		</div>
+	</div>
+
+	<div id="content-area" style="height: 100%; background-color: ; float: left;">
+		<div id="content-area-body">
+
+
+		</div>
+	</div>
 </div>
--->
+
+
+<script type="text/javascript">
+		$(window).resize(function(){
+		   var categoriesSidebarBodyHeight =  $("#categories-sidebar").height() - $("#categories-sidebar-header").height() - 10;
+		   $('#categories-sidebar-body').height(categoriesSidebarBodyHeight);
+
+		   var contentAreaWidth = $("#home-template-wrapper").width() - $("#categories-sidebar").width() - 2;
+		   $("#content-area").width(contentAreaWidth);
+
+		})
+
+		$(window).resize(); //on page load
+</script>
+
+<script type="text/javascript" src="../assets/js/listgroup.min.js"></script>

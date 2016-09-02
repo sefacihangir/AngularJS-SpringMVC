@@ -103,15 +103,82 @@
     	color: #FFF;
     }
 
+    .input-form-style{
+    	width: 110px !important;
+    	height: 25px;
+    }
+
+    .disabled-div {
+    	pointer-events: none;
+    	opacity: 0.4;
+	}
+	.enabled-div{
+		pointer-events: auto;
+		opacity: 1.0;
+	}
+
+  
+	/*****************************************************/
+	#main-content-header-div{
+		width: 100%;
+		height: 150px;
+		/*background-color: green;*/
+	}
+
+
+	#status-container-div{
+		width: 20%;
+		height: 100%;
+		float: left;
+		/*background-color: yellow;*/
+		/*margin-top: 10px;*/
+	}
+
+	#navbar-menu-div{
+		width: 80%;
+		height: 100%;
+		float: left;
+		/*background-color: blue;*/
+		/*margin-top: 10px;*/
+	}
 
 	#status-container{
 		width: 100%;
 		height: 100px;
 		float: left;
 		background-color: #f6f9fc;
-		margin-top: 10px;
 		border: 1px solid #2895F1;
+		margin-top: 20px;
 	}
+
+
+	#navbar-menu{
+		width: 100%;
+		height: 50px;
+		float: left;
+		margin-top: 20px;
+		/*background-color: white;*/
+		padding-left: 25px;
+	}
+
+	#navbar-filter-menu{
+		width: 100%;
+		height: 80px;
+		float: left;
+		/*background-color: yellow;*/
+		padding-left: 25px;
+		padding-top: 5px;
+	}
+
+
+	#navbar-filter-options{
+		width: 100%;
+		height: 45px;
+		float: left;
+		/*background-color: red;*/
+		padding-top: 5px;
+	}
+
 
 	#vertical-design-line{
 		width: 6px;
@@ -126,7 +193,6 @@
 		float: left;
 		margin-left: 15px;
 		margin-top: 7px;
-		background-color: red;
 	}
 
 	#avatar-image{
@@ -135,40 +201,11 @@
 	}
 
 	#stats-container{
-		width: 200px;
+		width: 180px;
 		height: 80px;
 		float: left;
 		margin-top: 7px;
-		margin-left: 5px;
-	}
-
-	#navbar-menu{
-		width: 100%;
-		height: 60px;
-		float: left;
-		margin-top: 10px;
-	}
-
-	#dynamic-content-container{
-		width: 100%;
-		height: 200px;
-		float: left;
-		background-color: green;
-	}
-
-
-	/*****************************************************/
-
-	#navbar-left{
-		width: 20%;
-		height: 100%;
-		float: left;
-		background-color: yellow;
-	}
-
-	#main-content-area{
-		width: 80%;
-		height: 100%;
-		float: left;
-		background-color: blue;
+		/*background-color: red;*/
+		padding-left: 7px;
+		font-family: 'Open Sans', sans-serif;
 	}
