@@ -2,7 +2,7 @@ create database sbox;
 
 use sbox;
 
-# USER
+# USER 3
 create table appuser(
 	app_user_id int not null primary key auto_increment,
     email varchar(100) not null unique,
@@ -12,17 +12,34 @@ create table appuser(
     last_name varchar(80) not null,
     phone_nr varchar(15) not null,
     created_at timestamp not null,
-    state_id int not null,
+    account_id int not null,
     last_action timestamp not null,
     image_id int not null,
 	foreign key(role_id) references role(role_id),
-	foreign key(state_id) references state(state_id),
-    foreign key(image_id) references image(image_id)
+	foreign key(account_id) references account(account_id)
 );
 #---------------------------------------
 
 
-#ROLE
+# ACCOUNT
+create table account(
+	account_id int not null primary key auto_increment,
+    account_type_id int not null,
+    state_id int not null,
+    start_date timestamp not null,
+    end_date timestamp not null,
+    foreign key(state_id) references state(state_id),
+    foreign key(account_type_id) references account_type(account_type_id)
+);
+
+
+create table account_type(
+	account_type_id int not null primary key auto_increment,
+    description varchar(50) not null
+);
+
+
+#ROLE 1
 create table role(
 	role_id int not null primary key auto_increment,
 	role_name varchar(50) not null
@@ -38,7 +55,7 @@ create table state(
 #---------------------------------------
 
 
-#REQUEST
+#REQUEST, 10
 create table request(
 	request_id int not null primary key auto_increment,
     app_user_id int not null,
@@ -55,7 +72,7 @@ create table request(
 # ----------------------------------------
 
 
-#ADDRESS - user can have multiple addresses
+#ADDRESS - user can have multiple addresses , 4
 create table address(
 	address_id int not null primary key auto_increment,
     app_user_id int not null,
@@ -67,7 +84,7 @@ create table address(
 # ----------------------------------------
 
 
-# PROVIDER_CATEGORY_LIST + PROVIDER_SERVICES
+# PROVIDER_CATEGORY_LIST + PROVIDER_SERVICES, 8
 create table provider_category_list(
 	provider_category_list_id int not null primary key auto_increment,
     provider_id int not null,
@@ -77,6 +94,7 @@ create table provider_category_list(
     foreign key(category_id) references category(category_id)
 );
 
+# 9
 create table provider_service(
 	provider_service_id int not null primary key auto_increment,
     provider_category_list_id int not null,
@@ -89,7 +107,7 @@ create table provider_service(
 #---------------------------------------------
 
 
-# CATEGORY + SERVICE
+# CATEGORY + SERVICE , 6
 create table category(
 	category_id int not null primary key auto_increment,
     category_name varchar(80) not null,
@@ -97,6 +115,7 @@ create table category(
     foreign key(icon_id) references icon(icon_id)
 );
 
+# 7
 create table service(
 	service_id int not null primary key auto_increment,
     category_id int not null,
@@ -106,15 +125,8 @@ create table service(
 #-----------------------------------------------
 
 
-# IMAGE
-create table image(
-	image_id int not null primary key auto_increment,
-    path varchar(100) not null
-);
-#-----------------------------------------------
 
-
-# ICON if useFramework = true then use content else use path
+# ICON if useFramework = true then use content else use path, 5
 create table icon(
 	icon_id int not null primary key auto_increment,
     content varchar(50) not null,

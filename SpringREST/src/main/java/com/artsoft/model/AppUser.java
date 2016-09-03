@@ -2,6 +2,8 @@ package com.artsoft.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="appuser")
@@ -47,9 +50,9 @@ public class AppUser implements Serializable{
 	@Column(name="created_at")
 	private Date createdAt;
 	
-	@ManyToOne(targetEntity=State.class)
-	@JoinColumn(name="state_id")
-	private State state;
+	@ManyToOne(targetEntity=Account.class)
+	@JoinColumn(name="account_id")
+	private Account account;
 	
 	@Column(name="last_action")
 	private Date lastAction;
@@ -58,7 +61,8 @@ public class AppUser implements Serializable{
 	private String imagePath;
 
 	
-	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser", targetEntity = Address.class)
+	Set<Address> addresses = new HashSet<Address>(0);
 	
 	
 	public int getAppUserId() {
@@ -127,14 +131,13 @@ public class AppUser implements Serializable{
 	}
 
 
-	public State getState() {
-		return state;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setState(State state) {
-		this.state = state;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
-
 
 	public Date getLastAction() {
 		return lastAction;
@@ -153,7 +156,6 @@ public class AppUser implements Serializable{
 	}
 
 
-	
 	
 
 	
