@@ -119,93 +119,54 @@
 
   
 	/*****************************************************/
-	#main-content-header-div{
+	#navbar-header{
 		width: 100%;
 		height: 150px;
-		/*background-color: green;*/
-	}
-
-
-	#status-container-div{
-		width: 20%;
-		height: 100%;
 		float: left;
-		/*background-color: yellow;*/
-		/*margin-top: 10px;*/
-	}
-
-	#navbar-menu-div{
-		width: 80%;
-		height: 100%;
-		float: left;
-		/*background-color: blue;*/
-		/*margin-top: 10px;*/
+/*		background-color: pink;*/
 	}
 
 	#status-container{
-		width: 100%;
-		height: 100px;
+		width: 300px;
+		height: 100%;
 		float: left;
-		background-color: #f6f9fc;
-		border: 1px solid #2895F1;
-		margin-top: 20px;
+		/*background-color: yellow;*/
 	}
 
+	#navbar-container{
+		height: 100%;
+		float: left;
+		/*background-color: blue;*/
+	}
+
+	#status-details{
+		width: 100%;
+		height: 120px;
+		float: left;
+		/*background-color: green;*/
+		margin-top: 20px;
+		border: 1px solid #2895F1;
+	}
 
 	#navbar-menu{
 		width: 100%;
-		height: 50px;
+		height: 120px;
 		float: left;
 		margin-top: 20px;
-		/*background-color: white;*/
-		padding-left: 25px;
+		padding-left: 30px;
+		/*background-color: cyan;*/
 	}
 
-	#navbar-filter-menu{
+	#nav-filter{
 		width: 100%;
-		height: 80px;
 		float: left;
-		/*background-color: yellow;*/
-		padding-left: 25px;
-		padding-top: 5px;
-	}
-
-
-	#navbar-filter-options{
-		width: 100%;
-		height: 45px;
-		float: left;
+		height: 40px;
+		margin-top: 10px;
 		/*background-color: red;*/
-		padding-top: 5px;
 	}
 
-
-	#vertical-design-line{
-		width: 6px;
-		float: left;
-		height: 100%;
-		background-color: #2895F1;
-	}
-
-	#avatar-container{
-		width: 80px;
-		height: 80px;
-		float: left;
-		margin-left: 15px;
-		margin-top: 7px;
-	}
-
-	#avatar-image{
+	#main-area{
 		width: 100%;
-		height: 100%;
-	}
-
-	#stats-container{
-		width: 180px;
-		height: 80px;
 		float: left;
-		margin-top: 7px;
-		/*background-color: red;*/
-		padding-left: 7px;
-		font-family: 'Open Sans', sans-serif;
+		/*background-color: pink;*/
 	}

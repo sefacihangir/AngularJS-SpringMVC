@@ -49,53 +49,36 @@
 		  <!------------------------- CONTENT -------------------->
 		  <div class="row content" id="content">
 		    <div class="container-fluid" style="width: 80%;" id="main-content">
-		    	<div id="main-content-header-div">
-		    		<!-- Account type, status, last action & profile image -->
-		    		<div id="status-container-div">
-		    			<div id="status-container">
-		    				<div id="vertical-design-line"></div>
-		    				<div id="avatar-container">
-		    					<img src="https://pbs.twimg.com/profile_images/611215612233285632/9GFt_RDH_400x400.jpg" id="avatar-image">
-		    				</div>
+		    	 <div id="navbar-header">	
+		    	 	<!-- STATUS DETAILS -->
+		    	 	<div id="status-container">
+		    	 		<div id="status-details">
 
-		    				<div id="stats-container">
-		    					<small><b>ACTIVE</b> <i class="fa fa-check-circle" aria-hidden="true"></i></small>
-		    					<br>
-		    					<small>Account type : <span class="label label-success">free</span></small>
-		    					<br>
-		    					<small>Last action : <b>none</b></small>
-		    				</div>
-		    			</div>
-		    		</div>
+		    	 		</div>
+		    	 	</div>
 
-		    		<!-- Navbar menu -->
-		    		<div id="navbar-menu-div">
-		    			<div id="navbar-menu">
+		    	 	<!-- NAVBAR -->
+		    	 	<div id="navbar-container">
+		    	 		<div id="navbar-menu">
 		    				<ul class="nav nav-tabs">
 							  <li role="presentation" class="active"><a href="#/home" data-toggle="tab" data-target="#home" onclick="enableFilterDiv()">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
 							  <li role="presentation"><a href="#/profile" data-toggle="tab" data-target="#profile" onclick="disableFilterDiv()">Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
 							  <li role="presentation"><a href="#/requests" data-toggle="tab" data-target="#requests" onclick="disableFilterDiv()">Requests <i class="fa fa-folder" aria-hidden="true"></i></a></li>
 							  <li role="presentation"><a href="#/messages" data-toggle="tab" data-target="#messages" onclick="disableFilterDiv()">Messages <i class="fa fa-envelope" aria-hidden="true"></i></a></li>
 							</ul>
-		    			</div>
 
-		    			<div id="navbar-filter-menu">
-							<div id="navbar-filter-options">
-								<form class="form-inline">
-								  <div class="form-group">
-								    <label for="filter-price"><small>Price</small></label>
-								    <input type="number" class="form-control input-form-style" id="filter-price">
-								  </div>
-								  <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search" aria-hidden="true"></i></button>
-								</form>
+							<div id="nav-filter">
+
 							</div>
-		    			</div>
-		    		</div>
-		    	</div>
+		    	 		</div>
+		    	 	</div>
+		    	 </div>
 
-		    	<div id="main-content-body-div" style="width: 100%; background-color: ;">
-		    		<div ng-view></div>
-		    	</div>
+		    	 <!-- MAIN AREA -->
+		    	 <div id="main-area">
+		    	 	<div ng-view></div>
+		    	 </div>
+
 		    </div>
 		  </div>
 
@@ -121,11 +104,14 @@
 
     <script type="text/javascript">
 		$(window).resize(function(){
-		   var height1 = $('body').height() - ( $("#header").height() + $("#footer").height() );
-		   $('#main-content').height(height1);
+		   var mainContentheight = $('body').height() - ( $("#header").height() + $("#footer").height() );
+		   $('#main-content').height(mainContentheight);
 
-		   var height2 = $("#main-content").height() - $("#main-content-header-div").height();
-		   $("#main-content-body-div").height(height2);
+		   var navbarContainerWidth = $("#navbar-header").width() - $("#status-container").width();
+		   $("#navbar-container").width(navbarContainerWidth - 1);
+
+		   var mainAreaHeight = $("#main-content").height() - $("#navbar-header").height();
+		   $("#main-area").height(mainAreaHeight);
 
 		})
 
