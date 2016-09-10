@@ -1,1 +1,120 @@
-Welcome to Profile Template
+<style type="text/css">
+	#tmp-profile-image-container{
+		width: 220px;
+		height: 220px;
+		float: left;
+		background-color: orange;
+		margin-top: 15px;
+		margin-left: 20px;
+	}	
+
+	#tmp-profile-image{
+		width: 100%;
+		height: 100%;
+	}
+
+	#tmp-left-sidebar{
+		width: 300px;
+		height: 100%;
+		float: left;
+		/*background-color: yellow;*/
+	}
+
+	#profile-content-area{
+		height: 100%;
+		float: left;
+		/*background-color: green;*/
+	}
+
+	#tmp-profile-details-container{
+		width: 500px;
+		height: 400px;
+		float: left;
+		margin-top: 15px;
+		margin-left: 10px;
+		/*background-color: orange;*/
+		font-family: 'Open Sans', sans-serif;
+	}
+
+	 .input-form-style{
+    	width: 220px !important;
+    	height: 30px;
+    }
+
+</style>
+
+
+<div id="tmp-left-sidebar">
+
+</div>
+
+<div id="profile-content-area">
+	<div id="tmp-profile-image-container">
+		<img src="../assets/img/user-default.png" id="tmp-profile-image">
+	</div>
+
+	<div id="tmp-profile-details-container">
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		  <div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="headingOne">
+		      <h4 class="panel-title">
+		        <a role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true" aria-controls="collapseOne" data-target="#collapseOne">
+		          <b>Account</b>
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+		      <div class="panel-body">
+		         <form class="form-inline">
+		         	<div class="form-group">
+				    	<input type="email" class="form-control input-form-style" disabled id="email" placeholder="Email">
+				    </div>
+				    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+				    <button class="btn btn-default btn-sm">Edit</button>
+		         </form>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="headingTwo">
+		      <h4 class="panel-title">
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="false" aria-controls="collapseTwo" data-target="#collapseTwo">
+		          <b>Personal</b>
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+		      <div class="panel-body">
+		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+		      </div>
+		    </div>
+		  </div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="headingThree">
+		      <h4 class="panel-title">
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="false" aria-controls="collapseThree" data-target="#collapseThree">
+		          <b>Address</b>
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+		      <div class="panel-body">
+		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+		      </div>
+		    </div>
+		  </div>
+		</div> <!-- END of panel-group -->
+	</div>     <!-- END of tmp-profile-details-container -->
+</div>
+
+
+<script type="text/javascript">
+		$(window).resize(function(){
+
+		   var profileContentAreaWidth = $("#main-area").width() - $("#tmp-left-sidebar").width();
+		   $("#profile-content-area").width(profileContentAreaWidth);
+
+		})
+
+		$(window).resize(); //on page load
+</script>

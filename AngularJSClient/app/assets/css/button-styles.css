@@ -1,0 +1,10 @@
+.primary-button-style{
+	background-color: #f6f9fc;
+	border: 1px solid #2895F1;
+	font-family: 'Raleway', sans-serif !important;
+}
+
+.primary-button-style:hover{
+	background-color: #2895F1 !important;
+    color: #FFF;
+};
