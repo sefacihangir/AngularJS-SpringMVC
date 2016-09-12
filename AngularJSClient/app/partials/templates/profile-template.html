@@ -17,28 +17,45 @@
 		width: 300px;
 		height: 100%;
 		float: left;
-		/*background-color: yellow;*/
+		background-color: yellow;
 	}
 
 	#profile-content-area{
 		height: 100%;
 		float: left;
-		/*background-color: green;*/
+		background-color: green;
 	}
 
 	#tmp-profile-details-container{
-		width: 500px;
-		height: 400px;
+		width: 400px;
+		height: 300px;
 		float: left;
 		margin-top: 15px;
 		margin-left: 10px;
-		/*background-color: orange;*/
+		background-color: orange;
 		font-family: 'Open Sans', sans-serif;
 	}
 
 	 .input-form-style{
     	width: 220px !important;
     	height: 30px;
+    }
+
+	.height-100{
+		height: 100px;
+	}
+
+    #home-tab {
+        height: 200px;
+        padding-top: 4px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: #8b211e;
+    }
+
+    #address-tab{
+        height: 200px;
+        background-color: #31708f;
     }
 
 </style>
@@ -54,56 +71,41 @@
 	</div>
 
 	<div id="tmp-profile-details-container">
-		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-		  <div class="panel panel-default">
-		    <div class="panel-heading" role="tab" id="headingOne">
-		      <h4 class="panel-title">
-		        <a role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true" aria-controls="collapseOne" data-target="#collapseOne">
-		          <b>Account</b>
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-		      <div class="panel-body">
-		         <form class="form-inline">
-		         	<div class="form-group">
-				    	<input type="email" class="form-control input-form-style" disabled id="email" placeholder="Email">
-				    </div>
-				    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-				    <button class="btn btn-default btn-sm">Edit</button>
-		         </form>
-		      </div>
-		    </div>
-		  </div>
-		  <div class="panel panel-default">
-		    <div class="panel-heading" role="tab" id="headingTwo">
-		      <h4 class="panel-title">
-		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="false" aria-controls="collapseTwo" data-target="#collapseTwo">
-		          <b>Personal</b>
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-		      <div class="panel-body">
-		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-		      </div>
-		    </div>
-		  </div>
-		  <div class="panel panel-default">
-		    <div class="panel-heading" role="tab" id="headingThree">
-		      <h4 class="panel-title">
-		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="false" aria-controls="collapseThree" data-target="#collapseThree">
-		          <b>Address</b>
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-		      <div class="panel-body">
-		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-		      </div>
-		    </div>
-		  </div>
-		</div> <!-- END of panel-group -->
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="" data-target="#home-tab">Email&Password</a></li>
+            <li><a data-toggle="tab" href="" data-target="#address-tab">Address</a></li>
+            <li><a data-toggle="tab" href="" data-target="#contact-tab">Contact</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home-tab" class="tab-pane fade in active">
+
+                <form>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                        <input type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+
+            </div>
+            <div id="address-tab" class="tab-pane fade">
+                <h3>Menu 1</h3>
+                <p>Some content in menu 1.</p>
+            </div>
+            <div id="contact-tab" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+            </div>
+        </div>
+
 	</div>     <!-- END of tmp-profile-details-container -->
 </div>
 
@@ -111,7 +113,7 @@
 <script type="text/javascript">
 		$(window).resize(function(){
 
-		   var profileContentAreaWidth = $("#main-area").width() - $("#tmp-left-sidebar").width();
+		   var profileContentAreaWidth = $("#main-area").width() - $("#tmp-left-sidebar").width() - 2;
 		   $("#profile-content-area").width(profileContentAreaWidth);
 
 		})
