@@ -64,6 +64,9 @@ public class AppUser implements Serializable{
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser", targetEntity = Address.class)
 	Set<Address> addresses = new HashSet<Address>(0);
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser", targetEntity = Request.class)
+	Set<Request> requests = new HashSet<Request>(0);
+	
 	
 	public int getAppUserId() {
 		return appUserId;
@@ -153,6 +156,22 @@ public class AppUser implements Serializable{
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public Set<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+	public Set<Request> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(Set<Request> requests) {
+		this.requests = requests;
 	}
 
 
