@@ -19,11 +19,7 @@ public class Icon implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="icon_id")
 	private int iconId;
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 1b1be3ee9c8334b32e7db56685322da94ddd72f3
 	@Column(name="content")
 	private String content;
 	
@@ -66,12 +62,4 @@ public class Icon implements Serializable{
 	}
 	
 	
-<<<<<<< HEAD
-
-=======
-	
-	
-	
-	
->>>>>>> 1b1be3ee9c8334b32e7db56685322da94ddd72f3
 }
