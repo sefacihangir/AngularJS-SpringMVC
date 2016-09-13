@@ -20,7 +20,11 @@ public class Category implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="category_id")
+<<<<<<< HEAD
+	private int categoryId;
+=======
 	private int categoryId;	
+>>>>>>> 1b1be3ee9c8334b32e7db56685322da94ddd72f3
 	
 	@Column(name="category_name")
 	private String categoryName;
@@ -55,4 +59,8 @@ public class Category implements Serializable{
 	
 	
 	
+<<<<<<< HEAD
+	
+=======
+>>>>>>> 1b1be3ee9c8334b32e7db56685322da94ddd72f3
 }
