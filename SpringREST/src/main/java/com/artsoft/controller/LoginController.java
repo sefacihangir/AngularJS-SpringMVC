@@ -22,7 +22,7 @@ import com.artsoft.service.AppUserService;
 
 
 @RestController
-@RequestMapping("/login_control")
+@RequestMapping("/api/login_control")
 @EnableWebMvc
 public class LoginController {
 	
