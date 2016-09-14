@@ -69,6 +69,14 @@ public class Address implements Serializable{
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+	public AppUser getAppuser() {
+		return appuser;
+	}
+
+	public void setAppuser(AppUser appuser) {
+		this.appuser = appuser;
+	}
 	
 	
 	

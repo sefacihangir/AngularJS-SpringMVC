@@ -30,7 +30,7 @@ public class LoginController {
 	AppUserService appUserService;
 	
    
-    @RequestMapping(value = "/login", headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
     public Object login(@RequestParam(value = "email") String email) {
         AppUser user = appUserService.findByEmail(email);
         Map<String, Object> response = new HashMap();
