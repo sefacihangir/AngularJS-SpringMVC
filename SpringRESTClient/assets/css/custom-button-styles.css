@@ -30,3 +30,41 @@
 	font-family: 'Roboto', sans-serif !important;
 	font-weight: 500;
 }
+
+
+
+
+
+.secondary-style-button-lg{
+	background-color: #88BBD6;
+	color: #FFFFFF;
+	text-align: center;
+	border: 0px;
+	height: 50px;
+	padding: 10px;
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 500;
+}
+
+.secondary-style-button-sm{
+	background-color: #88BBD6;
+	color: #FFFFFF;
+	text-align: center;
+	border: 0px;
+	height: 40px;
+	padding: 8px;
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 500;
+}
+
+.secondary-style-button-xs{
+	background-color: #88BBD6;
+	color: #FFFFFF;
+	text-align: center;
+	border: 0px;
+	height: 30px;
+	padding: 6px;
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 500;
+}
+

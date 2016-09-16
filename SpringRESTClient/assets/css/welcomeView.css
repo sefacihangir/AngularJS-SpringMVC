@@ -12,6 +12,10 @@
 	font-weight: 500;
 }
 
+.navbar-right li{
+	/*padding-left: 3px !important;*/
+}
+
 .brand-text-style{
 	font-family: 'Amatic SC', cursive !important;
 	font-size: 40px;
@@ -28,9 +32,13 @@
 	margin-top: 5px !important;
 }
 
+#signinLink{
+	color: #4484CE;
+}
+
 
 /**************** Media queries ***************/
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
     body{
     	background-color: pink;
     }
@@ -44,7 +52,51 @@
 	}
 
 	#signupButton{
-		margin-left: 10px !important;
+		margin-left: 15px !important;
 	}
 
+	.navbar-nav-options{
+		padding-left: 5px;
+	}
+
+
+
+}
+
+
+/************ Hover effects ***********/
+/* Effect 1: Brackets */
+.cl-effect-1 a::before,
+.cl-effect-1 a::after {
+	display: inline-block;
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.2s;
+	transition: transform 0.3s, opacity 0.2s;
+}
+
+.cl-effect-1 a::before {
+	margin-right: 3px;
+	content: '[';
+	-webkit-transform: translateX(20px);
+	-moz-transform: translateX(20px);
+	transform: translateX(20px);
+}
+
+.cl-effect-1 a::after {
+	margin-left: 3px;
+	content: ']';
+	-webkit-transform: translateX(-20px);
+	-moz-transform: translateX(-20px);
+	transform: translateX(-20px);
+}
+
+.cl-effect-1 a:hover::before,
+.cl-effect-1 a:hover::after,
+.cl-effect-1 a:focus::before,
+.cl-effect-1 a:focus::after {
+	opacity: 1;
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	transform: translateX(0px);
 }
