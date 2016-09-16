@@ -1,0 +1,32 @@
+.primary-style-button-lg{
+	background-color: #ff5252;
+	color: #FFFFFF;
+	text-align: center;
+	border: 0px;
+	height: 50px;
+	padding: 10px;
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 500;
+}
+
+.primary-style-button-sm{
+	background-color: #ff5252;
+	color: #FFFFFF;
+	text-align: center;
+	border: 0px;
+	height: 40px;
+	padding: 8px;
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 500;
+}
+
+.primary-style-button-xs{
+	background-color: #ff5252;
+	color: #FFFFFF;
+	text-align: center;
+	border: 0px;
+	height: 30px;
+	padding: 6px;
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 500;
+}

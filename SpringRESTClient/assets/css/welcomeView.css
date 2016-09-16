@@ -1,0 +1,50 @@
+
+.navbar-menu{
+	height: 100px !important;
+	padding-top: 20px !important;
+	border-radius: 0px !important;
+	position: fixed;
+	width: 100%;
+}
+
+.navbar-font-style{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+}
+
+.brand-text-style{
+	font-family: 'Amatic SC', cursive !important;
+	font-size: 40px;
+}
+
+.active-navbar-element{
+	color: #ff5252 !important;
+	padding-bottom: 3px !important;
+	font-weight: 800;
+	border-bottom: 5px solid #ff5252;
+}
+
+#signupButton{
+	margin-top: 5px !important;
+}
+
+
+/**************** Media queries ***************/
+@media screen and (max-width: 500px) {
+    body{
+    	background-color: pink;
+    }
+
+    .navbar-menu {
+        height: 80px !important;
+    }
+
+    .navbar-collapse{
+		background-color: #F4F4F4 !important;
+	}
+
+	#signupButton{
+		margin-left: 10px !important;
+	}
+
+}
