@@ -23,7 +23,7 @@ import com.artsoft.service.AppUserService;
 
 
 @RestController
-@RequestMapping("/api/signup_control")
+@RequestMapping("/signup_control")
 @EnableWebMvc
 public class SignupController {
 	
@@ -87,7 +87,7 @@ public class SignupController {
 				else{
 					Set<Address> addresses = new HashSet<Address>();
 					addresses.add(address);
-					newUser.setAddresses(addresses);								// assign the new address to the address list of the user
+					//newUser.setAddresses(addresses);								// assign the new address to the address list of the user
 				}
 				
 				

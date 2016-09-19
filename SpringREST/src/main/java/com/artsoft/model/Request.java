@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="request")
 public class Request implements Serializable{
@@ -27,6 +29,7 @@ public class Request implements Serializable{
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="app_user_id")
+	@JsonBackReference
 	private AppUser appuser;
 	
 	@Column(name="request_date")

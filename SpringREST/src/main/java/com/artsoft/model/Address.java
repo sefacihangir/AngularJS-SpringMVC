@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="address")
 public class Address implements Serializable{
@@ -25,6 +27,7 @@ public class Address implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="app_user_id")
+	@JsonBackReference
 	private AppUser appuser;
 	
 	@Column(name="description")

@@ -22,7 +22,7 @@ import com.artsoft.service.AppUserService;
 
 
 @RestController
-@RequestMapping("/api/login_control")
+@RequestMapping("/login_control")
 @EnableWebMvc
 public class LoginController {
 	
@@ -34,6 +34,9 @@ public class LoginController {
     public Object login(@RequestParam(value = "email") String email) {
         AppUser user = appUserService.findByEmail(email);
         Map<String, Object> response = new HashMap();
+        
+        System.out.println(email);
+        
         if (user == null) {
         	CustomError error = new CustomError();
         	error.setHasError(true);

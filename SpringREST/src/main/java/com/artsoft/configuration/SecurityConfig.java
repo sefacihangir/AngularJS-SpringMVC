@@ -1,9 +1,10 @@
 package com.artsoft.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,45 +12,43 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 
+import com.artsoft.service.AuthenticationService;
+
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@ComponentScan(basePackages = { "com.artsoft.configuration" })
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	public static final String REMEMBER_ME_KEY = "rememberme_key";
+	
+    public SecurityConfig() {
+        super();
+        System.out.println("loading SecurityConfig ................................................ ");
+    }
+	
+	@Autowired
+	AuthenticationService authenticationService;
+
+	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-	    auth
-	      .inMemoryAuthentication()
-	        .withUser("user")  // #1
-	          .password("password")
-	          .roles("USER")
-	          .and()
-	        .withUser("admin") // #2
-	          .password("password")
-	          .roles("ADMIN","USER");
+		auth.userDetailsService(authenticationService);
 	}
-	
-	
+
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-	    web
-	      .ignoring()
-	         .antMatchers("/resources/**"); // #3
-	}	
-	
-	
+		web.ignoring().antMatchers("/resources/**");
+	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-	    http
-	      .csrf().disable()
-	      .authorizeRequests()
-	        .antMatchers("/api/**").authenticated()
-	        .and()
-	      .httpBasic().and()
-	      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);	
+		http.csrf().disable()
+			.authorizeRequests()
+				.antMatchers("/api/**").authenticated()
+				.antMatchers("/login_control/login", "/signup_control/signup").permitAll().and()
+			.httpBasic().and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
-	
-	
 
-	
-	
 }
