@@ -25,9 +25,9 @@
 	        <li><a href ng-click="navbarHomeCtrl.setOptionSelected(4)" ng-class="{'active-navbar-element' : navbarHomeCtrl.isOptionSelected(4)}">PRICING</a></li>
 	      </ul>
 
-	      <ul class="nav navbar-nav navbar-right">
-	        <li class="cl-effect-1"><a href id="signinLink">SIGN IN</a></li>
-	        <li><button class="primary-style-button-sm navbar-btn" id="signupButton">SIGN UP</button></li>
+	      <ul class="nav navbar-nav navbar-right" ng-controller="RedirectToController as redirectToCtrl">
+	        <li class="cl-effect-1"><a href ng-click="redirectToCtrl.redirectTo('/login')" id="signinLink">SIGN IN</a></li>
+	        <li><button class="primary-style-button-sm navbar-btn" id="signupButton" ng-click="redirectToCtrl.redirectTo('/signup')">SIGN UP</button></li>
 	      </ul>
 
 	    </div><!-- /.navbar-collapse -->
@@ -62,9 +62,10 @@
                                 </div>
                                 <div class="panel-body">
                                     <img src="assets/icons/User_80.png"> <span class="badge badge-free">FREE</span>
-                                    <div class="list-group">
-                                        <span  class="list-group-item">Cras justo odio</span>
-                                        <span  class="list-group-item">Dapibus ac facilisis in</span>
+                                    <div class="list-group accessability-list">
+                                        <span  class="list-group-item"><i class="fa fa-list-ul" aria-hidden="true"></i> Free access to all available categories</span>
+                                        <span  class="list-group-item"><i class="fa fa-search" aria-hidden="true"></i> Free access to search services from every category</span>
+                                        <span  class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i> Free access to all service providers</span>
                                     </div>
                                 </div>
                             </div>
@@ -83,9 +84,10 @@
                                     </div>
                                     <div class="panel-body">
                                         <img src="assets/icons/Sell_80.png"> <span class="badge badge-pro">PRO</span>
-                                        <div class="list-group">
-                                            <span  class="list-group-item">Cras justo odio</span>
-                                            <span  class="list-group-item">Dapibus ac facilisis in</span>
+                                        <div class="list-group accessability-list">
+                                            <span  class="list-group-item"><i class="fa fa-pencil" aria-hidden="true"></i> Customizable service list for every category</span>
+                                            <span  class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i> Only {{25 | currency}} per month to gain full access to all functionalities</span>
+                                            <span  class="list-group-item"><i class="fa fa-money" aria-hidden="true"></i> Monetize your business</span>
                                         </div>
                                     </div>
                                 </div>
