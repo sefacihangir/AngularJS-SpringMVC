@@ -1,11 +1,41 @@
 
-<div class="login-panel">
-	<div class="panel panel-default">
-	  <div class="panel-heading">
-	    <h3 class="panel-title">Panel title</h3>
-	  </div>
-	  <div class="panel-body">
-	    Panel content
-	  </div>
+<div id="wrapper-container">
+	<div id="loginWrapper" ng-controller="InputAnimationController as animationCtrl">
+		<div class="panel panel-default login-panel panel-primary-style">
+		  <div class="panel-heading panel-heading-primary">
+		    	<h3 class="panel-title"><strong>SIGN IN</strong></h3>
+		  </div>
+		  <div class="panel-body">
+		  	<div id="loginFormContainer">
+				<form name="loginForm" ng-controller="LoginController as loginCtrl" ng-submit="loginForm.$valid && loginCtrl.login()" novalidate>
+			      <div class="form-group">
+			      	<label for="email">{{animationCtrl.emailLabel}}</label>
+				    <input type="email" class="borderless-input-style" placeholder="Email" id="email" name="email" ng-model="loginCtrl.loginObj.email" ng-focus="animationCtrl.showLabelOnClickForInput('email')" required 
+				    		 tooltip-placement="bottom" 
+				    		 tooltip-trigger="'blur'" 
+				    		 tooltip-enable="{{(loginForm.email.$dirty && loginForm.email.$error.email) || (loginForm.email.$dirty && loginForm.email.$error.required)}}" 
+				    		 uib-tooltip="Invalid email address.">
+				  </div>
+				  <br>
+				  <div class="form-group">
+				  	<label for="password">{{animationCtrl.passwordLabel}}</label>
+				    <input type="password" class="borderless-input-style" placeholder="Password" id="password" name="password" ng-model="loginCtrl.loginObj.password" ng-focus="animationCtrl.showLabelOnClickForInput('password')" required
+				    		 tooltip-placement="bottom" 
+				    		 tooltip-trigger="'blur'" 
+				    		 tooltip-enable="{{loginForm.password.$dirty && loginForm.password.$error.required}}" 
+				    		 uib-tooltip="Field required.">
+				  </div>
+				  <input type="submit" class="primary-style-button-sm" id="loginButton" value="SUBMIT">
+				  <span style="float: right;"><small><a href>Forgot password</a></small></span>
+			    </form>
+		  	</div>
+		  </div>
+		  <div class="panel-footer">
+		  		<span>
+		  			<small>Don't have an account ?</small>
+		  			<a href>REGISTER</a> 
+		  		</span>
+		  </div>
+		</div>
 	</div>
 </div>

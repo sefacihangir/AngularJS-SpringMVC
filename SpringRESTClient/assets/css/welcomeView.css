@@ -46,7 +46,7 @@ html, body {
 	box-sizing:border-box;
 	background-image: url('../img/img1.jpg');
 	background-size: cover;
-	/*background-color: purple;*/
+	/*background: linear-gradient(to top, rgb(248,177,149), rgb(246,114,128), rgb(192,108,132), rgb(108,91,123), rgb(53,92,125)); /* Standard syntax (must be last) */
 	position: static;
 }
 

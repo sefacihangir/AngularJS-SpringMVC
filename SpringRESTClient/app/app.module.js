@@ -1,5 +1,5 @@
 (function(){
 
-	var app = angular.module('sboxApp', ['sboxAppRoutes','welcomeViewModule','loginViewModule']);
+	var app = angular.module('sboxApp', ['ui.bootstrap','sboxAppRoutes','welcomeViewModule','loginViewModule']);
 
 })();
