@@ -26,14 +26,14 @@
 				    		 uib-tooltip="Field required.">
 				  </div>
 				  <input type="submit" class="primary-style-button-sm" id="loginButton" value="SUBMIT">
-				  <span style="float: right;"><small><a href>Forgot password</a></small></span>
+				  <span style="float: right;"><small><a href>Forgot password ?</a></small></span>
 			    </form>
 		  	</div>
 		  </div>
-		  <div class="panel-footer">
+		  <div class="panel-footer" ng-controller="RedirectToController as redirectToCtrl">
 		  		<span>
 		  			<small>Don't have an account ?</small>
-		  			<a href>REGISTER</a> 
+		  			<a href ng-click="redirectToCtrl.redirectTo('/signup')">REGISTER</a> 
 		  		</span>
 		  </div>
 		</div>
