@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.artsoft.error.CustomError;
 import com.artsoft.model.AppUser;
 import com.artsoft.service.AppUserService;
+import com.artsoft.util.PasswordUtil;
 
 
 
@@ -31,7 +32,8 @@ public class LoginController {
 	
    
     @RequestMapping(value = "/login", headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
-    public Object login(@RequestParam(value = "email") String email) {
+    public Object login(@RequestParam(value = "email") String email,
+    				    @RequestParam(value = "password") String password) {
         AppUser user = appUserService.findByEmail(email);
         Map<String, Object> response = new HashMap<String, Object>();
         
