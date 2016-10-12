@@ -33,9 +33,7 @@ public class LoginController {
     @RequestMapping(value = "/login", headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
     public Object login(@RequestParam(value = "email") String email) {
         AppUser user = appUserService.findByEmail(email);
-        Map<String, Object> response = new HashMap();
-        
-        System.out.println(email);
+        Map<String, Object> response = new HashMap<String, Object>();
         
         if (user == null) {
         	CustomError error = new CustomError();
