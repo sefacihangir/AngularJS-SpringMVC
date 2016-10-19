@@ -9,6 +9,8 @@ public interface AppUserDAO {
 	
 	AppUser findByEmail(String email);
 	
+	boolean findEmailExistence(String email);
+	
 	AppUser findById(int id);
 	
 	List<AppUser> findAll();

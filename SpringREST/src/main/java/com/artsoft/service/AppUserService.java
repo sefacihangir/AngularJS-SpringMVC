@@ -16,4 +16,6 @@ public interface AppUserService {
 	
 	void update(AppUser user);
 	
+	boolean isEmailAvailable(String email);
+	
 }

@@ -5,7 +5,11 @@ package com.artsoft.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 
@@ -44,6 +48,16 @@ public class AppUserDAOImpl extends AbstractDao implements AppUserDAO{
 	@Override
 	public void update(AppUser user) {
 		getSession().update(user);
+	}
+
+	@Override
+	public boolean findEmailExistence(String email) {
+		Criteria criteria = getSession().createCriteria(AppUser.class);
+		criteria.add(Restrictions.ne("email", email));
+		criteria.setProjection(Projections.rowCount());
+		long count = (Long) criteria.uniqueResult();
+	
+		return count != 0 ?  true : false;
 	}
 
 

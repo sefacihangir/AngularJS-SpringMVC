@@ -20,6 +20,7 @@ import com.artsoft.model.Address;
 import com.artsoft.model.AppUser;
 import com.artsoft.service.AddressService;
 import com.artsoft.service.AppUserService;
+import com.artsoft.util.PasswordUtil;
 
 
 @RestController
@@ -45,14 +46,14 @@ public class SignupController {
 						 @RequestParam(value = "city") String city,
 						 @RequestParam(value = "description") String description){
 		
-		Map<String,Object> response = new HashMap();
+		Map<String,Object> response = new HashMap<String, Object>();
 		int insertedUserId = 0;
 		int insertedAddressId = 0;
 		AppUser newUser;
 		Address address;
 		
-		AppUser user = appUserService.findByEmail(email);
-		if(user == null){
+		
+		if( !appUserService.isEmailAvailable(email) ){
 			CustomError error = new CustomError();
 			error.setHasError(true);
 			error.setErrorOnField("email");
@@ -62,7 +63,7 @@ public class SignupController {
 		else{
 			newUser = new AppUser();
 			newUser.setEmail(email);
-			newUser.setPassword(password);
+			newUser.setPassword(PasswordUtil.encryptPassword(password));
 			newUser.setFirstName(firstName);
 			newUser.setLastName(lastName);
 			newUser.setPhoneNr(phone);
@@ -78,18 +79,16 @@ public class SignupController {
 				
 				insertedAddressId = addressService.insert(address);
 				if(insertedAddressId != 0){											// address inserted successfully
+					Set<Address> addresses = new HashSet<Address>();
+					addresses.add(address);
+					newUser.setAddresses(addresses);								// assign the new address to the address list of the user
+				} else{
 					CustomError error = new CustomError();
 					error.setHasError(true);
 					error.setErrorOnField("address object");
 					error.setErrorMessage("Error registering address data.");
 					response.put("error", error);
 				}
-				else{
-					Set<Address> addresses = new HashSet<Address>();
-					addresses.add(address);
-					//newUser.setAddresses(addresses);								// assign the new address to the address list of the user
-				}
-				
 				
 				response.put("user", newUser);										// return the new created user
 				
