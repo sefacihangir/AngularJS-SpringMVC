@@ -1,6 +1,6 @@
 (function(){
 
-	var app = angular.module('sboxApp', ['ui.bootstrap','sboxAppRoutes','welcomeViewModule','loginViewModule']);
+	var app = angular.module('sboxApp', ['ui.bootstrap','sboxAppRoutes','welcomeViewModule','loginViewModule', 'signupViewModule']);
 
 	/**
      * go to location when using buttons   

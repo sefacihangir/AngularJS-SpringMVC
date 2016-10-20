@@ -1,0 +1,156 @@
+
+#wrapper-container{
+	position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    /*background-color: rgb(248,177,149);*/
+}
+
+
+#signupWrapper{
+	width: 500px;
+	height: 950px;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background-color: rgb(248,177,149);
+	font-family: 'Raleway', sans-serif;
+}
+
+
+#signupFormContainer{
+	width: 100%;
+	height: 100%;
+	float: left;
+	padding-left: 40px;
+	padding-right: 40px;	
+	padding-top: 20px;
+}
+
+
+#phoneContainer{
+	width: 100%;
+	height: 80px;
+	float: left;
+	/*background-color: pink;*/
+	padding-left: 0px !important;
+	border-left: 4px solid  #ff5252 !important;
+	border-bottom: 1px solid  #ff5252 !important;
+}
+
+ul#phone-group-labels li{
+	display: inline;
+	padding-right: 14px;
+}
+
+ul#phone-group-inputs li{
+	display: inline;
+	padding-right: 7px;
+}
+
+#phone-prefix{
+	width: 40px !important;
+}
+
+#phone{
+	width: 260px !important;
+}
+
+
+#addressContainer{
+	width: 100%;
+	height: 250px;
+	float: left;
+	/*background-color: pink;*/
+	margin-top: 35px !important;
+	margin-bottom: 20px !important;
+}
+
+#primary-address{
+	width: 350px;
+}
+
+#addMoreAddressesBtn{
+	float: right;
+	margin-right: 35px;
+}
+
+.signup-panel{
+	width: 100%;
+	height: 100%;
+	border-radius: 0px !important;
+}
+
+.panel-title{
+	font-size: 30px !important;
+	height: 50px !important;
+}
+
+.panel-heading-primary{
+	font-family: 'Open Sans', sans-serif !important;
+	background-color: #ff5252 !important;
+	color: #FFFFFF !important;
+	/*font-weight: 800 !important;*/
+	border-radius: 0px !important;
+	padding-top: 15px !important;
+	padding-left: 50px !important;
+}
+
+.panel-primary-style{
+	border: 1px solid  #ff5252 !important;
+}
+
+
+.panel-footer{
+	text-align: center !important;
+}
+
+
+@media screen and (max-height: 1000px){
+	#wrapper-container{
+		overflow: auto;
+		overflow-y: scroll;
+	}
+
+	#signupWrapper{
+		top: 50px !important;
+		bottom: 50px !important;
+		position: relative;
+	}
+}
+
+
+@media screen and (max-width: 550px){
+	#wrapper-container{
+		background-color: pink;
+	}
+
+	#signupWrapper{
+		width: 100% !important;
+	}
+
+	.panel-primary-style{
+		border: none !important;
+	}
+
+}
+
+
+@media screen and (max-width: 500px){
+	#phone{
+		width: 200px !important;
+	}
+}
+
+@media screen and (max-width: 450px){
+	#phone{
+		width: 140px !important;
+	}
+}

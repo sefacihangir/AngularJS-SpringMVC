@@ -36,26 +36,6 @@
 }
 
 
-.borderless-input-style{
-	border-top: none !important;
-	border-left: none !important;
-	border-right: none !important;
-	border-radius: 0px !important;
-	width: 100%;
-
-}
-
-.borderless-input-style:focus{
-	outline: none; !important;
-	border-bottom-color: #ff5252;
-	transition: 1s;
-	/*border-color: transparent !important;*/
-}
-
-.borderless-input-style:focus::-webkit-input-placeholder { color:transparent; }
-.borderless-input-style:focus:-moz-placeholder { color:transparent; }
-
-
 .panel-footer{
 	text-align: center !important;
 }

@@ -12,7 +12,8 @@
 						css : "assets/css/loginView.css"
 				})
 			.when("/signup", {
-						template : "Welcome to registration" 
+						templateUrl : "app/components/signup/signupView.html" ,
+						css : "assets/css/signupView.css"
 				})
 			.when("/test", { template : "Test page" })
 			.otherwise({ redirectTo : "/home" });
