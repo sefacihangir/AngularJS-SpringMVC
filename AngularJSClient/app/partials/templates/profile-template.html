@@ -1,0 +1,259 @@
+<style type="text/css">
+	#tmp-profile-image-container{
+		width: 220px;
+		height: 220px;
+		float: left;
+		background-color: orange;
+		margin-top: 15px;
+		margin-left: 20px;
+	}	
+
+	#tmp-profile-image{
+		width: 100%;
+		height: 100%;
+	}
+
+	#tmp-left-sidebar{
+		width: 300px;
+		height: 100%;
+		float: left;
+		/*background-color: yellow;*/
+	}
+
+	#profile-content-area{
+		height: 100%;
+		float: left;
+		/*background-color: green;*/
+	}
+
+	#tmp-profile-details-container{
+		width: 400px;
+		height: 340px;
+		float: left;
+		margin-top: 15px;
+		margin-left: 10px;
+		/*background-color: orange;*/
+		font-family: 'Open Sans', sans-serif;
+	}
+
+
+    #home-tab {
+        height: 300px;
+        padding-top: 4px;
+        padding-left: 4px;
+        padding-right: 4px;
+        /*background-color: #8b211e;*/
+    }
+
+    #address-tab{
+        height: 200px;
+        background-color: #31708f;
+    }
+
+</style>
+
+
+<div id="tmp-left-sidebar">
+
+</div>
+
+<div id="profile-content-area">
+	<div id="tmp-profile-image-container">
+		<img src="../assets/img/user-default.png" id="tmp-profile-image">
+	</div>
+
+	<div id="tmp-profile-details-container">
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="" data-target="#home-tab">Email & Password</a></li>
+            <li><a data-toggle="tab" href="" data-target="#address-tab">Address</a></li>
+            <li><a data-toggle="tab" href="" data-target="#contact-tab">Contact</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home-tab" class="tab-pane fade in active">
+            		<small>Press edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i> to change.</small>
+                    <div class="input-group" style="margin-top: 10px;">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                        <input type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" disabled id="emailInput">
+                        <span class="input-group-btn">
+					        <button class="btn btn-default" style="background-color: #2895F1; color: #FFFFFF;"  type="button" onclick="changeEditEmailSpanContent();" id="btnEdit-email">edit <i id="iconEdit-email" class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+					    </span>
+                    </div>
+                    <button class="animated-button-style-1 btn" style="vertical-align:middle; display: none;" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" id="btnSave-email-changes">
+                    	<span>Save </span>
+                    </button>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-key" aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2" disabled id="passwordInput">
+                        <span class="input-group-btn">
+					        <button class="btn btn-default" style="background-color: #2895F1; color: #FFFFFF;"  type="button" onclick="showHiddenRetypePasswordInput();" id="btnEdit-password">
+					        	edit <i id="iconEdit-password" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					        </button>
+					    </span>
+                    </div>
+                    <br>
+                    <div class="form-group" style="display: none; margin-bottom: 3px;" id="retype-password-div">
+                        <input type="password" class="form-control" placeholder="Password again">
+                    </div>
+                    <br>
+                    <button class="animated-button-style-1 btn" style="vertical-align:middle; display: none;" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" id="btnSave-pass-changes">
+                    	<span>Save </span>
+                    </button>
+   
+
+            </div>
+            <div id="address-tab" class="tab-pane fade">
+                <h3>Menu 1</h3>
+                <p>Some content in menu 1.</p>
+            </div>
+            <div id="contact-tab" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+            </div>
+        </div>
+
+	</div>     <!-- END of tmp-profile-details-container -->
+</div>
+
+
+<script type="text/javascript">
+
+		/***************** EMAIL INPUT RELATED ACTIONS *****************/
+
+		var editEmailPressed = false;
+
+		function changeEditEmailSpanContent(){
+			if(!editEmailPressed){
+				// modify content text of edit span button
+				document.getElementById ( "btnEdit-email" ).firstChild.data = "cancel ";
+				// modify the icon of the edit span button
+				document.getElementById ( "iconEdit-email" ).className = "fa fa-times";
+				// modify the background-color of the edit span button
+				document.getElementById ( "btnEdit-email" ).style.backgroundColor = "#ff5252";
+				// enable email input
+				enableEmailInput();
+				// show the save button
+				document.getElementById ( "btnSave-email-changes" ).style.display = "block";
+
+				editEmailPressed = true;
+			}
+			else{
+				// modify content text of edit span button
+				document.getElementById ( "btnEdit-email" ).firstChild.data = "edit ";
+				// modify the icon of the edit span button
+				document.getElementById ( "iconEdit-email" ).className = "fa fa-pencil-square-o";
+				// modify the background-color of the edit span button
+				document.getElementById ( "btnEdit-email" ).style.backgroundColor = "#2895F1";
+				disableEmailInput();
+				// hide the save button
+				document.getElementById ( "btnSave-email-changes" ).style.display = "none";
+
+				editEmailPressed = false;
+			}
+		}
+
+
+		function enableEmailInput(){
+			$("#emailInput").prop('disabled', false);
+		}
+
+		function disableEmailInput(){
+			$("#emailInput").prop('disabled', true);
+		}
+
+
+
+
+		/***************** PASSWORD INPUT RELATED ACTIONS *****************/
+
+	    var editPasswordPressed = false;
+
+		function showHiddenRetypePasswordInput(){
+			if(!editPasswordPressed){
+				document.getElementById ( "retype-password-div" ).style.display = "flex";
+				// modify edit pass span content
+				changeEditPassSpanContent();
+				editPasswordPressed = true;
+				// show the save button
+				document.getElementById ( "btnSave-pass-changes" ).style.display = "block";
+				// enable the password input
+				enablePasswordInput();
+			}
+			else{
+				document.getElementById ( "retype-password-div" ).style.display = "none";
+				// modify edit pass span content
+				changeEditPassSpanContent();
+				editPasswordPressed = false;
+				// hide the save button
+				document.getElementById ( "btnSave-pass-changes" ).style.display = "none";
+				// disable password input
+				disablePasswordInput();
+			}
+		}
+
+
+		function changeEditPassSpanContent(){
+			if(!editPasswordPressed){
+				// modify content text of edit span button
+				document.getElementById ( "btnEdit-password" ).firstChild.data = "cancel ";
+				// modify the icon of the edit span button
+				document.getElementById ( "iconEdit-password" ).className = "fa fa-times";
+				// modify the background-color of the edit span button
+				document.getElementById ( "btnEdit-password" ).style.backgroundColor = "#ff5252";
+			}
+			else{
+				// modify content text of edit span button
+				document.getElementById ( "btnEdit-password" ).firstChild.data = "edit ";
+				// modify the icon of the edit span button
+				document.getElementById ( "iconEdit-password" ).className = "fa fa-pencil-square-o";
+				// modify the background-color of the edit span button
+				document.getElementById ( "btnEdit-password" ).style.backgroundColor = "#2895F1";
+			}
+		}
+
+
+		function enablePasswordInput(){
+			$("#passwordInput").prop('disabled', false);
+		}
+
+		function disablePasswordInput(){
+			$("#passwordInput").prop('disabled', true);
+		}
+
+
+
+		/***************** DYNAMIC SIZES RELATED ACTIONS *****************/
+
+		$(window).resize(function(){
+
+		   var profileContentAreaWidth = $("#main-area").width() - $("#tmp-left-sidebar").width() - 2;
+		   $("#profile-content-area").width(profileContentAreaWidth);
+
+		})
+
+		$(window).resize(); //on page load
+
+
+		/***************** LOADING BUTTONS RELATED ACTIONS *****************/
+
+		$('#btnSave-pass-changes').on('click', function() {
+		    var $this = $(this);
+		  $this.button('loading');
+		    setTimeout(function() {
+		       $this.button('reset');
+		   }, 1000);
+		});
+
+		$('#btnSave-email-changes').on('click', function() {
+		    var $this = $(this);
+		  $this.button('loading');
+		    setTimeout(function() {
+		       $this.button('reset');
+		   }, 1000);
+		});
+
+
+
+</script>

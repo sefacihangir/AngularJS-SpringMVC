@@ -1,0 +1,144 @@
+create database sbox;
+
+use sbox;
+
+# USER
+create table user(
+	userId int not null primary key auto_increment,
+    email varchar(100) not null unique,
+    password varchar(100) not null,
+    keyValue varchar(100) not null,
+    role varchar(50) not null,
+    firstName varchar(80) not null,
+    lastName varchar(80) not null,
+    phoneNr varchar(15) not null,
+    createdAt date,
+    updatedAt date,
+    status varchar(15) not null,
+    lastAccess date not null,
+    imageId int not null,
+    foreign key(imageId) references image(imageId)
+);
+#---------------------------------------
+
+
+# USER_REQUEST + USER_REQUEST_LINE
+create table user_request(
+	userRequestId int not null primary key auto_increment,
+    userId int not null,
+    requestDate date not null,
+    desiredDate date not null,
+    desiredHour time not null,
+    providerId int not null,
+    totalCost double not null,
+    foreign key(userId) references user(userId) on delete cascade
+);
+
+create table user_request_line(
+	userRequestLineId int not null primary key auto_increment,
+    userRequestId int not null,
+    providerServiceId int not null,
+    foreign key(userRequestId) references user_request(userRequestId) on delete cascade
+);
+# ----------------------------------------
+
+
+# USER ADDRESS - user can have multiple addresses
+create table user_address(
+	userAddressId int not null primary key auto_increment,
+    userId int not null,
+    address varchar(50) not null,
+    country varchar(50) not null,
+    city varchar(50) not null,
+    foreign key(userId) references user(userId) on delete cascade
+);
+# ----------------------------------------
+
+
+# PROVIDER_CATEGORY_LIST + PROVIDER_SERVICES_LIST
+create table provider_category_list(
+	providerCategoryId int not null primary key auto_increment,
+    providerId int not null,
+    categoryId int not null,
+    foreign key(providerId) references user(userId) on delete cascade,
+    foreign key(categoryId) references category(categoryId)
+);
+
+create table provider_services_list(
+	providerServiceId int not null primary key auto_increment,
+    providerCategoryId int not null,
+    price double not null,
+    serviceId int not null,
+    available bool,
+    foreign key(providerCategoryId) references provider_category_list(providerCategoryId) on delete cascade
+);
+#---------------------------------------------
+
+
+# CATEGORY + SERVICE
+create table category(
+	categoryId int not null primary key auto_increment,
+    name varchar(80) not null,
+    iconId int not null,
+    foreign key(iconId) references icon(iconId)
+);
+
+create table service(
+	serviceId int not null primary key auto_increment,
+    categoryId int not null,
+    name varchar(80) not null,
+    iconId int not null,
+    foreign key(categoryId) references category(categoryId) on delete cascade,
+    foreign key(iconId) references icon(iconId)
+);
+#-----------------------------------------------
+
+
+# IMAGE
+create table image(
+	imageId int not null primary key auto_increment,
+    path varchar(100) not null
+);
+#-----------------------------------------------
+
+
+# ICON if useFramework = true then use text else use path
+create table icon(
+	iconId int not null primary key auto_increment,
+    text varchar(50) not null,
+    path varchar(50) not null,
+    useFramework bool
+);
+#-----------------------------------------------
+
+
+# PROJECT + PROJECT_LINE
+create table project(
+	projectId int not null primary key auto_increment,
+    userId int not null,
+    name varchar(50) not null,
+    createdAt date not null,
+    fund double not null,
+    status varchar(30) not null,
+    foreign key(userId) references user(userId) on delete cascade
+);
+
+create table project_line(
+	projectLineId int not null primary key auto_increment,
+    projectId int not null,
+    providerServiceId int not null,
+    foreign key(projectId) references project(projectId) on delete cascade,
+    foreign key(providerServiceId) references provider_services_list(providerServiceId)
+);
+#------------------------------------------------
+
+
+# RATING
+create table rating(
+	ratingId int not null primary key auto_increment,
+    userId int not null,
+    providerId int not null,
+    rateScore int not null , # 1-5
+    foreign key(userId) references user(userId) on delete cascade
+);
+#------------------------------------------------

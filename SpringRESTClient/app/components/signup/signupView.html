@@ -1,0 +1,162 @@
+<div id="wrapper-container">
+	<div id="signupWrapper" ng-controller="InputAnimationController-signupViewModule as animationCtrl">
+		<div class="panel panel-default signup-panel panel-primary-style">
+		  	<!-- HEAD -->
+		  	<div class="panel-heading panel-heading-primary">
+		    	<h3 class="panel-title"><strong>SIGN UP</strong></h3>
+		  	</div>
+
+		  	<!-- BODY -->
+		  	<div class="panel-body">
+		  		<div id="signupFormContainer">
+		  			<form name="signupForm" ng-controller="SignupController as signupCtrl" ng-submit="signupForm.$valid && signupCtrl.signup()" novalidate>
+		  				<!-- Email -->
+		  				<div class="form-group"> 
+		  					<label for="email">{{animationCtrl.emailLabel}}</label>
+		  					<input type="email" class="borderless-input-style" 
+		  						placeholder="Email" 
+		  						id="email" 
+		  						name="email"
+		  						required
+		  						ng-model="signupCtrl.signupObj.email"
+		  						ng-focus="animationCtrl.showLabelOnClickForInput('email')" ng-blur="animationCtrl.resetLabelOnClickForInput('email')" 
+		  						tooltip-placement="right"
+		  						tooltip-trigger="'blur'"
+		  						tooltip-enable="{{(signupForm.email.$dirty && signupForm.email.$error.email) || (signupForm.email.$dirty && signupForm.email.$error.required)}}" 
+		  						uib-tooltip="Invalid email address.">
+		  				</div>
+
+		  				<!-- <br> -->
+
+		  				<!-- Password -->
+		  				<div class="form-group">
+		  					<label for="password">{{animationCtrl.passwordLabel}}</label>
+		  					<input type="password" class="borderless-input-style" 
+		  						placeholder="Password" 
+		  						id="password"
+		  						name="password"
+		  						required 
+		  						ng-model="signupCtrl.signupObj.password"
+		  						ng-focus="animationCtrl.showLabelOnClickForInput('password')" ng-blur="animationCtrl.resetLabelOnClickForInput('password')"
+		  						tooltip-placement="right"
+		  						tooltip-trigger="'blur'"
+		  						tooltip-enable="{{(signupForm.password.$dirty && signupForm.password.$error.required)}}"
+		  						uib-tooltip="Field required">
+		  				</div>
+
+		  				<!-- <br> -->
+
+		  				<!-- Retype password -->
+		  				<div class="form-group">
+		  					<label for="retyped-password">{{animationCtrl.retypePasswordLabel}}</label>
+		  					<input type="password" class="borderless-input-style" placeholder="Retype Password" id="retyped-passoword" 
+		  						ng-focus="animationCtrl.showLabelOnClickForInput('retype password')" ng-blur="animationCtrl.resetLabelOnClickForInput('retype password')">
+		  				</div>
+
+		  				<!-- <br> -->
+
+		  				<!-- First Name -->
+		  				<div class="form-group">
+		  					<label for="first-name">{{animationCtrl.firstNameLabel}}</label>
+		  					<input type="text" class="borderless-input-style" placeholder="First Name" id="first-name"
+		  						ng-model="signupCtrl.signupObj.firstName"
+		  						ng-focus="animationCtrl.showLabelOnClickForInput('first name')" ng-blur="animationCtrl.resetLabelOnClickForInput('first name')">
+		  				</div>
+
+		  				<!-- <br> -->
+
+		  				<!-- Last Name-->
+		  				<div class="form-group">
+		  					<label for="last-name">{{animationCtrl.lastNameLabel}}</label>
+		  					<input type="text" class="borderless-input-style" placeholder="Last Name" id="last-name"
+		  						ng-model="signupCtrl.signupObj.lastName"
+		  						ng-focus="animationCtrl.showLabelOnClickForInput('last name')" ng-blur="animationCtrl.resetLabelOnClickForInput('last name')">
+		  				</div>		  
+
+		  				<!-- <br> -->
+
+		  				<!-- Phone -->		  				
+		  				<div id="phoneContainer">
+							<div class="form-group">
+								<ul id="phone-group-labels">
+			  						<li><label for="phone-prefix">Pref.</label></li>
+			  						<li><label for="phone">{{animationCtrl.phoneLabel}}</label></li>
+			  					</ul>
+
+			  					<ul id="phone-group-inputs">
+			  						<li><input type="text" value="+40" readonly id="phone-prefix" class="borderless-input-style"></li>
+			  						<li>
+			  							<input type="text" class="borderless-input-style" min="0" placeholder="Phone" id="phone"
+			  								ng-model="signupCtrl.signupObj.phone"
+			  								ng-focus="animationCtrl.showLabelOnClickForInput('phone')" ng-blur="animationCtrl.resetLabelOnClickForInput('phone')">
+			  						</li>
+			  					</ul>
+			  				</div>
+		  				</div>
+		  				
+		  				<!-- <br> -->
+
+		  				<!-- Primary Address -->
+		  				<div id="addressContainer">
+			  				<div class="form-group">
+			  					<label for="primary-address">{{animationCtrl.primaryAddressLabel}}</label>
+			  					<input type="text" class="borderless-input-style" placeholder="Primary Address" id="primary-address"
+			  						ng-model="signupCtrl.signupObj.primaryAddress.description"
+			  						ng-focus="animationCtrl.showLabelOnClickForInput('primary address')" ng-blur="animationCtrl.resetLabelOnClickForInput('primary address')">
+
+			  					<br><br>
+
+			  					<label for="county">Select County</label>
+			  					<select id="county" style="width: 90%" class="select-input-primary-style-normal" ng-model="signupCtrl.signupObj.primaryAddress.county">
+			  						<option>County1</option>
+			  						<option>County2</option>
+			  						<option>County3</option>
+			  						<option>County4</option>
+			  					</select>
+
+			  					<br><br>
+
+			  					<label for="city">Select City</label>
+			  					<select id="city" style="width: 90%" class="select-input-primary-style-normal" ng-model="signupCtrl.signupObj.primaryAddress.city">
+			  						<option>City1</option>
+			  						<option>City2</option>
+			  						<option>City3</option>
+			  						<option>City4</option>
+			  						<option>City2</option>
+			  						<option>City3</option>
+			  						<option>City4</option>
+			  						<option>City2</option>
+			  						<option>City3</option>
+			  						<option>City4</option>
+			  					</select>
+
+			  					<br><br>
+
+			  					<button class="rounded-primary-style-button-sm" id="addMoreAddressesBtn"
+			  							tooltip-placement="right" 
+				    		 			tooltip-trigger="'mouseenter'"
+				    		 			uib-tooltip="Add other address" >
+			  						<i class="fa fa-plus" aria-hidden="true"></i>
+			  					</button>			  					
+			  				</div>
+		  				</div>
+
+		  				<br>
+
+		  				<!-- Submit button -->
+		  				<input type="submit" value="SUBMIT" class="secondary-style-button-lg">
+
+		  			</form>
+		  		</div>
+		  	</div>
+
+		  	<!-- FOOTER -->
+		  	<div class="panel-footer" ng-controller="RedirectToController as redirectToCtrl">
+		  		<span>
+		  			<small>Already have an account ?</small>
+		  			<a href>LOGIN</a> 
+		  		</span>
+		  	</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,149 @@
+
+<html>
+<head>
+	<title>Home</title>
+	<meta charset="UTF-8">
+	<!-- Bootstrap 3 css -->
+	<link rel="stylesheet" href="../assets/bootstrap-3/css/bootstrap.min.css">
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
+	<!-- iGrowl alerts -->
+	<link rel="stylesheet" type="text/css" href="../assets/igrowl-alerts/stylesheets/igrowl.css">
+	<link rel="stylesheet" type="text/css" href="../assets/igrowl-alerts/stylesheets/animate.css">
+	<link rel="stylesheet" type="text/css" href="../assets/igrowl-alerts/stylesheets/icomoon/feather.css">
+	<!-- custom css -->
+	<link rel="stylesheet" type="text/css" href="../assets/css/home-partial.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/button-styles.css">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Oswald|Raleway|Roboto" rel="stylesheet">
+</head>
+
+<body ng-app="AngularJSClientApp" ng-controller="HomeController" id="body">
+
+
+	<div class="container">
+		<div class="box">
+			<!------------------- HEADER ------------------>
+		  <div class="row header" id="header">
+			<div id="top-banner">
+					<div class="container-fluid" style="width: 80%;">
+						<!-- LOGO -->
+						<div id="top-logo">
+							<ul>
+								<li><font size="6">SBOX</font></li>
+							</ul>
+						</div>
+						<!-- GREETING MESSAGE & LOGOUT BUTTON -->
+						<div id="top-navcontainer">
+							<ul>
+								<li><font>Welcome <b>{{user.firstName}} {{user.lastName}}</b></font></li>
+								<li>
+									<button type="button" class="btn btn-default btn-sm" id="login-button">
+										Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>  
+		  </div>
+
+		  <!------------------------- CONTENT -------------------->
+		  <div class="row content" id="content">
+		    <div class="container-fluid" style="width: 80%;" id="main-content">
+		    	 <div id="navbar-header">	
+		    	 	<!-- STATUS DETAILS -->
+		    	 	<div id="status-container">
+		    	 		<div id="status-details">
+		    	 			<div id="vertical-design-line">
+
+		    	 			</div>
+
+		    	 			<div id="profile-image-container">
+		    	 				<img src="../assets/img/user-default.png" id="profile-image">
+		    	 			</div>
+
+		    	 			<div id="stats">
+		    	 				<font style="color: #2895F1;"><small><b>ACTIVE</b> <i class="fa fa-check-square" aria-hidden="true"></i></small></font>
+		    	 				<br>
+		    	 				<small>Account type: </small>
+		    	 				<br>
+		    	 				<small>Last action: </small>
+		    	 				<br>
+		    	 				<button class="btn btn-default btn-xs primary-button-style" style="width: 85px;">Edit profile <i class="fa fa-cog" aria-hidden="true"></i></button>
+		    	 			</div>
+		    	 		</div>
+		    	 	</div>
+
+		    	 	<!-- NAVBAR -->
+		    	 	<div id="navbar-container">
+		    	 		<div id="navbar-menu">
+		    				<ul class="nav nav-tabs">
+							  <li role="presentation" class="active"><a href="#/home" data-toggle="tab" data-target="#home" onclick="enableFilterDiv()">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
+							  <li role="presentation"><a href="#/profile" data-toggle="tab" data-target="#profile" onclick="disableFilterDiv()">Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
+							  <li role="presentation"><a href="#/requests" data-toggle="tab" data-target="#requests" onclick="disableFilterDiv()">Requests <i class="fa fa-folder" aria-hidden="true"></i></a></li>
+							  <li role="presentation"><a href="#/messages" data-toggle="tab" data-target="#messages" onclick="disableFilterDiv()">Messages <i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+							</ul>
+
+							<div id="nav-filter">
+
+							</div>
+		    	 		</div>
+		    	 	</div>
+		    	 </div>
+
+		    	 <!-- MAIN AREA -->
+		    	 <div id="main-area">
+		    	 	<div ng-view></div>
+		    	 </div>
+
+		    </div>
+		  </div>
+
+		  <!------------------------- FOOTER -------------------->
+		  <div class="row footer" id="footer">
+		    <p><b>footer</b> (fixed height)</p>
+		  </div>
+		</div>
+	</div>
+
+	 <!-- jQuery -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Bootstrap 3 javascript -->
+	<script src="../assets/bootstrap-3/js/bootstrap.min.js" ></script>
+     <!-- iGrowl -->
+     <script type="text/javascript" src="../assets/igrowl-alerts/javascripts/igrowl.js"></script>
+
+	<!-- AngularJS resources -->
+    <script type="text/javascript" src="../assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="../assets/js/angular-route.min.js"></script>
+    <script type="text/javascript" src="../assets/js/global-routing.js"></script>
+    <script type="text/javascript" src="../controller/home-partial-controller.js"></script>
+
+    <script type="text/javascript">
+		$(window).resize(function(){
+		   var mainContentheight = $('body').height() - ( $("#header").height() + $("#footer").height() );
+		   $('#main-content').height(mainContentheight);
+
+		   var navbarContainerWidth = $("#navbar-header").width() - $("#status-container").width();
+		   $("#navbar-container").width(navbarContainerWidth - 1);
+
+		   var mainAreaHeight = $("#main-content").height() - $("#navbar-header").height();
+		   $("#main-area").height(mainAreaHeight);
+
+		})
+
+		$(window).resize(); //on page load
+
+		function enableFilterDiv(){
+			$("#navbar-filter-options").addClass("enabled-div");			
+		}
+
+		function disableFilterDiv(){
+			$("#navbar-filter-options").addClass("disabled-div");
+		}
+
+    </script>
+
+</body>
+</html>

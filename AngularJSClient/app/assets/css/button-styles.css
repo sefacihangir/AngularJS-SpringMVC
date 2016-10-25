@@ -1,0 +1,102 @@
+.primary-button-style{
+	background-color: #f6f9fc;
+	border: 1px solid #2895F1;
+	font-family: 'Raleway', sans-serif !important;
+}
+
+.primary-button-style:hover{
+	background-color: #2895F1 !important;
+    color: #FFF;
+}
+
+
+.animated-button-style-1{
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #4caf50;;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px;
+  width: 80px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-family: 'Raleway', sans-serif !important;
+}
+
+
+.animated-button-style-1 span{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.animated-button-style-1 span:after{
+  font-family: FontAwesome;
+  content: "\f0c7";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.animated-button-style-1:hover span{
+	padding-right: 25px;
+	color: #FFFFFF;
+}
+
+
+.animated-button-style-1:hover span:after{
+  opacity: 1;
+  right: 0;
+}
+
+
+.animated-button-style-2{
+	display: inline-block;
+	border-radius: 4px;
+	background-color: #f4511e;
+	border: none;
+  	color: #FFFFFF;
+  	text-align: center;
+  	font-size: 16px;
+  	padding: 5px;
+  	width: 80px;
+  	transition: all 0.5s;
+  	cursor: pointer;
+  	margin: 5px;
+  	font-family: 'Raleway', sans-serif !important;
+}
+
+
+.animated-button-style-2 span{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.animated-button-style-2 span:after{
+  font-family: FontAwesome;
+  content: "\f00d";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.animated-button-style-2:hover span{
+	padding-right: 20px;
+	color: #FFFFFF;
+}
+
+
+.animated-button-style-2:hover span:after{
+  opacity: 1;
+  right: 0;
+}
