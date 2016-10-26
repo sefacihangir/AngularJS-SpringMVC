@@ -26,7 +26,7 @@
 		  						uib-tooltip="Invalid email address.">
 		  				</div>
 
-		  				<!-- <br> -->
+		  				
 
 		  				<!-- Password -->
 		  				<div class="form-group">
@@ -44,36 +44,63 @@
 		  						uib-tooltip="Field required">
 		  				</div>
 
-		  				<!-- <br> -->
+		  				
 
 		  				<!-- Retype password -->
 		  				<div class="form-group">
 		  					<label for="retyped-password">{{animationCtrl.retypePasswordLabel}}</label>
-		  					<input type="password" class="borderless-input-style" placeholder="Retype Password" id="retyped-passoword" 
-		  						ng-focus="animationCtrl.showLabelOnClickForInput('retype password')" ng-blur="animationCtrl.resetLabelOnClickForInput('retype password')">
+		  					<input type="password" class="borderless-input-style" 
+		  						placeholder="Retype Password" 
+		  						id="retypedpassword"
+		  						name="retypedpassword"
+		  						required 
+		  						ng-model="retypedpassword"
+		  						ng-focus="animationCtrl.showLabelOnClickForInput('retype password')" ng-blur="animationCtrl.resetLabelOnClickForInput('retype password')"
+		  						password-match="password"
+		  						tooltip-placement="right"
+		  						tooltip-trigger="'blur'"
+		  						tooltip-enable="{{signupForm.retypedpassword.$dirty && signupForm.retypedpassword.$error.match}}"
+		  						uib-tooltip="Password doesn't match"
+		  						>
 		  				</div>
 
-		  				<!-- <br> -->
+		  				
 
 		  				<!-- First Name -->
 		  				<div class="form-group">
-		  					<label for="first-name">{{animationCtrl.firstNameLabel}}</label>
-		  					<input type="text" class="borderless-input-style" placeholder="First Name" id="first-name"
+		  					<label for="firstname">{{animationCtrl.firstNameLabel}}</label>
+		  					<input type="text" class="borderless-input-style" 
+		  						placeholder="First Name" 
+		  						id="firstname"
+		  						name="firstname"
+		  						required
 		  						ng-model="signupCtrl.signupObj.firstName"
-		  						ng-focus="animationCtrl.showLabelOnClickForInput('first name')" ng-blur="animationCtrl.resetLabelOnClickForInput('first name')">
+		  						ng-focus="animationCtrl.showLabelOnClickForInput('first name')" ng-blur="animationCtrl.resetLabelOnClickForInput('first name')"
+		  						tooltip-placement="right"
+		  						tooltip-trigger="'blur'"
+		  						tooltip-enable="{{signupForm.firstname.$dirty && signupForm.firstname.$error.required}}"
+		  						uib-tooltip="Field required">
 		  				</div>
 
-		  				<!-- <br> -->
+		  				
 
 		  				<!-- Last Name-->
 		  				<div class="form-group">
-		  					<label for="last-name">{{animationCtrl.lastNameLabel}}</label>
-		  					<input type="text" class="borderless-input-style" placeholder="Last Name" id="last-name"
+		  					<label for="lastname">{{animationCtrl.lastNameLabel}}</label>
+		  					<input type="text" class="borderless-input-style" 
+		  						placeholder="Last Name" 
+		  						id="lastname"
+		  						name="lastname"
+		  						required
 		  						ng-model="signupCtrl.signupObj.lastName"
-		  						ng-focus="animationCtrl.showLabelOnClickForInput('last name')" ng-blur="animationCtrl.resetLabelOnClickForInput('last name')">
+		  						ng-focus="animationCtrl.showLabelOnClickForInput('last name')" ng-blur="animationCtrl.resetLabelOnClickForInput('last name')"
+		  						tooltip-placement="right"
+		  						tooltip-trigger="'blur'"
+		  						tooltip-enable="{{signupForm.lastname.$dirty && signupForm.lastname.$error.required}}"
+		  						uib-tooltip="Field required">
 		  				</div>		  
 
-		  				<!-- <br> -->
+		  				
 
 		  				<!-- Phone -->		  				
 		  				<div id="phoneContainer">
@@ -84,60 +111,94 @@
 			  					</ul>
 
 			  					<ul id="phone-group-inputs">
-			  						<li><input type="text" value="+40" readonly id="phone-prefix" class="borderless-input-style"></li>
+			  						<li><input type="text" ng-model="signupCtrl.phonePrefix" readonly id="phone-prefix" class="borderless-input-style"></li>
 			  						<li>
-			  							<input type="text" class="borderless-input-style" min="0" placeholder="Phone" id="phone"
+			  							<input type="text" class="borderless-input-style" min="0" 
+			  								placeholder="Phone" 
+			  								id="phone"
+			  								name="phone"
+			  								required
 			  								ng-model="signupCtrl.signupObj.phone"
-			  								ng-focus="animationCtrl.showLabelOnClickForInput('phone')" ng-blur="animationCtrl.resetLabelOnClickForInput('phone')">
+			  								ng-focus="animationCtrl.showLabelOnClickForInput('phone')" ng-blur="animationCtrl.resetLabelOnClickForInput('phone')"
+			  								phone-validation="phone"
+			  								tooltip-placement="right"
+			  								tooltip-trigger="'blur'"
+			  								tooltip-enable="{{signupForm.phone.$dirty && signupForm.phone.$error.valid}}"
+			  								uib-tooltip="Invalid phone number">
 			  						</li>
 			  					</ul>
 			  				</div>
 		  				</div>
 		  				
-		  				<!-- <br> -->
+		  				
 
 		  				<!-- Primary Address -->
 		  				<div id="addressContainer">
 			  				<div class="form-group">
-			  					<label for="primary-address">{{animationCtrl.primaryAddressLabel}}</label>
-			  					<input type="text" class="borderless-input-style" placeholder="Primary Address" id="primary-address"
-			  						ng-model="signupCtrl.signupObj.primaryAddress.description"
-			  						ng-focus="animationCtrl.showLabelOnClickForInput('primary address')" ng-blur="animationCtrl.resetLabelOnClickForInput('primary address')">
+			  					<label for="primaryaddress">{{animationCtrl.primaryAddressLabel}}</label>
+			  					<input type="text" class="borderless-input-style" 
+			  						placeholder="Primary Address" 
+			  						id="primaryaddress"
+			  						name="primaryaddress"
+			  						required
+			  						ng-model="signupCtrl.addressObj.description"
+			  						ng-focus="animationCtrl.showLabelOnClickForInput('primary address')" ng-blur="animationCtrl.resetLabelOnClickForInput('primary address')"
+			  						tooltip-placement="right"
+			  						tooltip-trigger="'blur'"
+			  						tooltip-enable="{{signupForm.primaryaddress.$dirty && signupForm.primaryaddress.$error.required}}"
+			  						uib-tooltip="Field required">
 
 			  					<br><br>
 
 			  					<label for="county">Select County</label>
-			  					<select id="county" style="width: 90%" class="select-input-primary-style-normal" ng-model="signupCtrl.signupObj.primaryAddress.county">
-			  						<option>County1</option>
-			  						<option>County2</option>
-			  						<option>County3</option>
-			  						<option>County4</option>
+			  					<select style="width: 90%" class="select-input-primary-style-normal" 
+			  						id="county"
+			  						name="county" 
+			  						ng-model="signupCtrl.selected_county"
+			  						ng-change="signupCtrl.addressObj.county = signupCtrl.selected_county"
+			  						ng-options="c.value for c in signupCtrl.county_list"
+			  						ng-click="signupCtrl.populateCitiesDropdown()">
 			  					</select>
 
 			  					<br><br>
 
 			  					<label for="city">Select City</label>
-			  					<select id="city" style="width: 90%" class="select-input-primary-style-normal" ng-model="signupCtrl.signupObj.primaryAddress.city">
-			  						<option>City1</option>
-			  						<option>City2</option>
-			  						<option>City3</option>
-			  						<option>City4</option>
-			  						<option>City2</option>
-			  						<option>City3</option>
-			  						<option>City4</option>
-			  						<option>City2</option>
-			  						<option>City3</option>
-			  						<option>City4</option>
+			  					<select style="width: 90%" class="select-input-primary-style-normal" 
+			  						id="city"
+			  						ng-model="signupCtrl.selected_city"
+			  						ng-change="signupCtrl.addressObj.city = signupCtrl.selected_city"
+			  						ng-options="c.value for c in signupCtrl.city_list">
 			  					</select>
 
 			  					<br><br>
 
-			  					<button class="rounded-primary-style-button-sm" id="addMoreAddressesBtn"
-			  							tooltip-placement="right" 
-				    		 			tooltip-trigger="'mouseenter'"
-				    		 			uib-tooltip="Add other address" >
-			  						<i class="fa fa-plus" aria-hidden="true"></i>
-			  					</button>			  					
+			  					<!-- Add another address modal -->
+								<div ng-controller="ModalController as modalCtrl">
+								    <script type="text/ng-template" id="addressModel.html">
+								        <div class="modal-header">
+								            <h3 class="modal-title" id="modal-title">Im a modal!</h3>
+								        </div>
+								        <div class="modal-body" id="modal-body">
+								            Selected:
+								        </div>
+								        <div class="modal-footer">
+								            <button class="btn btn-primary" type="button" ng-click="modalInstanceCtrl.ok()">OK</button>
+								            <button class="btn btn-warning" type="button" ng-click="modalInstanceCtrl.cancel()">Cancel</button>
+								        </div>
+								    </script>
+
+								    <!-- Button to open a modal in order to add other address -->
+								    <button class="rounded-primary-style-button-sm" 
+				  							id="addMoreAddressesBtn"
+				  							tooltip-placement="right" 
+					    		 			tooltip-trigger="'mouseenter'"
+					    		 			uib-tooltip="Add other address"
+					    		 			ng-click="signupCtrl.addAddress()">
+			  							<i class="fa fa-plus" aria-hidden="true"></i>
+			  						</button>
+								</div>	
+								<!-- end of modal -->
+
 			  				</div>
 		  				</div>
 

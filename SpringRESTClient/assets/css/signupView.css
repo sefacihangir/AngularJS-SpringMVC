@@ -82,6 +82,14 @@ ul#phone-group-inputs li{
 	margin-right: 35px;
 }
 
+#addMoreAddressesBtn:focus{
+	outline: 0 !important;
+}
+
+#addMoreAddressesBtn:active{
+	outline: 0 !important;
+}
+
 .signup-panel{
 	width: 100%;
 	height: 100%;
