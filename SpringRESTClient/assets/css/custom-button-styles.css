@@ -1,3 +1,7 @@
+
+
+/* FLAT BUTTONS */
+
 .primary-style-button-lg{
 	background-color: #ff5252;
 	color: #FFFFFF;
@@ -87,6 +91,56 @@
 	transition-duration: 0.3s;
 }
 
+
+
+
+.tertiary-style-button-lg{
+	background-color: #B37D4E;
+	color: #FFFFFF;
+	text-align: center;
+	border: 0px;
+	height: 50px;
+	padding: 10px 10px 10px 10px;
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 500;
+	font-size: 18px;
+}
+
+
+.tertiary-style-button-sm{
+	background-color: #B37D4E;
+	color: #FFFFFF;
+	text-align: center;
+	border: 0px;
+	height: 40px;
+	padding: 8px;
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+
+.tertiary-style-button-xs{
+	background-color: #B37D4E;
+	color: #FFFFFF;
+	text-align: center;
+	border: 0px;
+	height: 30px;
+	padding: 6px;
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 500;
+	font-size: 12px;
+}
+
+
+
+.tertiary-style-button-sm:hover{
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+	transition-duration: 0.5s;
+}
+
+
+/*  ROUNDED BUTTONS */
 
 
 .rounded-primary-style-button-sm{

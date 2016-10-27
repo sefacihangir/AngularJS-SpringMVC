@@ -1,6 +1,6 @@
 (function(){
 
-	var app = angular.module('sboxApp', ['ui.bootstrap','sboxAppRoutes','welcomeViewModule','loginViewModule', 'signupViewModule']);
+	var app = angular.module('sboxApp', ['ui.bootstrap','sboxAppRoutes','welcomeViewModule','loginViewModule', 'signupViewModule', 'uploadViewModule']);
 
     /**
      * global constants

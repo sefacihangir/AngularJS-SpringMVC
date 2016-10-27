@@ -141,7 +141,7 @@
 			  						id="primaryaddress"
 			  						name="primaryaddress"
 			  						required
-			  						ng-model="signupCtrl.addressObj.description"
+			  						ng-model="signupCtrl.addressDescription"
 			  						ng-focus="animationCtrl.showLabelOnClickForInput('primary address')" ng-blur="animationCtrl.resetLabelOnClickForInput('primary address')"
 			  						tooltip-placement="right"
 			  						tooltip-trigger="'blur'"
@@ -155,7 +155,7 @@
 			  						id="county"
 			  						name="county" 
 			  						ng-model="signupCtrl.selected_county"
-			  						ng-change="signupCtrl.addressObj.county = signupCtrl.selected_county"
+			  						ng-change="signupCtrl.addressCounty = signupCtrl.selected_county.value"
 			  						ng-options="c.value for c in signupCtrl.county_list"
 			  						ng-click="signupCtrl.populateCitiesDropdown()">
 			  					</select>
@@ -166,7 +166,7 @@
 			  					<select style="width: 90%" class="select-input-primary-style-normal" 
 			  						id="city"
 			  						ng-model="signupCtrl.selected_city"
-			  						ng-change="signupCtrl.addressObj.city = signupCtrl.selected_city"
+			  						ng-change="signupCtrl.addressCity = signupCtrl.selected_city.value"
 			  						ng-options="c.value for c in signupCtrl.city_list">
 			  					</select>
 
@@ -188,7 +188,7 @@
 								    </script>
 
 								    <!-- Button to open a modal in order to add other address -->
-								    <button class="rounded-primary-style-button-sm" 
+								    <button type="button" class="rounded-primary-style-button-sm" 
 				  							id="addMoreAddressesBtn"
 				  							tooltip-placement="right" 
 					    		 			tooltip-trigger="'mouseenter'"

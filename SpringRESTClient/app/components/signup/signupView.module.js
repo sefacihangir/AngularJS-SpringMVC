@@ -3,10 +3,8 @@
 	var app = angular.module('signupViewModule', []);
 
 
-	app.controller('SignupController', ['$http','config', function($http, config){
+	app.controller('SignupController', ['$http','config','$scope', function($http, config, $scope){
 
-		/* object used to define an address */
-		this.addressObj = {description : '', county : '', city : '', type : ''};
 
 		/* used to check if user has defined a primary address before started to add another one */
 		this.primaryAddresseAssigned = false;
@@ -24,7 +22,8 @@
 						 };
 
 
-	    var cities = new Array();
+
+		var cities = new Array();
 	    cities[0] = "Alba Iulia,Sebes,Aiud,Cugir,Blaj,Ocna Mures,Zlatna,Campeni,Teius,Abrud,Baia de Aries";
 	    cities[1] = "Arad,Pecica,Santana,Lipova,Ineu,Chisineu Cris,Nadlac,Curtici,Pancota,Sebis";
 	    cities[2] = "Pitesti,Mioveni,Campulung,Curtea de Arges,Stefanesti,Costesti,Topoloveni";
@@ -67,7 +66,7 @@
 	    cities[49] = "Ramnicu Valcea,Dragasani,Babeni,Calimanesti,Horezu,Brezoi,Balcesti,Berbesti,Baile Olanesti,Ocnele Mari,Baile Govora";
 	    cities[40] = "Focsani,Adjud,Marasesti,Odobesti,Panciu";
 
-	    this.city_list   = [{value: "Alba Iulia"},
+	    this.city_list   =    [{value: "Alba Iulia"},
 	    					  {value: "Sebes"},
 	    					  {value: "Aiud"},
 	    					  {value: "Cugir"},
@@ -79,6 +78,7 @@
 	    					  {value: "Abrud"},
 	    					  {value: "Baia de Aries"}
 	    					  ];
+
 
 		this.county_list = [{value:"Alba", 			index:'0'}, 
 						   {value:"Arad", 			index:'1'}, 
@@ -126,6 +126,12 @@
 		this.selected_county = this.county_list[0];
 		this.selected_city   = this.city_list[0];
 
+
+		this.addressDescription = '';
+		this.addressCounty = this.selected_county.value;
+		this.addressCity = this.selected_city.value;
+		this.addressType = '';
+
 		this.populateCitiesDropdown = function(){
 			var countyIndex = this.selected_county.index;		// get the index of selected county
 			var city_arr = cities[countyIndex].split(",");		// array of cities
@@ -149,36 +155,39 @@
 		 * type = primary / other
 		 */
 		this.addAddress = function(){
-			console.log("In method");
 			// check if primary address was defined
 			if(this.primaryAddresseAssigned){
 				// add other address
-				this.addressObj.type = config.OTHER_ADDRESS;
+				this.addressType = config.OTHER_ADDRESS;
 				console.log("OTHER");
 			} else{
 				// add primary address
-				this.addressObj.type = config.PRIMARY_ADDRESS;
+				this.addressType = config.PRIMARY_ADDRESS;
 				this.primaryAddresseAssigned = true;
 				console.log("PRIMARY");
 			}
 
-			this.signupObj.address.push(this.addressObject);
-			console.log(this.addressObject);
-			// reset
-			this.addressObject = {};
-			this.addressObject.description = '';
-			this.addressObject.county = '';
-			this.addressObject.city = '';
-			this.addressObject.type = '';
+			this.signupObj.address.push(
+										 { description : this.addressDescription,
+										   county : this.addressCounty,
+										   city : this.addressCity,
+										   type : this.addressType 
+										 }
+									    );
 		};
 
 
 
 		this.signup = function(){
-			console.log(this.signupObj);
+			// submit to server
+			// redirect to upload profile photo page
 		};
 
-	}]);
+
+
+
+	}
+]);
 
 
 	

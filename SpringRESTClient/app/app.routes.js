@@ -15,6 +15,10 @@
 						templateUrl : "app/components/signup/signupView.html" ,
 						css : "assets/css/signupView.css"
 				})
+			.when("/upload_image", {
+					   templateUrl : "app/components/upload/uploadView.html",
+					   css : "assets/css/uploadView.css"
+			})
 			.when("/test", { template : "Test page" })
 			.otherwise({ redirectTo : "/home" });
 	});
