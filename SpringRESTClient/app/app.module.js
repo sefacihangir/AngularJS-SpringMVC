@@ -14,17 +14,6 @@
 
 
 
-	/**
-     * go to location when using buttons   
-     */
-    app.controller('RedirectToController', ['$location', function($location){
-        this.redirectTo = function(routePath){
-            $location.path(routePath);
-        };
-    } ]);
-
-
-
     /**
      * directive to verify if the passwords match
      */
@@ -81,6 +70,32 @@
 
 
 
+    
+    app.directive('script', function() {
+        return {
+          restrict: 'E',
+          scope: false,
+          link: function(scope, elem, attr) {
+            if (attr.type === 'text/javascript-lazy') {
+              var code = elem.text();
+              var f = new Function(code);
+              f();
+            }
+          }
+        };
+      });
+
+
+    /**
+     * go to location when using buttons   
+     */
+    app.controller('RedirectToController', ['$location', function($location){
+        this.redirectTo = function(routePath){
+            $location.path(routePath);
+        };
+    } ]);
+
+
     /**
      * used to open any modal and assign a controller to it
      * controllerAs used as an alias for ModalInstanceController; in order to use the methods from it type
@@ -114,6 +129,9 @@
 		};
 
 	});
+
+
+
 
 
 

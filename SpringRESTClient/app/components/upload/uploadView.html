@@ -12,7 +12,7 @@
 					<div id="uploadOptions" class="form-inline">
 						<form name="uploadForm">
 							<div class="form-group">
-								<input type="file">
+								<input type="file" id="uploadedPhoto">
 							</div>
 
 							<div class="form-group">
@@ -34,12 +34,8 @@
 					</button>
 
 					<div class="collapse" id="photoCollapseContainer">
-						<div class="well">
-						    <p>Something here</p>
-						    <p>Something here</p>
-						    <p>Something here</p>
-						    <p>Something here</p>
-						    <p>Something here</p>
+						<div class="well" id="photoContent">
+
 						</div>
 					</div>						
 					
@@ -57,3 +53,13 @@
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript-lazy">
+	$(document).ready(function(){
+		$("#uploadedPhoto").change(function(){
+    		readURL(this);
+    		//console.log("Worked");
+		});
+	});
+</script>
