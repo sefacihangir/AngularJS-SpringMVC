@@ -46,7 +46,7 @@ public class LoginController {
 				CustomError error = new CustomError();
 				error.setHasError(true);
 				error.setErrorOnField("password");
-				error.setErrorMessage("Invalid password " + password + ".");
+				error.setErrorMessage("Invalid password.");
 				response.put("error", error);
 			}
 
