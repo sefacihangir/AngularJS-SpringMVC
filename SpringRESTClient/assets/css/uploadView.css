@@ -49,6 +49,11 @@
 	/*background-color: green;*/
 }
 
+#photoContent{
+	height: 100%;
+	width: 100%;
+}
+
 
 .upload-panel{
 	/*width: 100%;
@@ -60,6 +65,16 @@
 .panel-title{
 	font-size: 30px !important;
 	height: 50px !important;
+}
+
+.panel-heading-primary{
+	font-family: 'Open Sans', sans-serif !important;
+	/*background-color: #ff5252 !important;*/
+	/*color: #FFFFFF !important;*/
+	/*font-weight: 800 !important;*/
+	border-radius: 0px !important;
+	padding-top: 15px !important;
+	padding-left: 50px !important;
 }
 
 .panel-body{

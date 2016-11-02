@@ -70,7 +70,9 @@
 
 
 
-    
+    /**
+     * directive to lazy load the script in the templates
+     */    
     app.directive('script', function() {
         return {
           restrict: 'E',

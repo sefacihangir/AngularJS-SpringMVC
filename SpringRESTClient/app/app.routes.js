@@ -3,7 +3,7 @@
 
 	app.config(function($routeProvider){
 		$routeProvider
-			.when("/home", { 
+			.when("/welcome", { 
 						templateUrl : "app/components/welcome/welcomeView.html", 
 						css : "assets/css/welcomeView.css"
 			     })
@@ -19,8 +19,17 @@
 					   templateUrl : "app/components/upload/uploadView.html",
 					   css : "assets/css/uploadView.css"
 			})
+			.when("/home.admin", {
+					   template : "Welcome admin"
+			})
+			.when("/home.customer", {
+					   template : "Welcome customer"
+			})
+			.when("/home.provider", {
+					   template : "Welcome provider"
+			})
 			.when("/test", { template : "Test page" })
-			.otherwise({ redirectTo : "/home" });
+			.otherwise({ redirectTo : "/welcome" });
 	});
 
 })();

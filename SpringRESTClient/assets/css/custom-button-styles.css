@@ -134,10 +134,38 @@
 
 
 
+/* hover effects */
 .tertiary-style-button-sm:hover{
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 	transition-duration: 0.5s;
 }
+
+.tertiary-style-button-xs:hover{
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+	transition-duration: 0.5s;
+}
+
+/* active effects */
+.tertiary-style-button-sm:active{
+	outline: 0 !important;
+}
+
+.tertiary-style-button-xs:active{
+	outline: 0 !important;
+}
+
+
+/* focus effects */
+.tertiary-style-button-sm:focus{
+	outline: 0 !important;
+}
+
+.tertiary-style-button-xs:focus{
+	outline: 0 !important;
+}
+
+
+
 
 
 /*  ROUNDED BUTTONS */
