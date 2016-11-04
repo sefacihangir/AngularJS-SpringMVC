@@ -37,4 +37,9 @@ public class RoleServiceImpl implements RoleService{
 		roleDao.update(role);
 	}
 
+	@Override
+	public Role findByName(String name) {
+		return roleDao.findByName(name);
+	}
+
 }

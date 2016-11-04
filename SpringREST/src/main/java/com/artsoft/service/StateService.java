@@ -8,6 +8,8 @@ public interface StateService {
 
 	State findById(int id);
 	
+	State findByName(String name);
+	
 	List<State> findAll();
 	
 	int insert(State state);

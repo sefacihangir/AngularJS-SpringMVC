@@ -1,7 +1,7 @@
 package com.artsoft.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,10 +32,10 @@ public class Account implements Serializable{
 	private State state;
 	
 	@Column(name="start_date")
-	private Date startDate;
+	private Timestamp startDate;
 	
 	@Column(name="end_date")
-	private Date endDate;
+	private Timestamp endDate;
 
 	public int getAccountId() {
 		return accountId;
@@ -61,19 +61,19 @@ public class Account implements Serializable{
 		this.state = state;
 	}
 
-	public Date getStartDate() {
+	public Timestamp getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(Timestamp startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public Timestamp getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(Timestamp endDate) {
 		this.endDate = endDate;
 	}
 

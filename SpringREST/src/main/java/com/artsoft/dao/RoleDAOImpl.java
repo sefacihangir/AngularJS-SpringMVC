@@ -34,6 +34,13 @@ public class RoleDAOImpl extends AbstractDao implements RoleDAO{
 		getSession().update(role);
 	}
 
+	@Override
+	public Role findByName(String name) {
+		String sql = "SELECT r FROM Role r WHERE r.roleName = :name";
+		Query query = getSession().createQuery(sql).setParameter("name", name);
+		return (Role) query.uniqueResult();
+	}
+
 
 
 }

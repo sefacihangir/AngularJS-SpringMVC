@@ -1,25 +1,28 @@
 package com.artsoft.controller;
 
-import java.sql.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.artsoft.error.CustomError;
-import com.artsoft.model.Address;
+import com.artsoft.model.Account;
+import com.artsoft.model.AccountType;
 import com.artsoft.model.AppUser;
-import com.artsoft.service.AddressService;
+import com.artsoft.model.Role;
+import com.artsoft.model.State;
+import com.artsoft.service.AccountTypeService;
 import com.artsoft.service.AppUserService;
+import com.artsoft.service.RoleService;
+import com.artsoft.service.StateService;
+import com.artsoft.util.DateUtil;
 import com.artsoft.util.PasswordUtil;
 
 
@@ -28,88 +31,114 @@ import com.artsoft.util.PasswordUtil;
 @EnableWebMvc
 public class SignupController {
 	
+	private final String ROLE_CUSTOMER = "ROLE_CUSTOMER";
+	private final String ACCOUNT_TYPE = "FREE";
+	private final String STATE = "ACTIVE";
+	private final String IMAGE_PATH = "none";
+	
 	@Autowired
 	AppUserService appUserService;
 	
-	@Autowired
-	AddressService addressService;
 	
+	@Autowired
+	RoleService roleService;
+	
+	
+	@Autowired
+	AccountTypeService accountTypeService;
+	
+	
+	@Autowired
+	StateService stateService;
 	
 	
 	@RequestMapping(value = "/signup",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
-	public Object signup(@RequestParam(value = "email") String email,
-						 @RequestParam(value = "password") String password,
-						 @RequestParam(value = "first-name") String firstName,
-						 @RequestParam(value = "last-name") String lastName,
-						 @RequestParam(value = "phone") String phone,
-						 @RequestParam(value = "county") String county,
-						 @RequestParam(value = "city") String city,
-						 @RequestParam(value = "description") String description){
+	public Object signup(@RequestBody AppUser user){
 		
 		Map<String,Object> response = new HashMap<String, Object>();
 		int insertedUserId = 0;
-		int insertedAddressId = 0;
-		AppUser newUser;
-		Address address;
 		
+		System.out.println(user);
 		
-		if( !appUserService.isEmailAvailable(email) ){
+		// check if email is available
+		if(!appUserService.isEmailAvailable(user.getEmail())){
 			CustomError error = new CustomError();
 			error.setHasError(true);
 			error.setErrorOnField("email");
-			error.setErrorMessage("Email " + email + " already in use.");
+			error.setErrorMessage("Email '" + user.getEmail() + "' already in use.");
 			response.put("error", error);
-		}
-		else{
-			newUser = new AppUser();
-			newUser.setEmail(email);
-			newUser.setPassword(PasswordUtil.encryptPassword(password));
-			newUser.setFirstName(firstName);
-			newUser.setLastName(lastName);
-			newUser.setPhoneNr(phone);
-			newUser.setCreatedAt(new Date(new java.util.Date().getTime()));
-			insertedUserId = appUserService.insert(newUser);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);		// return with error
+		} else{
+			user.setCreatedAt(DateUtil.getCurrentTimestamp());								// set the creation date of account
+			user.setLastAction(DateUtil.getCurrentTimestamp());					
+			user.setPassword(PasswordUtil.encryptPassword(user.getPassword()));				// MD5 encryption of password
+			user.setImagePath(IMAGE_PATH);													// the image path will be set in next step of registration or will be added later
 			
-			if(insertedUserId != 0){												// user inserted successfully
-				address = new Address();											// assign address
-				address.setAppuser(newUser);
-				address.setCounty(county);
-				address.setCity(city);
-				address.setDescription(description);
-				
-				insertedAddressId = addressService.insert(address);
-				if(insertedAddressId != 0){											// address inserted successfully
-					Set<Address> addresses = new HashSet<Address>();
-					addresses.add(address);
-					newUser.setAddresses(addresses);								// assign the new address to the address list of the user
-				} else{
-					CustomError error = new CustomError();
-					error.setHasError(true);
-					error.setErrorOnField("address object");
-					error.setErrorMessage("Error registering address data.");
-					response.put("error", error);
-				}
-				
-				response.put("user", newUser);										// return the new created user
-				
-			}else{
+			/**** SET ROLE ****/
+			Role customerRole = roleService.findByName(ROLE_CUSTOMER);						// get the default role : customer
+			if(customerRole != null) {
+				user.setRole(customerRole);													// assign the role to user
+			} else{
 				CustomError error = new CustomError();
 				error.setHasError(true);
-				error.setErrorOnField("appuser object");
-				error.setErrorMessage("Error registering data.");
-				response.put("error", error);
+				error.setErrorOnField("role object");
+				error.setErrorMessage("Failed to assign role.");
+				response.put("error", error);			
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+			
+			/**** GET STATE TO ASSIGN TO ACCOUNT ****/
+			State state = null;
+			state = stateService.findByName(STATE);
+			if(state == null){
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("state object");
+				error.setErrorMessage("Failed to assign state.");
+				response.put("error", error);			
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error				
+			}
+			
+			/**** SET ACCOUNT ****/
+			Account account = null;
+			AccountType freeAccountType = accountTypeService.findByName(ACCOUNT_TYPE);		// get details about free account
+			if(freeAccountType != null){
+				account = new Account();
+				account.setState(state);                                                    // set state of account: ACTIVE
+				account.setAccountType(freeAccountType);									// set the type of account : FREE
+				account.setStartDate(DateUtil.getCurrentTimestamp());						// start date: TODAY
+				account.setEndDate(null);
+				user.setAccount(account);													// set account
+			} else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("account type object");
+				error.setErrorMessage("Failed to assign account type.");
+				response.put("error", error);			
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
 			}
 			
 			
+			/**** INSERT USER ****/
+			insertedUserId = appUserService.insert(user);
+			if(insertedUserId > 0){															// user inserted successfully
+				response.put("appUserId", insertedUserId);
+			} else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("user object");
+				error.setErrorMessage("Error registering datails.");
+				response.put("error", error);											  
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);   // return with error
+			}
 		}
+		
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return the response
 	}
 	
 	
-	
-	
-	
+
 	
 	
 	

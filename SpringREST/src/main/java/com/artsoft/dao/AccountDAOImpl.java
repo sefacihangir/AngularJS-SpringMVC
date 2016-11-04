@@ -34,4 +34,6 @@ public class AccountDAOImpl extends AbstractDao implements AccountDAO{
 		getSession().update(account);
 	}
 
+
+
 }

@@ -40,6 +40,9 @@ public class Address implements Serializable{
 	private String city;
 
 	
+	@Column(name="type")
+	private String type;
+	
 	public int getAddressId() {
 		return addressId;
 	}
@@ -79,6 +82,14 @@ public class Address implements Serializable{
 
 	public void setAppuser(AppUser appuser) {
 		this.appuser = appuser;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

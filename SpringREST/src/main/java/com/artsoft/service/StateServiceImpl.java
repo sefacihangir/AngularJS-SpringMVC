@@ -36,4 +36,9 @@ public class StateServiceImpl implements StateService{
 		stateDao.update(state);
 	}
 
+	@Override
+	public State findByName(String name) {
+		return stateDao.findByName(name);
+	}
+
 }

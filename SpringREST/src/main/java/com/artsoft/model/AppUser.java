@@ -1,10 +1,11 @@
 package com.artsoft.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -50,20 +52,20 @@ public class AppUser implements Serializable{
 	private String phoneNr;
 	
 	@Column(name="created_at")
-	private Date createdAt;
+	private Timestamp createdAt;
 	
-	@ManyToOne(targetEntity=Account.class)
+	@ManyToOne(targetEntity=Account.class, cascade = CascadeType.ALL)
 	@JoinColumn(name="account_id")
 	private Account account;
 	
 	@Column(name="last_action")
-	private Date lastAction;
+	private Timestamp lastAction;
 	
 	@Column(name="image_path")
 	private String imagePath;
 
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser", targetEntity = Address.class)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser", targetEntity = Address.class, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	Set<Address> addresses = new HashSet<Address>(0);
 	
@@ -129,11 +131,11 @@ public class AppUser implements Serializable{
 		this.phoneNr = phoneNr;
 	}
 
-	public Date getCreatedAt() {
+	public Timestamp getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(Timestamp createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -146,11 +148,11 @@ public class AppUser implements Serializable{
 		this.account = account;
 	}
 
-	public Date getLastAction() {
+	public Timestamp getLastAction() {
 		return lastAction;
 	}
 
-	public void setLastAction(Date lastAction) {
+	public void setLastAction(Timestamp lastAction) {
 		this.lastAction = lastAction;
 	}
 
@@ -179,7 +181,15 @@ public class AppUser implements Serializable{
 	}
 
 
-	
+	public String toString(){
+		String res = "";
+		res += "Email-- " + this.email + "\n";
+		res += "Password-- " + this.password + "\n";
+		for(Address address : this.addresses){
+			res += "Address--Description: " + address.getDescription() + " | County: " + address.getCounty() + "\n";
+		}
+		return res;
+	}
 
 	
 	

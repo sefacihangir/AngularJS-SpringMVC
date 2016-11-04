@@ -34,4 +34,11 @@ public class StateDAOImpl extends AbstractDao implements StateDAO {
 		getSession().update(state);
 	}
 
+	@Override
+	public State findByName(String name) {
+		String sql = "SELECT s FROM State s WHERE s.description = :name";
+		Query query = getSession().createQuery(sql).setParameter("name", name);
+		return (State) query.uniqueResult();
+	}
+
 }

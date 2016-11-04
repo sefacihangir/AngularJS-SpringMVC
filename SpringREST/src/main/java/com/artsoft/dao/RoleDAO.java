@@ -8,6 +8,8 @@ public interface RoleDAO {
 	
 	Role findById(int id);
 	
+	Role findByName(String name);
+	
 	List<Role> findAll();
 	
 	int insert(Role role);

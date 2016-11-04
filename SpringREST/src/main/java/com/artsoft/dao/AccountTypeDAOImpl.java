@@ -35,4 +35,11 @@ public class AccountTypeDAOImpl extends AbstractDao implements AccountTypeDAO{
 		getSession().update(accountType);
 	}
 
+	@Override
+	public AccountType findByName(String name) {
+		String sql = "SELECT at FROM AccountType at WHERE at.description = :name";
+		Query query = getSession().createQuery(sql).setParameter("name", name);
+		return (AccountType) query.uniqueResult();
+	}
+
 }
