@@ -50,7 +50,7 @@
                     var phone;
                     if((phone = scope.$eval(attrs.ngModel)) != undefined){
                         // check the length
-                        if(phone.length >= 0 && phone.length < 9)
+                        if(phone.length != 9)
                             return false;
                         if(!RE.test(phone))
                             return false;
@@ -86,6 +86,8 @@
           }
         };
       });
+
+
 
 
     /**

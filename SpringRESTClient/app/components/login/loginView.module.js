@@ -14,7 +14,7 @@
 			var data = $.param({
 						   		email : this.loginObj.email,
 						   		password : this.loginObj.password
-							  });
+						});
 
 			var config = {
 				           headers : {

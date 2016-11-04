@@ -3,11 +3,11 @@
 	var app = angular.module('signupViewModule', []);
 
 
-	app.controller('SignupController', ['$http','config','$scope', function($http, config, $scope){
+	app.controller('SignupController', ['$http','config','$scope','$location','$rootScope', function($http, config, $scope, $location, $rootScope){
 
 
 		/* used to check if user has defined a primary address before started to add another one */
-		this.primaryAddresseAssigned = false;
+		this.primaryAddressAssigned = false;
 		
 		this.phonePrefix = config.PHONE_PREFIX;
 
@@ -17,8 +17,8 @@
 							password : '',
 							firstName : '',
 							lastName : '',
-							phone : '',
-							address : []
+							phoneNr : '',
+							addresses : []
 						 };
 
 
@@ -156,22 +156,20 @@
 		 */
 		this.addAddress = function(){
 			// check if primary address was defined
-			if(this.primaryAddresseAssigned){
+			if(this.primaryAddressAssigned){
 				// add other address
 				this.addressType = config.OTHER_ADDRESS;
-				console.log("OTHER");
 			} else{
 				// add primary address
 				this.addressType = config.PRIMARY_ADDRESS;
-				this.primaryAddresseAssigned = true;
-				console.log("PRIMARY");
+				this.primaryAddressAssigned = true;
 			}
 
-			this.signupObj.address.push(
-										 { description : this.addressDescription,
-										   county : this.addressCounty,
-										   city : this.addressCity,
-										   type : this.addressType 
+			this.signupObj.addresses.push(
+										 { "description" : this.addressDescription,
+										   "county" : this.addressCounty,
+										   "city" : this.addressCity,
+										   "type" : this.addressType.toUpperCase() 
 										 }
 									    );
 		};
@@ -179,9 +177,45 @@
 
 
 		this.signup = function(){
-			// submit to server
-			// redirect to upload profile photo page
-		};
+			// if the user didn't select the option to add another address then assign the one completed in the signup form
+			if(!this.primaryAddressAssigned)
+				this.addAddress();
+
+			// build complete phone format prefix + phone
+			var phone = this.phonePrefix.concat(this.signupObj.phoneNr);
+			this.signupObj.phoneNr = phone;
+
+			// configure headers in order to send JSON
+			var config = {headers : { 'Content-Type': 'application/json'}};
+
+			//post the JSON to server
+			$http.post('http://localhost:8585/SpringREST/signup_control/signup', this.signupObj, config)
+				 .success(function(data){
+				 		if(data.appUserId != undefined){
+				 			//console.log(data.appUserId);
+				 			// store the id of the user
+				 			$rootScope.appUserId = data.appUserId;
+				 			// redirect to upload image page
+				 			$location.path('/upload_image');
+				 		} else{
+							$.iGrowl({
+							 type: 'error',
+							 message: data.error.errorMessage,
+							 icon: 'feather-cross',
+							 placement : {
+							  x: 	'center'
+							 },
+							 animShow: 'fadeInLeftBig',
+							 animHide: 'fadeOutDown'
+							});				 			
+				 		}
+				 })
+				 .error(function(error){
+				 		console.log(error);
+				 });
+
+
+		}; // end of signup.function
 
 
 

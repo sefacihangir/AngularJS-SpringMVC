@@ -118,9 +118,9 @@
 			  								id="phone"
 			  								name="phone"
 			  								required
-			  								ng-model="signupCtrl.signupObj.phone"
+			  								ng-model="signupCtrl.signupObj.phoneNr"
 			  								ng-focus="animationCtrl.showLabelOnClickForInput('phone')" ng-blur="animationCtrl.resetLabelOnClickForInput('phone')"
-			  								phone-validation="phone"
+			  								phone-validation="phoneNr"
 			  								tooltip-placement="right"
 			  								tooltip-trigger="'blur'"
 			  								tooltip-enable="{{signupForm.phone.$dirty && signupForm.phone.$error.valid}}"

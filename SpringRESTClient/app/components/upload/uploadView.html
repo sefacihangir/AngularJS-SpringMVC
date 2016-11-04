@@ -10,13 +10,13 @@
 			<div class="panel-body">
 				<div id="uploadPhotoFormContainer">
 					<div id="uploadOptions" class="form-inline">
-						<form name="uploadForm">
+						<form name="uploadForm" ng-controller="UploadController as uploadCtrl">
 							<div class="form-group">
-								<input type="file" id="uploadedPhoto" class="file-input-secondary-style-normal">
+								<input type="file" id="uploadedPhoto" file-model="uploadedPhoto" class="file-input-secondary-style-normal">
 							</div>
 
 							<div class="form-group">
-								<button class="secondary-style-button-sm">Upload</button>
+								<input type="submit" class="secondary-style-button-sm" value="Upload" ng-click="uploadCtrl.uploadFile()">
 							</div>
 						</form>
 					</div>
