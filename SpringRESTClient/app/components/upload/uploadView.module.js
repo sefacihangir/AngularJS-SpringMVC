@@ -50,10 +50,11 @@
 
 
 
-	app.controller('UploadController', ['$scope', 'fileUpload', function($scope, fileUpload){
+	app.controller('UploadController', ['$scope', 'fileUpload','config', function($scope, fileUpload, config){
 	    
+
 	    $scope.uploadFile = function(){
-	        var file = $scope.myFile;
+	        var file = $scope.uploadedPhoto;
 	        console.log('file is ' );
 	        console.dir(file);
 	        var uploadUrl = "http://localhost:8585/SpringREST/upload_control/upload";
