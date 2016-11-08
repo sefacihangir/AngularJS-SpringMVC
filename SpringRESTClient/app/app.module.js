@@ -9,7 +9,8 @@
         PHONE_PREFIX: '+40',
         PRIMARY_ADDRESS: 'primary',
         OTHER_ADDRESS: 'other',
-        LANGUAGE: 'EN'
+        LANGUAGE: 'EN',
+        TEST_PORT: '8585'
     });
 
 
