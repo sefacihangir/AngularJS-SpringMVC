@@ -25,7 +25,7 @@
     /**
      * service to upload file
      */
-    app.service('fileUpload', ['$http', function ($http) {
+    app.service('fileUpload', ['$http', '$location', function ($http, $location) {
 	    this.uploadFileToUrl = function(file, uploadUrl){
 	        var fd = new FormData();
 	        fd.append('file', file);
@@ -40,7 +40,21 @@
 	        // so set the Content-Type : undefined and the browser will set automtically
 	        $http.post(uploadUrl, fd, config)
 	        .success(function(data){
-	        	console.log(data);
+	        	if(data.appUserId != undefined){
+	        		// redirect to account
+	        		$location.path('/home.customer');
+	        	} else{
+	        			$.iGrowl({
+							 type: 'error',
+							 message: data.error.errorMessage,
+							 icon: 'feather-cross',
+							 placement : {
+							  x: 	'center'
+							 },
+							 animShow: 'fadeInLeftBig',
+							 animHide: 'fadeOutDown'
+							});
+	        	}
 	        })
 	        .error(function(error){
 	        	console.log(error);
@@ -50,9 +64,8 @@
 
 
 
-	app.controller('UploadController', ['$scope', 'fileUpload','config', function($scope, fileUpload, config){
+	app.controller('UploadController', ['$scope', 'fileUpload','config','$location', function($scope, fileUpload, config, $location){
 	    
-
 	    $scope.uploadFile = function(){
 	        var file = $scope.uploadedPhoto;
 	        console.log('file is ' );
