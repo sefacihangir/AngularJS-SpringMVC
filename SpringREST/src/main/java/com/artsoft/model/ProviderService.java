@@ -32,7 +32,7 @@ public class ProviderService implements Serializable{
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="service_id")
-	private Service service;
+	private ServiceModel service;
 	
 	@Column(name="available")
 	private int available;
@@ -61,11 +61,11 @@ public class ProviderService implements Serializable{
 		this.price = price;
 	}
 
-	public Service getService() {
+	public ServiceModel getService() {
 		return service;
 	}
 
-	public void setService(Service service) {
+	public void setService(ServiceModel service) {
 		this.service = service;
 	}
 
