@@ -26,7 +26,7 @@ public class CategoryDAOImpl extends AbstractDao implements CategoryDAO{
 	@Override
 	public Category findByName(String name) {
 		String sql = "SELECT c FROM Category c WHERE c.categoryName = :name";
-		Query query = getSession().createQuery(sql).setParameter("name", "%" + name.toUpperCase() + "%");
+		Query query = getSession().createQuery(sql).setParameter("name", name.toUpperCase());
 		return (Category) query.uniqueResult();
 	}
 

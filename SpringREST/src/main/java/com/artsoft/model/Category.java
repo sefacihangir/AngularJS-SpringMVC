@@ -36,9 +36,9 @@ public class Category implements Serializable{
 	@JoinColumn(name="icon_id")
 	private Icon icon;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category", targetEntity = Service.class, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category", targetEntity = ServiceModel.class, cascade = CascadeType.ALL)
 	@JsonManagedReference
-	Set<Service> service = new HashSet<Service>(0);
+	Set<ServiceModel> services = new HashSet<ServiceModel>(0);
 	
 	public int getCategoryId() {
 		return categoryId;
@@ -64,12 +64,12 @@ public class Category implements Serializable{
 		this.icon = icon;
 	}
 
-	public Set<Service> getService() {
-		return service;
+	public Set<ServiceModel> getServices() {
+		return services;
 	}
 
-	public void setService(Set<Service> service) {
-		this.service = service;
+	public void setServices(Set<ServiceModel> services) {
+		this.services = services;
 	}
 	
 	
