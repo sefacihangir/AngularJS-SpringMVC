@@ -2,6 +2,7 @@ package com.artsoft.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="service")
-public class Service implements Serializable{
+public class ServiceModel implements Serializable{
 
 	private static final long serialVersionUID = -3970304441604166862L;
 	
@@ -26,7 +27,7 @@ public class Service implements Serializable{
 	@Column(name="service_id")
 	private int serviceId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="category_id")
 	@JsonBackReference
 	private Category category;

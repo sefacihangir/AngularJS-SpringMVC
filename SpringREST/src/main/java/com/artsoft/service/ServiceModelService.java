@@ -1,9 +1,9 @@
-package com.artsoft.dao;
+package com.artsoft.service;
 
 import com.artsoft.model.ServiceModel;
 
-public interface ServiceDAO {
-	
+public interface ServiceModelService {
+
 	ServiceModel findById(int id);
 	
 	ServiceModel findByName(String name);
@@ -13,5 +13,6 @@ public interface ServiceDAO {
 	void update(ServiceModel service);
 	
 	void delete(ServiceModel service);
+	
 	
 }

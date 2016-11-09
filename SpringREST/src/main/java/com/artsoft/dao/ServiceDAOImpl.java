@@ -3,34 +3,43 @@ package com.artsoft.dao;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
-import com.artsoft.model.Service;
+import com.artsoft.model.ServiceModel;
 
 @Repository("serviceDao")
 public class ServiceDAOImpl extends AbstractDao implements ServiceDAO{
 
 	@Override
-	public Service findById(int id) {
-		String sql = "SELECT s FROM Service s WHERE s.serviceId = :id";
+	public ServiceModel findById(int id) {
+		String sql = "SELECT s FROM ServiceModel s WHERE s.serviceId = :id";
 		Query query = getSession().createQuery(sql).setParameter("id", id);
-		return (Service) query.uniqueResult();
+		return (ServiceModel) query.uniqueResult();
 	}
 
 	@Override
-	public Service findByName(String name) {
-		String sql = "SELECT s FROM Service s WHERE s.serviceName LIKE :name";
-		Query query = getSession().createQuery(sql).setParameter("name", "%" + name + "%");
-		return (Service) query.uniqueResult();
+	public ServiceModel findByName(String name) {
+		String sql = "SELECT s FROM ServiceModel s WHERE s.serviceName = :name";
+		Query query = getSession().createQuery(sql).setParameter("name", name.toUpperCase());
+		return (ServiceModel) query.uniqueResult();
 	}
 
 	@Override
-	public int insert(Service service) {
+	public int insert(ServiceModel service) {
+		String serviceNameUpperCase = service.getServiceName().toUpperCase();
+		service.setServiceName(serviceNameUpperCase);
 		int insertedServiceId = (int) getSession().save(service);
 		return insertedServiceId;
 	}
 
 	@Override
-	public void update(Service service) {
+	public void update(ServiceModel service) {
+		String serviceNameUpperCase = service.getServiceName().toUpperCase();
+		service.setServiceName(serviceNameUpperCase);
 		getSession().update(service);
+	}
+
+	@Override
+	public void delete(ServiceModel service) {
+		getSession().delete(service);
 	}
 
 }
