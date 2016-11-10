@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,11 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.artsoft.error.CustomError;
-import com.artsoft.model.Account;
-import com.artsoft.model.AccountType;
 import com.artsoft.model.AppUser;
-import com.artsoft.model.Role;
-import com.artsoft.model.State;
 import com.artsoft.service.AccountTypeService;
 import com.artsoft.service.AppUserService;
 import com.artsoft.service.RoleService;
@@ -82,6 +79,61 @@ public class AppUserController {
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
+	
+	
+	
+	
+	@RequestMapping(value = "/delete/{id}",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
+	public Object delete(@PathVariable("id") int appUserId){
+		
+		Map<String,Object> response = new HashMap<String, Object>();
+		
+		if(appUserId != 0){
+			AppUser user = appUserService.findById(appUserId);
+			if(user != null){
+				try{
+					appUserService.delete(user);
+					response.put("msg", "User deleted.");
+				}catch(Exception ex){
+					CustomError error = new CustomError();
+					error.setHasError(true);
+					error.setErrorOnField("categoryId");
+					error.setErrorMessage("Failed to delete user.");
+					response.put("error", error);
+					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+				}
+			} else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("user object");
+				error.setErrorMessage("Failed to fetch user.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+		} else{
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("categoryId");
+			error.setErrorMessage("Incorrect value for user id. '"+ appUserId + "'");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

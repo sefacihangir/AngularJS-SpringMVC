@@ -59,6 +59,11 @@ public class AppUserDAOImpl extends AbstractDao implements AppUserDAO{
 		return count != 0 ?  false: true; // return false if email provided is not avialable 
 	}
 
+	@Override
+	public void delete(AppUser user) {
+		getSession().delete(user);
+	}
+
 
 	
 	

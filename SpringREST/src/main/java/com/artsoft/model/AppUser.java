@@ -69,7 +69,7 @@ public class AppUser implements Serializable{
 	@JsonManagedReference
 	Set<Address> addresses = new HashSet<Address>(0);
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser", targetEntity = Request.class)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser", targetEntity = Request.class, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	Set<Request> requests = new HashSet<Request>(0);
 	

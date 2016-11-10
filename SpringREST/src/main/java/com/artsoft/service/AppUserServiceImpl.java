@@ -48,4 +48,9 @@ public class AppUserServiceImpl implements AppUserService{
 		return appUserDao.findEmailAvailability(email);
 	}
 
+	@Override
+	public void delete(AppUser user) {
+		appUserDao.delete(user);
+	}
+
 }

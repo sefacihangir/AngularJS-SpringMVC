@@ -18,4 +18,6 @@ public interface AppUserService {
 	
 	boolean isEmailAvailable(String email);
 	
+	void delete(AppUser user);
+	
 }
