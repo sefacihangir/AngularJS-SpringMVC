@@ -45,7 +45,7 @@ public class AppUserServiceImpl implements AppUserService{
 
 	@Override
 	public boolean isEmailAvailable(String email) {
-		return appUserDao.findEmailExistence(email);
+		return appUserDao.findEmailAvailability(email);
 	}
 
 }

@@ -51,13 +51,12 @@ public class AppUserDAOImpl extends AbstractDao implements AppUserDAO{
 	}
 
 	@Override
-	public boolean findEmailExistence(String email) {
+	public boolean findEmailAvailability(String email) {
 		Criteria criteria = getSession().createCriteria(AppUser.class);
-		criteria.add(Restrictions.ne("email", email));
+		criteria.add(Restrictions.eq("email", email));
 		criteria.setProjection(Projections.rowCount());
 		long count = (Long) criteria.uniqueResult();
-		System.out.println("Email count-- " + count);
-		return count != 0 ?  true : false;
+		return count != 0 ?  false: true; // return false if email provided is not avialable 
 	}
 
 

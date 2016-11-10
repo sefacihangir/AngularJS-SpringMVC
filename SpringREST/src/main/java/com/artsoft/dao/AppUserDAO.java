@@ -9,7 +9,7 @@ public interface AppUserDAO {
 	
 	AppUser findByEmail(String email);
 	
-	boolean findEmailExistence(String email);
+	boolean findEmailAvailability(String email);
 	
 	AppUser findById(int id);
 	
