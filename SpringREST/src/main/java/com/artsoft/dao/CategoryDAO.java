@@ -20,4 +20,6 @@ public interface CategoryDAO {
 	
 	void delete(Category category);
 	
+	boolean findCategoryAvailability(Category category);
+	
 }

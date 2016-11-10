@@ -98,19 +98,6 @@ public class CategoryController {
 		else{
 			try{
 				categoryService.update(category);
-				
-				Category c = categoryService.findById(category.getCategoryId());
-				if(c != null){
-					response.put("updatedCategory", c);
-				} else {
-					CustomError error = new CustomError();
-					error.setHasError(true);
-					error.setErrorOnField("category object");
-					error.setErrorMessage("Failed to fetch updated category.");
-					response.put("error", error);
-					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error		
-				}
-				
 			} catch(Exception ex){
 				CustomError error = new CustomError();
 				error.setHasError(true);
@@ -118,6 +105,18 @@ public class CategoryController {
 				error.setErrorMessage("Failed to update category.");
 				response.put("error", error);
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+			
+			Category c = categoryService.findById(category.getCategoryId());
+			if(c != null){
+				response.put("updatedCategory", c);
+			} else {
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("category object");
+				error.setErrorMessage("Failed to fetch updated category.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error		
 			}
 			
 		}

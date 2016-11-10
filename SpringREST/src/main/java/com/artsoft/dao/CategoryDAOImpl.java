@@ -68,4 +68,13 @@ public class CategoryDAOImpl extends AbstractDao implements CategoryDAO{
 		getSession().delete(category);
 	}
 
+	@Override
+	public boolean findCategoryAvailability(Category category) {
+		Criteria criteria = getSession().createCriteria(Category.class);
+		Criterion categoryId = Restrictions.eq("categoryId", category.getCategoryId());
+		criteria.add(categoryId);
+		long count = (Long) criteria.uniqueResult();
+		return count != 0 ? true : false;
+	}
+
 }

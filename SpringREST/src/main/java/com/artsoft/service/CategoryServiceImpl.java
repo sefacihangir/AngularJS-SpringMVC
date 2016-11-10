@@ -52,4 +52,9 @@ public class CategoryServiceImpl implements CategoryService{
 		categoryDao.delete(category);
 	}
 
+	@Override
+	public boolean isCategoryAvailable(Category category) {
+		return categoryDao.findCategoryAvailability(category);
+	}
+
 }

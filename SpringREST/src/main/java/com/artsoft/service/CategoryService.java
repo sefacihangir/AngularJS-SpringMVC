@@ -20,5 +20,7 @@ public interface CategoryService {
 	
 	void delete(Category category);
 	
+	boolean isCategoryAvailable(Category category);
+	
 	
 }
