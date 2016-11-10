@@ -1,7 +1,13 @@
 package com.artsoft.dao;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
 
 import com.artsoft.model.ServiceModel;
 
@@ -40,6 +46,20 @@ public class ServiceDAOImpl extends AbstractDao implements ServiceDAO{
 	@Override
 	public void delete(ServiceModel service) {
 		getSession().delete(service);
+	}
+
+	@Override
+	public boolean findServiceNameAvailability(ServiceModel service) {
+		Criteria criteria = getSession().createCriteria(ServiceModel.class);
+		Criterion serviceId = Restrictions.ne("serviceId", service.getServiceId());
+		Criterion serviceName = Restrictions.eq("serviceName", service.getServiceName().toUpperCase());
+		Criterion categoryId = Restrictions.eq("category", service.getCategory());
+		criteria.add(serviceId);
+		criteria.add(serviceName);
+		criteria.add(categoryId);
+		criteria.setProjection(Projections.rowCount());
+		long count = (Long) criteria.uniqueResult();
+		return count != 0 ?  false : true;
 	}
 
 }

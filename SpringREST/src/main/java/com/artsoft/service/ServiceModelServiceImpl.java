@@ -40,4 +40,9 @@ public class ServiceModelServiceImpl implements ServiceModelService{
 		serviceDao.delete(service);
 	}
 
+	@Override
+	public boolean isServiceNameAvailable(ServiceModel service) {
+		return serviceDao.findServiceNameAvailability(service);
+	}
+
 }

@@ -14,5 +14,6 @@ public interface ServiceModelService {
 	
 	void delete(ServiceModel service);
 	
+	boolean isServiceNameAvailable(ServiceModel service);
 	
 }

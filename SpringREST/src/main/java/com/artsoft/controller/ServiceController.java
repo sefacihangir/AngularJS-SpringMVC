@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -65,7 +66,14 @@ public class ServiceController {
 					response.put("error", error);
 					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error					
 				}
-			} 
+			} else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("service object");
+				error.setErrorMessage("Failed to register details.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
 			
 		} else{
 			CustomError error = new CustomError();
@@ -79,6 +87,84 @@ public class ServiceController {
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
+	
+	
+	
+	@RequestMapping(value = "/update", headers = {"Accept=*/*" }, produces = "application/json", method = RequestMethod.POST)
+	public Object update(@RequestBody ServiceModel service){
+		
+		Map<String, Object> response = new HashMap<String, Object>();
+		
+		if(!serviceModelService.isServiceNameAvailable(service)){
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("name");
+			error.setErrorMessage("Service '"+service.getServiceName()+"' already exists in this category.");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+		} 
+		else{
+			try{
+				serviceModelService.update(service);
+			} catch(Exception ex){
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("service object");
+				error.setErrorMessage("Failed to update service.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+			
+			ServiceModel s = serviceModelService.findById(service.getServiceId());
+			if(s != null){
+				response.put("updatedService", s);
+			} else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("service object");
+				error.setErrorMessage("Failed to fetch updated service.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error		
+			}
+			
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	
+	
+	@RequestMapping(value = "/delete/{id}", headers = {"Accept=*/*" }, produces = "application/json", method = RequestMethod.POST)
+	public Object delete(@PathVariable("id") int serviceId){
+		
+		Map<String, Object> response = new HashMap<String, Object>();
+		
+		if(serviceId != 0){
+			ServiceModel service = serviceModelService.findById(serviceId);
+			if(service != null){
+				serviceModelService.delete(service);
+				response.put("msg", "Service deleted.");
+			} else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("service object");
+				error.setErrorMessage("Failed to fetch service.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+			
+		} else{
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("serviceId");
+			error.setErrorMessage("Incorrect value for service id. '"+ serviceId + "'");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
 	
 	
 	

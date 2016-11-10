@@ -1,5 +1,6 @@
 package com.artsoft.dao;
 
+
 import com.artsoft.model.ServiceModel;
 
 public interface ServiceDAO {
@@ -13,5 +14,7 @@ public interface ServiceDAO {
 	void update(ServiceModel service);
 	
 	void delete(ServiceModel service);
+	
+	boolean findServiceNameAvailability(ServiceModel service);
 	
 }
