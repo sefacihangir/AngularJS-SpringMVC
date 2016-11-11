@@ -163,7 +163,6 @@ public class AppUserController {
 					response.put("error", error);
 					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
 				}
-				
 			} else{
 				CustomError error = new CustomError();
 				error.setHasError(true);
@@ -172,7 +171,6 @@ public class AppUserController {
 				response.put("error", error);
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
 			}
-			
 		} else{
 			CustomError error = new CustomError();
 			error.setHasError(true);
