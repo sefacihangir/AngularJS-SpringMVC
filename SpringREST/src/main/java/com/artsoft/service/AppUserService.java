@@ -2,9 +2,11 @@ package com.artsoft.service;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import com.artsoft.model.AppUser;
 
-public interface AppUserService {
+public interface AppUserService{
 	
 	AppUser findByEmail(String email);
 
