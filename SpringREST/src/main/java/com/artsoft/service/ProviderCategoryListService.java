@@ -1,8 +1,8 @@
-package com.artsoft.dao;
+package com.artsoft.service;
 
 import com.artsoft.model.ProviderCategoryList;
 
-public interface ProviderCategoryListDAO {
+public interface ProviderCategoryListService {
 	
 	ProviderCategoryList findByProviderId(int id);
 	
@@ -10,7 +10,7 @@ public interface ProviderCategoryListDAO {
 	
 	void update(ProviderCategoryList providerCategoryList);
 	
-	boolean findListNameAvailability(ProviderCategoryList providerCategoryList);
+	boolean isListNameAvailable(ProviderCategoryList providerCategoryList);
 	
 	ProviderCategoryList findByProviderCategoryListId(int id);
 	

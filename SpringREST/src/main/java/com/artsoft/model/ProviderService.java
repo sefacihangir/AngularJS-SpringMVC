@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="provider_service")
 public class ProviderService implements Serializable{
@@ -25,6 +27,7 @@ public class ProviderService implements Serializable{
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="provider_category_list_id")
+	@JsonBackReference
 	private ProviderCategoryList providerCategoryList;
 	
 	@Column(name="price")
