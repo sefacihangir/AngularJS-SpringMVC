@@ -8,11 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @Configuration
 @EnableTransactionManagement
@@ -76,5 +80,14 @@ public class RootConfig {
     }
 	
 	
+	
+	@Bean
+	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+	    ObjectMapper mapper = new ObjectMapper();
+	    mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+	    MappingJackson2HttpMessageConverter converter = 
+	        new MappingJackson2HttpMessageConverter(mapper);
+	    return converter;
+	}
 	
 }
