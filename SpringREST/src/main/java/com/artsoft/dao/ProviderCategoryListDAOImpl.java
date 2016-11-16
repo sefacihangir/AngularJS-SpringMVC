@@ -1,5 +1,7 @@
 package com.artsoft.dao;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Criterion;
@@ -51,6 +53,21 @@ public class ProviderCategoryListDAOImpl extends AbstractDao implements Provider
 		String sql = "SELECT pcl FROM ProviderCategoryList pcl WHERE pcl.providerCategoryListId = :id";
 		Query query = getSession().createQuery(sql).setParameter("id", id);
 		return (ProviderCategoryList) query.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProviderCategoryList> findAll() {
+		return getSession().createQuery("FROM ProviderCategoryList").list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProviderCategoryList> findAllForProvider(ProviderCategoryList providerCategoryList) {
+		Criteria criteria = getSession().createCriteria(ProviderCategoryList.class);
+		Criterion providerId = Restrictions.eq("provider", providerCategoryList.getProvider());
+		criteria.add(providerId);
+		return criteria.list();
 	}
 
 }

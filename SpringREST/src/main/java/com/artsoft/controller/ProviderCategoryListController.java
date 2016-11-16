@@ -1,6 +1,7 @@
 package com.artsoft.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.artsoft.error.CustomError;
+import com.artsoft.model.AppUser;
 import com.artsoft.model.ProviderCategoryList;
 import com.artsoft.model.ProviderService;
+import com.artsoft.service.AppUserService;
 import com.artsoft.service.ProviderCategoryListService;
 import com.artsoft.service.ProviderServiceService;
 
@@ -30,6 +33,9 @@ public class ProviderCategoryListController {
 	
 	@Autowired
 	ProviderServiceService providerServiceImpl;
+	
+	@Autowired
+	AppUserService appUserService;
 	
 	
 	@RequestMapping(value = "/add/service/list",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
@@ -132,6 +138,45 @@ public class ProviderCategoryListController {
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/list/{providerId}/all",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.GET)
+	public Object getAll(@PathVariable("providerId") int providerId){
+		
+		Map<String,Object> response = new HashMap<String, Object>();
+		
+		AppUser provider = appUserService.findById(providerId);
+		if(provider != null){
+			ProviderCategoryList providerCategoryList = new ProviderCategoryList();
+			providerCategoryList.setProvider(provider);
+			
+			List<ProviderCategoryList> providerCategoryLists = providerCategoryListService.findAll();
+			if( (providerCategoryLists != null) && (!providerCategoryLists.isEmpty()) ){
+				response.put("providerCategoryLists", providerCategoryLists);
+			}else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("provider category list");
+				error.setErrorMessage("Failed to fetch provider's lists.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+		}else{
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("provider object");
+			error.setErrorMessage("Failed to fetch provider.");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+		}
+		
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
 	
 	
 	

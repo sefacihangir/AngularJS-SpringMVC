@@ -1,5 +1,7 @@
 package com.artsoft.dao;
 
+import java.util.List;
+
 import com.artsoft.model.ProviderCategoryList;
 
 public interface ProviderCategoryListDAO {
@@ -13,5 +15,9 @@ public interface ProviderCategoryListDAO {
 	boolean findListNameAvailability(ProviderCategoryList providerCategoryList);
 	
 	ProviderCategoryList findByProviderCategoryListId(int id);
+	
+	List<ProviderCategoryList> findAll();
+	
+	List<ProviderCategoryList> findAllForProvider(ProviderCategoryList providerCategoryList);
 	
 }

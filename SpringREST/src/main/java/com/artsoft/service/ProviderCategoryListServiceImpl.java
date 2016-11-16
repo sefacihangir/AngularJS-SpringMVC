@@ -1,5 +1,7 @@
 package com.artsoft.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +39,16 @@ public class ProviderCategoryListServiceImpl implements ProviderCategoryListServ
 	@Override
 	public ProviderCategoryList findByProviderCategoryListId(int id) {
 		return providerCategoryListDao.findByProviderCategoryListId(id);
+	}
+
+	@Override
+	public List<ProviderCategoryList> findAll() {
+		return providerCategoryListDao.findAll();
+	}
+
+	@Override
+	public List<ProviderCategoryList> findAllForProvider(ProviderCategoryList providerCategoryList) {
+		return providerCategoryListDao.findAllForProvider(providerCategoryList);
 	}
 
 }

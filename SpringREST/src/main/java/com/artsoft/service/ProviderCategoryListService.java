@@ -1,5 +1,7 @@
 package com.artsoft.service;
 
+import java.util.List;
+
 import com.artsoft.model.ProviderCategoryList;
 
 public interface ProviderCategoryListService {
@@ -13,5 +15,9 @@ public interface ProviderCategoryListService {
 	boolean isListNameAvailable(ProviderCategoryList providerCategoryList);
 	
 	ProviderCategoryList findByProviderCategoryListId(int id);
+	
+	List<ProviderCategoryList> findAll();
+	
+	List<ProviderCategoryList> findAllForProvider(ProviderCategoryList providerCategoryList);
 	
 }
