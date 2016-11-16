@@ -16,8 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 
 @Entity
 @Table(name="provider_category_list")
@@ -32,6 +34,7 @@ public class ProviderCategoryList implements Serializable{
 	
 	@ManyToOne(targetEntity=AppUser.class)
 	@JoinColumn(name="provider_id")
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private AppUser provider;
 	
 	@ManyToOne(targetEntity=Category.class)
@@ -54,6 +57,7 @@ public class ProviderCategoryList implements Serializable{
 	public void setProviderCategoryListId(int providerCategoryListId) {
 		this.providerCategoryListId = providerCategoryListId;
 	}
+
 
 	public AppUser getProvider() {
 		return provider;
