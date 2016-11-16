@@ -273,5 +273,41 @@ public class ProviderCategoryListController {
 	
 	
 	
+	@RequestMapping(value = "/update/service",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
+	public Object updateServiceDetails(@RequestBody ProviderService providerService){
+		
+		Map<String,Object> response = new HashMap<String, Object>();
+		
+		if(providerService != null){
+			try{
+				providerServiceImpl.update(providerService);
+				response.put("msg", "Service details updated.");
+			}catch(Exception ex){
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("provider service object");
+				error.setErrorMessage("Failed to update service details.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error	
+			}
+		}else{
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("provider service object");
+			error.setErrorMessage("Invalid value for service object.");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error	
+		}
+		
+		
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
 	
 }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="provider_service")
@@ -28,6 +28,7 @@ public class ProviderService implements Serializable{
 	@ManyToOne(targetEntity = ProviderCategoryList.class)
 	@JoinColumn(name="provider_category_list_id")
 	@JsonBackReference
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private ProviderCategoryList providerCategoryList;
 	
 	@Column(name="price")
@@ -35,6 +36,7 @@ public class ProviderService implements Serializable{
 	
 	@ManyToOne(targetEntity = ServiceModel.class)
 	@JoinColumn(name="service_id")
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private ServiceModel service;
 	
 	@Column(name="available")
