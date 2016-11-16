@@ -180,6 +180,47 @@ public class ProviderCategoryListController {
 	
 	
 	
+	@RequestMapping(value = "/delete/list/{listId}",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
+	public Object deleteList(@PathVariable("listId") int listId){
+		
+		Map<String,Object> response = new HashMap<String, Object>();
+		
+		if(listId > 0){
+			ProviderCategoryList providerCategoryList = providerCategoryListService.findByProviderCategoryListId(listId);
+			if(providerCategoryList != null){
+				try{
+					providerCategoryListService.delete(providerCategoryList);
+					response.put("msg", "List deleted.");
+				}catch(Exception ex){
+					CustomError error = new CustomError();
+					error.setHasError(true);
+					error.setErrorOnField("provider category object");
+					error.setErrorMessage("Failed to delete list.");
+					response.put("error", error);
+					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+				}
+			}else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("provider category object");
+				error.setErrorMessage("Failed to fetch provider category list.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+		}else{
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("listId");
+			error.setErrorMessage("Incorrect value for list id. '" + listId + "'.");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	
+	
 	
 	
 }

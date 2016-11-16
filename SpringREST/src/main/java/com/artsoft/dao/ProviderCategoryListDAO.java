@@ -20,4 +20,7 @@ public interface ProviderCategoryListDAO {
 	
 	List<ProviderCategoryList> findAllForProvider(ProviderCategoryList providerCategoryList);
 	
+	void delete(ProviderCategoryList providerCategoryList);
+	
+	
 }

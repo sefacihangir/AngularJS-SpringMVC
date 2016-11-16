@@ -70,4 +70,9 @@ public class ProviderCategoryListDAOImpl extends AbstractDao implements Provider
 		return criteria.list();
 	}
 
+	@Override
+	public void delete(ProviderCategoryList providerCategoryList) {
+		getSession().delete(providerCategoryList);
+	}
+
 }

@@ -51,4 +51,9 @@ public class ProviderCategoryListServiceImpl implements ProviderCategoryListServ
 		return providerCategoryListDao.findAllForProvider(providerCategoryList);
 	}
 
+	@Override
+	public void delete(ProviderCategoryList providerCategoryList) {
+		providerCategoryListDao.delete(providerCategoryList);
+	}
+
 }

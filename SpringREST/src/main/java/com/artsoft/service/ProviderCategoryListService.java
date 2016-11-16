@@ -20,4 +20,6 @@ public interface ProviderCategoryListService {
 	
 	List<ProviderCategoryList> findAllForProvider(ProviderCategoryList providerCategoryList);
 	
+	void delete(ProviderCategoryList providerCategoryList);
+	
 }
