@@ -1,11 +1,13 @@
 package com.artsoft.dao;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.artsoft.model.AppUser;
 import com.artsoft.model.ProviderService;
 
 @Repository("providerServiceDao")
@@ -32,6 +34,18 @@ public class ProviderServiceDAOImpl extends AbstractDao implements ProviderServi
 		criteria.setProjection(Projections.rowCount());
 		long count = (Long) criteria.uniqueResult();
 		return count != 0 ?  true : false;		// return true when the service already exists
+	}
+
+	@Override
+	public void delete(ProviderService providerService) {
+		getSession().delete(providerService);
+	}
+
+	@Override
+	public ProviderService findById(int id) {
+		String sql = "SELECT ps FROM ProviderService ps WHERE ps.providerServiceId = :id";
+		Query query = getSession().createQuery(sql).setParameter("id", id);
+		return (ProviderService) query.uniqueResult();
 	}
 
 }

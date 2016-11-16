@@ -28,5 +28,15 @@ public class ProviderServiceServiceImpl implements ProviderServiceService{
 	public boolean isProviderServiceAsserted(ProviderService providerService) {
 		return providerServiceDao.findProviderServiceAvailability(providerService);
 	}
+
+	@Override
+	public void delete(ProviderService providerService) {
+		providerServiceDao.delete(providerService);
+	}
+
+	@Override
+	public ProviderService findById(int id) {
+		return providerServiceDao.findById(id);
+	}
 	
 }

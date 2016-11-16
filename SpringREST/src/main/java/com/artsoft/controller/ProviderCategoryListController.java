@@ -223,4 +223,55 @@ public class ProviderCategoryListController {
 	
 	
 	
+	
+	@RequestMapping(value = "/delete/service/{serviceId}/from/list/{listId}",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
+	public Object deleteServiceFromList(@PathVariable("serviceId") int serviceId, @PathVariable("listId") int listId){
+		
+		Map<String,Object> response = new HashMap<String, Object>();
+		
+		if(serviceId > 0 && listId > 0){
+			ProviderService providerService = providerServiceImpl.findById(serviceId);
+			if(providerService != null){
+				ProviderCategoryList providerCategoryList = new ProviderCategoryList();
+				providerCategoryList.setProviderCategoryListId(listId);
+				
+				providerService.setProviderCategoryList(providerCategoryList);
+				
+				try{
+					providerServiceImpl.delete(providerService);
+					response.put("msg", "Service deleted.");
+				}catch(Exception ex){
+					CustomError error = new CustomError();
+					error.setHasError(true);
+					error.setErrorOnField("provider service object");
+					error.setErrorMessage("Failed to delete service.");
+					response.put("error", error);
+					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error	
+				}
+				
+			}else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("provider service object");
+				error.setErrorMessage("Failed to fetch service.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error		
+			}
+		}else{
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("serviceId && listId");
+			error.setErrorMessage("Incorrect value for list id: '" + listId + "' and service id : '" + serviceId + "'.");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error			
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
 }

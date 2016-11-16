@@ -10,4 +10,8 @@ public interface ProviderServiceService {
 	
 	boolean isProviderServiceAsserted(ProviderService providerService);
 	
+	void delete(ProviderService providerService);
+	
+	ProviderService findById(int id);
+	
 }

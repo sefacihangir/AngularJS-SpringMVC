@@ -10,4 +10,8 @@ public interface ProviderServiceDAO {
 	
 	boolean findProviderServiceAvailability(ProviderService providerService);
 	
+	void delete(ProviderService providerService);
+	
+	ProviderService findById(int id);
+	
 }
