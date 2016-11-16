@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity
@@ -67,10 +68,12 @@ public class AppUser implements Serializable{
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser", targetEntity = Address.class, cascade = CascadeType.ALL)
 	@JsonManagedReference
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	Set<Address> addresses = new HashSet<Address>(0);
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser", targetEntity = Request.class, cascade = CascadeType.ALL)
 	@JsonManagedReference
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	Set<Request> requests = new HashSet<Request>(0);
 	
 	
