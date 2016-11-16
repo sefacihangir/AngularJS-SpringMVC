@@ -25,7 +25,7 @@ public class ProviderService implements Serializable{
 	@Column(name="provider_service_id")
 	private int providerServiceId;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity = ProviderCategoryList.class)
 	@JoinColumn(name="provider_category_list_id")
 	@JsonBackReference
 	private ProviderCategoryList providerCategoryList;
@@ -33,7 +33,7 @@ public class ProviderService implements Serializable{
 	@Column(name="price")
 	private double price;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity = ServiceModel.class)
 	@JoinColumn(name="service_id")
 	private ServiceModel service;
 	

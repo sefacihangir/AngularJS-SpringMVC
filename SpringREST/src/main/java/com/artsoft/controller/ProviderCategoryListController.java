@@ -15,7 +15,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.artsoft.error.CustomError;
 import com.artsoft.model.ProviderCategoryList;
+import com.artsoft.model.ProviderService;
 import com.artsoft.service.ProviderCategoryListService;
+import com.artsoft.service.ProviderServiceService;
 
 @RestController
 @RequestMapping("/provider_category_control")
@@ -25,6 +27,9 @@ public class ProviderCategoryListController {
 	
 	@Autowired
 	ProviderCategoryListService providerCategoryListService;
+	
+	@Autowired
+	ProviderServiceService providerServiceImpl;
 	
 	
 	@RequestMapping(value = "/add/service/list",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
@@ -63,10 +68,32 @@ public class ProviderCategoryListController {
 	
 	
 	@RequestMapping(value = "/add/service/to/list",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
-	public Object addServiceToList(){
+	public Object addServiceToList(@RequestBody ProviderService providerService){
 		
 		Map<String,Object> response = new HashMap<String, Object>();
+		int insertedProviderServiceId = 0;
 		
+		if(providerServiceImpl.isProviderServiceAsserted(providerService)){
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("provider service object");
+			error.setErrorMessage("Service already in the list.");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+		}
+		else{
+			insertedProviderServiceId = providerServiceImpl.insert(providerService);
+			if(insertedProviderServiceId > 0){
+				response.put("insertedProviderServiceId", insertedProviderServiceId);
+			}else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("provider service object");
+				error.setErrorMessage("Error registering details.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+		}
 		
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);

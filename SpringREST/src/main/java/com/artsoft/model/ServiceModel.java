@@ -27,7 +27,7 @@ public class ServiceModel implements Serializable{
 	@Column(name="service_id")
 	private int serviceId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity=Category.class)
 	@JoinColumn(name="category_id")
 	@JsonBackReference
 	private Category category;
