@@ -63,11 +63,19 @@ create table request(
     provider_id int not null,
 	provider_service_id int not null,
     total_cost double not null,
+    request_state_id int not null,
     foreign key(app_user_id) references appuser(app_user_id) on delete cascade,
     foreign key(provider_id) references appuser(app_user_id),
-	foreign key(provider_service_id) references provider_service(provider_service_id)
+	foreign key(provider_service_id) references provider_service(provider_service_id),
+    foreign key(request_state_id) references request_state(request_state_id)
 );
 
+
+
+create table request_state(
+	request_state_id int not null primary key auto_increment,
+    description varchar(50) not null
+);
 
 
 
