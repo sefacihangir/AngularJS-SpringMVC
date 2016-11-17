@@ -5,7 +5,6 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="request")
@@ -27,9 +27,10 @@ public class Request implements Serializable{
 	@Column(name="request_id")
 	private int requestId;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=AppUser.class)
 	@JoinColumn(name="app_user_id")
 	@JsonBackReference
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private AppUser appuser;
 	
 	@Column(name="request_date")
@@ -41,11 +42,12 @@ public class Request implements Serializable{
 	@Column(name="desired_hour")
 	private String desiredHour;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=AppUser.class)
 	@JoinColumn(name="provider_id")
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private AppUser provider;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=ProviderService.class)
 	@JoinColumn(name="provider_service_id")
 	private ProviderService providerService;
 	
