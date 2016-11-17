@@ -2,6 +2,7 @@ package com.artsoft.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +35,7 @@ public class Request implements Serializable{
 	private AppUser appuser;
 	
 	@Column(name="request_date")
-	private Date requestDate;
+	private Timestamp requestDate;
 	
 	@Column(name="desired_date")
 	private Date desiredDate;
@@ -53,6 +54,12 @@ public class Request implements Serializable{
 	
 	@Column(name="total_cost")
 	private double totalCost;
+	
+	
+	@ManyToOne(targetEntity=RequestState.class)
+	@JoinColumn(name="request_state_id")
+	private RequestState requestState;
+	
 
 	public int getRequestId() {
 		return requestId;
@@ -71,11 +78,11 @@ public class Request implements Serializable{
 		this.appuser = appuser;
 	}
 
-	public Date getRequestDate() {
+	public Timestamp getRequestDate() {
 		return requestDate;
 	}
 
-	public void setRequestDate(Date requestDate) {
+	public void setRequestDate(Timestamp requestDate) {
 		this.requestDate = requestDate;
 	}
 
@@ -117,6 +124,14 @@ public class Request implements Serializable{
 
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
+	}
+
+	public RequestState getRequestState() {
+		return requestState;
+	}
+
+	public void setRequestState(RequestState requestState) {
+		this.requestState = requestState;
 	}
 	
 	

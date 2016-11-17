@@ -1,4 +1,4 @@
-package com.artsoft.dao;
+package com.artsoft.service;
 
 import java.util.List;
 
@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.artsoft.dao.AppUserDAO;
+import com.artsoft.dao.RequestDAO;
 import com.artsoft.model.AppUser;
 import com.artsoft.model.Request;
-import com.artsoft.service.RequestService;
 
 @Service("requestService")
 @Transactional

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -72,6 +73,34 @@ public class RequestController {
 	
 	
 	
+	@RequestMapping(value = "/update/status/for/request",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
+	public Object updateRequestStatus(@RequestBody Request request){
+		
+		Map<String,Object> response = new HashMap<String, Object>();
+		
+		if(request != null){
+			try{
+				requestService.update(request);
+				response.put("msg", "Status updated.");
+			}catch(Exception ex){
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("request object");
+				error.setErrorMessage("Failed to update request status.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+		}else{
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("request object");
+			error.setErrorMessage("Incorrect value provided.");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
 	
 	
 	
