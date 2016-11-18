@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -69,6 +68,7 @@ public class SignupController {
 	
 	
 	
+	
 	@RequestMapping(value = "/signup",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
 	public Object signup(@RequestBody AppUser user){
 		
@@ -86,7 +86,7 @@ public class SignupController {
 		} else{
 			user.setCreatedAt(DateUtil.getCurrentTimestamp());								// set the creation date of account
 			user.setLastAction(DateUtil.getCurrentTimestamp());					
-			user.setPassword(PasswordUtil.encryptPassword(user.getPassword()));				// MD5 encryption of password
+			user.setPassword(passwordEncoder.encode(user.getPassword()));				    // BCrypt encryption of password
 			user.setImagePath(IMAGE_PATH);													// the image path will be set in next step of registration or will be added later
 			
 			/**** SET ROLE ****/
