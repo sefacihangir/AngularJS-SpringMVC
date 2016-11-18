@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ import com.artsoft.model.Request;
 import com.artsoft.service.RequestService;
 
 @RestController
-@RequestMapping("request_control")
+@RequestMapping("/api/request_control")
 @EnableWebMvc
 public class RequestController {
 	
@@ -28,6 +29,7 @@ public class RequestController {
 	RequestService requestService;
 	
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CUSTOMER') or hasRole('ROLE_PROVIDER')")
 	@RequestMapping(value = "/all/requests/for/{role}/{id}",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.GET)
 	public Object getAllRequestsFor(@PathVariable("role") String role ,@PathVariable("id") int id){
 		
@@ -72,7 +74,7 @@ public class RequestController {
 	
 	
 	
-	
+	@PreAuthorize("hasRole('ROLE_PROVIDER')")
 	@RequestMapping(value = "/update/status/for/request",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
 	public Object updateRequestStatus(@RequestBody Request request){
 		

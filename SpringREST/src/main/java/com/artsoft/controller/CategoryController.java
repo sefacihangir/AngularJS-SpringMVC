@@ -21,7 +21,6 @@ import com.artsoft.service.CategoryService;
 
 @RestController
 @RequestMapping("/api/category_control")
-@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CUSTOMER') or hasRole('ROLE_PROVIDER')")
 @EnableWebMvc
 public class CategoryController {
 	
@@ -61,7 +60,7 @@ public class CategoryController {
 	
 	
 
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CUSTOMER') or hasRole('ROLE_PROVIDER')")
 	@RequestMapping(value = "/all", headers = {"Accept=*/*" }, produces = "application/json", method = RequestMethod.GET)
 	public Object findAll(){
 		
@@ -83,7 +82,7 @@ public class CategoryController {
 	}
 	
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/update", headers = {"Accept=*/*" }, produces = "application/json", method = RequestMethod.POST)
 	public Object update(@RequestBody Category category){
 		
@@ -128,7 +127,7 @@ public class CategoryController {
 	
 	
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/delete/{id}", headers = {"Accept=*/*" }, produces = "application/json", method = RequestMethod.POST)
 	public Object delete(@PathVariable("id") int categoryId){
 		

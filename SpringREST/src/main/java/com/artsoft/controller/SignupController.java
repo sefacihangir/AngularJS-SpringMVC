@@ -6,6 +6,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,13 +60,20 @@ public class SignupController {
 	StateService stateService;
 	
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
+	
+	@Autowired
+	UserDetailsService customUserDetailsService;
+	
+	
+	
 	@RequestMapping(value = "/signup",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
 	public Object signup(@RequestBody AppUser user){
 		
 		Map<String,Object> response = new HashMap<String, Object>();
 		int insertedUserId = 0;
-		
-		System.out.println(user);
 		
 		// check if email is available
 		if(!appUserService.isEmailAvailable(user.getEmail())){
@@ -122,7 +137,27 @@ public class SignupController {
 			/**** INSERT USER ****/
 			insertedUserId = appUserService.insert(user);
 			if(insertedUserId > 0){															// user inserted successfully
-				response.put("appUserId", insertedUserId);
+			    // after user is inserted , authenticate him
+				SecurityContextHolder.clearContext(); 										// clear the security context
+				UserDetails userDetails = null;
+				try{
+					userDetails = customUserDetailsService.loadUserByUsername(user.getEmail());
+				}catch(UsernameNotFoundException ex){
+					 CustomError error = new CustomError();
+					 error.setHasError(true);
+					 error.setErrorOnField("email");
+					 error.setErrorMessage("Incorrect email.");
+					 response.put("error", error);
+					 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.FORBIDDEN);
+				}
+				
+				
+				if ( userDetails != null ) {
+					Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+					SecurityContextHolder.getContext().setAuthentication(auth);
+					
+					response.put("appUserId", insertedUserId);
+				}
 			} else{
 				CustomError error = new CustomError();
 				error.setHasError(true);

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ import com.artsoft.util.DateUtil;
 import com.artsoft.util.PasswordUtil;
 
 @RestController
-@RequestMapping("/user_control")
+@RequestMapping("/api/user_control")
 @EnableWebMvc
 public class AppUserController {
 	
@@ -47,7 +48,7 @@ public class AppUserController {
 	StateService stateService;
 	
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/add",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
 	public Object add(@RequestBody AppUser user){
 		
@@ -87,7 +88,7 @@ public class AppUserController {
 	
 	
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/delete/{id}",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
 	public Object delete(@PathVariable("id") int appUserId){
 		
@@ -129,7 +130,7 @@ public class AppUserController {
 	
 	
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/update/user/account/status/{id}",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
 	public Object updateUserAccountStatus(@PathVariable("id") int appUserId, @RequestBody Account account){
 		

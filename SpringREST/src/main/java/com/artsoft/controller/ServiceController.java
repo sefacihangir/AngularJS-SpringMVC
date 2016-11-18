@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +19,9 @@ import com.artsoft.model.Category;
 import com.artsoft.model.ServiceModel;
 import com.artsoft.service.CategoryService;
 import com.artsoft.service.ServiceModelService;
-import com.artsoft.service.ServiceModelServiceImpl;
 
 @RestController
-@RequestMapping("/service_control")
+@RequestMapping("/api/service_control")
 @EnableWebMvc
 public class ServiceController {
 
@@ -33,6 +33,7 @@ public class ServiceController {
 	CategoryService categoryService;
 	
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/add", headers = {"Accept=*/*" }, produces = "application/json", method = RequestMethod.POST)
 	public Object add(@RequestBody ServiceModel service){
 		
@@ -89,7 +90,7 @@ public class ServiceController {
 	}
 	
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/update", headers = {"Accept=*/*" }, produces = "application/json", method = RequestMethod.POST)
 	public Object update(@RequestBody ServiceModel service){
 		
@@ -134,6 +135,7 @@ public class ServiceController {
 	
 	
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/delete/{id}", headers = {"Accept=*/*" }, produces = "application/json", method = RequestMethod.POST)
 	public Object delete(@PathVariable("id") int serviceId){
 		
