@@ -17,13 +17,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity
 @Table(name="appuser")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AppUser implements Serializable{
 
 	private static final long serialVersionUID = -5186343863817997390L;
@@ -31,6 +32,7 @@ public class AppUser implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="app_user_id")
+	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private int appUserId;
 	
 	@Column(name="email")
