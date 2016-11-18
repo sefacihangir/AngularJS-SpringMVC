@@ -9,6 +9,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,29 +22,38 @@ import com.artsoft.error.CustomError;
 import com.artsoft.model.AppUser;
 import com.artsoft.service.AppUserService;
 import com.artsoft.util.DateUtil;
+import com.artsoft.util.PropertiesUtil;
 
 @RestController
-@RequestMapping("/upload_control")
+@RequestMapping("/api/upload_control")
 @EnableWebMvc
 public class UploadImageController {
-
-	
-    private final String FOLDER_PATH = "C:\\Users\\georgeb\\Desktop\\uploads";
     
     private final double MAX_SIZE_ALLOWED = 2000000.0;
     
     
     @Autowired
     AppUserService appUserService;
-	
     
-	/**
-	 * after the API is secured , delete the request param 'appUserId' and use the user saved by spring security
-	 */
+    
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CUSTOMER') or hasRole('ROLE_PROVIDER')")
 	@RequestMapping(value = "/upload", headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
 	public Object upload(@RequestParam(value = "file") MultipartFile uploadedFile, @RequestParam(value = "appUserId") int appUserId){
 		
 		Map<String,Object> response = new HashMap<String, Object>();
+		PropertiesUtil propertiesUtil = new PropertiesUtil(); 
+		
+		String FOLDER_PATH = "";
+		try {
+			FOLDER_PATH = propertiesUtil.getUploadFolderPath();
+		} catch (IOException e) {
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("upload path");
+			error.setErrorMessage("Unknown upload folder path.");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);		// return with error
+		}
 		
         /*get file and save it to the local directory uploads*/
         String destination = FOLDER_PATH + "\\" + "userId_" + appUserId;	
