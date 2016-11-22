@@ -1,45 +1,25 @@
 package com.artsoft.util;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import com.artsoft.model.MailModel;
+import com.artsoft.service.MailService;
+import com.artsoft.service.MailServiceImpl;
 
 public class TestDate {
 
 	public static void main(String[] args) {
-		TestDate test = new TestDate();
-		try {
-			System.out.println("PATH -- " + test.getUploadFolderPath());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	public String getUploadFolderPath() throws IOException {
+		MailModel mail = new MailModel();
+		mail.setFrom("berar1994@gmail.com");
+		mail.setTo("berar1994@gmail.com");
+		mail.setSubject("TEST");
+		mail.setContent("This is a test");
 
-		String path = "";
-
-		try {
-			Properties properties = new Properties();
-			String propertiesFileName = "application.properties";
-			InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertiesFileName);
-
-			if (inputStream != null) {
-				properties.load(inputStream);
-			} else {
-				throw new FileNotFoundException(
-						"Property file '" + propertiesFileName + "' not found in the classpath");
-			}
-
-			path = properties.getProperty("upload_folder_path");
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		MailServiceImpl mailService = new MailServiceImpl();
+		if (mailService != null) {
+			mailService.sendEmail(mail);
+			System.out.println("Sent");
 		}
 
-		return path;
 	}
 
 }
