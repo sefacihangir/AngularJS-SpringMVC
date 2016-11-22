@@ -3,6 +3,7 @@ package com.artsoft.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -40,6 +41,13 @@ public class RequestDAOImpl extends AbstractDao implements RequestDAO {
 		Criterion customerId = Restrictions.eq("appuser", customer);
 		criteria.add(customerId);
 		return criteria.list();
+	}
+
+	@Override
+	public Request findById(int id) {
+		String sql = "SELECT r FROM Request r WHERE r.requestId = :id";
+		Query query = getSession().createQuery(sql).setParameter("id", id);
+		return (Request) query.uniqueResult();
 	}
 
 

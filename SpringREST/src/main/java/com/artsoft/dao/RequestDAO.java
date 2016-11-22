@@ -15,5 +15,7 @@ public interface RequestDAO {
 	
 	List<Request> findAllForCustomer(AppUser customer);
 	
+	Request findById(int id);
+	
 	
 }

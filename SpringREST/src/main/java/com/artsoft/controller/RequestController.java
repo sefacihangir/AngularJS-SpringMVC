@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.artsoft.error.CustomError;
+import com.artsoft.model.AppUser;
+import com.artsoft.model.MailModel;
 import com.artsoft.model.Request;
+import com.artsoft.service.AppUserService;
+import com.artsoft.service.MailService;
 import com.artsoft.service.RequestService;
 
 @RestController
@@ -27,6 +31,12 @@ public class RequestController {
 	
 	@Autowired
 	RequestService requestService;
+	
+	@Autowired
+	AppUserService appUserService;
+	
+	@Autowired
+	MailService mailService;
 	
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CUSTOMER') or hasRole('ROLE_PROVIDER')")
@@ -84,6 +94,49 @@ public class RequestController {
 			try{
 				requestService.update(request);
 				response.put("msg", "Status updated.");
+				
+				Request r = requestService.findById(request.getRequestId());
+				if(r != null){
+					AppUser user = appUserService.findById(request.getAppuser().getAppUserId());
+					if(user != null){
+						// send notification mail
+						MailModel mail = new MailModel();
+						mail.setFrom("berar1994@gmail.com");
+						mail.setTo(user.getEmail());
+						mail.setSubject("Request #"+r.getRequestId()+" -- Updated status");
+						mail.setContent("Hello " + user.getFirstName() + " " + user.getLastName() + ",\n" 
+									  + "This is a reminder regarding your request status\n "
+								      + "Request #" + r.getRequestId() + "\n"
+								      + "request date : " + r.getRequestDate() + "\n"
+								      + "desired date : " + r.getDesiredDate() + "\n"
+								      + "desired hour : " + r.getDesiredHour() + "\n"
+								      + "total cost : "   + r.getTotalCost()   + "\n"
+								      + "STATUS : " + r.getRequestState().getDescription());
+						
+						mailService.sendEmail(mail);
+						
+					}
+					else{
+						CustomError error = new CustomError();
+						error.setHasError(true);
+						error.setErrorOnField("appuser object");
+						error.setErrorMessage("Failed to fetch requester user.");
+						response.put("error", error);
+						return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+					}
+					
+				}
+				else{
+					CustomError error = new CustomError();
+					error.setHasError(true);
+					error.setErrorOnField("request object");
+					error.setErrorMessage("Failed to fetch updated request.");
+					response.put("error", error);
+					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+				}
+			
+				
+				
 			}catch(Exception ex){
 				CustomError error = new CustomError();
 				error.setHasError(true);

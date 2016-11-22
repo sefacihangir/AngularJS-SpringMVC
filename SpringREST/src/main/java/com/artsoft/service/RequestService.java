@@ -12,4 +12,6 @@ public interface RequestService {
 	
 	List<Request> findAllFor(int id, String role);
 	
+	public Request findById(int id);
+	
 }
