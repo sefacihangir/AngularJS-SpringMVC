@@ -14,4 +14,6 @@ public interface RequestService {
 	
 	public Request findById(int id);
 	
+	public void delete(Request request);
+	
 }

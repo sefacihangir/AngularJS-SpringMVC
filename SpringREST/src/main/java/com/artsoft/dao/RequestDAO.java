@@ -17,5 +17,6 @@ public interface RequestDAO {
 	
 	Request findById(int id);
 	
+	public void delete(Request request);
 	
 }

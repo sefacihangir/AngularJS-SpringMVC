@@ -24,7 +24,7 @@ import com.artsoft.service.MailService;
 import com.artsoft.service.RequestService;
 
 @RestController
-@RequestMapping("/api/request_control")
+@RequestMapping("/request_control")
 @EnableWebMvc
 public class RequestController {
 	
@@ -149,6 +149,84 @@ public class RequestController {
 			CustomError error = new CustomError();
 			error.setHasError(true);
 			error.setErrorOnField("request object");
+			error.setErrorMessage("Incorrect value provided.");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/add",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
+	public Object addRequest(@RequestBody Request request){
+		
+		Map<String,Object> response = new HashMap<String, Object>();
+		int insertedRequestId = 0;
+		
+		if(request != null){
+			insertedRequestId = requestService.insert(request);
+			
+			if(insertedRequestId > 0){
+				response.put("insertedRequestId", insertedRequestId);
+			}else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("request object");
+				error.setErrorMessage("Failed to register details.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+		} else{
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("request object");
+			error.setErrorMessage("Incorrect value provided.");
+			response.put("error", error);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/delete/{id}",headers={"Accept=*/*"}, produces = "application/json", method = RequestMethod.POST)
+	public Object deleteRequest(@PathVariable("id") int requestId){
+		
+		Map<String,Object> response = new HashMap<String, Object>();
+		
+		if(requestId != 0){
+			Request request = requestService.findById(requestId);
+			if(request != null){
+				try{
+					requestService.delete(request);
+					response.put("msg", "Request deleted.");
+				}catch(Exception e){
+					CustomError error = new CustomError();
+					error.setHasError(true);
+					error.setErrorOnField("request object");
+					error.setErrorMessage("Failed to delete request.");
+					response.put("error", error);
+					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+				}
+			}
+			else{
+				CustomError error = new CustomError();
+				error.setHasError(true);
+				error.setErrorOnField("request object");
+				error.setErrorMessage("Failed to fetch request.");
+				response.put("error", error);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error
+			}
+		}else{
+			CustomError error = new CustomError();
+			error.setHasError(true);
+			error.setErrorOnField("requestId");
 			error.setErrorMessage("Incorrect value provided.");
 			response.put("error", error);
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);	// return with error

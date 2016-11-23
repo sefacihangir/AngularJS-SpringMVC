@@ -52,4 +52,9 @@ public class RequestServiceImpl implements RequestService {
 		return requestDao.findById(id);
 	}
 
+	@Override
+	public void delete(Request request) {
+		requestDao.delete(request);
+	}
+
 }

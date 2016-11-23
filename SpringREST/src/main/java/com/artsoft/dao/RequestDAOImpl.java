@@ -50,5 +50,10 @@ public class RequestDAOImpl extends AbstractDao implements RequestDAO {
 		return (Request) query.uniqueResult();
 	}
 
+	@Override
+	public void delete(Request request) {
+		getSession().delete(request);
+	}
+
 
 }
