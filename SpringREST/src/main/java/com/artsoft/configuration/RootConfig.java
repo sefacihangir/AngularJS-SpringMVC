@@ -115,7 +115,7 @@ public class RootConfig {
         //Using gmail
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("berar1994@gmail.com");
+        mailSender.setUsername("test@gmail.com");
         mailSender.setPassword("password");
          
         Properties javaMailProperties = new Properties();
