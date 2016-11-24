@@ -116,7 +116,7 @@ public class RootConfig {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
         mailSender.setUsername("berar1994@gmail.com");
-        mailSender.setPassword("phEpefr4");
+        mailSender.setPassword("password");
          
         Properties javaMailProperties = new Properties();
         javaMailProperties.put("mail.smtp.starttls.enable", "true");
