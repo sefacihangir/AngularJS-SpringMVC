@@ -1,5 +1,7 @@
 package com.artsoft.dao;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Criterion;
@@ -46,6 +48,12 @@ public class ProviderServiceDAOImpl extends AbstractDao implements ProviderServi
 		String sql = "SELECT ps FROM ProviderService ps WHERE ps.providerServiceId = :id";
 		Query query = getSession().createQuery(sql).setParameter("id", id);
 		return (ProviderService) query.uniqueResult();
+	}
+
+	@Override
+	public List<ProviderService> findByServiceId(int id) {
+		Criteria criteria = getSession().createCriteria(ProviderService.class);
+		return null;
 	}
 
 }

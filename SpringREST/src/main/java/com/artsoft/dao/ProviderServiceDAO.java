@@ -1,5 +1,7 @@
 package com.artsoft.dao;
 
+import java.util.List;
+
 import com.artsoft.model.ProviderService;
 
 public interface ProviderServiceDAO {
@@ -13,5 +15,7 @@ public interface ProviderServiceDAO {
 	void delete(ProviderService providerService);
 	
 	ProviderService findById(int id);
+	
+	List<ProviderService> findByServiceId(int id);
 	
 }
